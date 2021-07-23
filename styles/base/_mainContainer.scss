@@ -1,0 +1,28 @@
+// @use "@styles/abstracts/variables" as *;
+@import "@styles/abstracts/variables";
+
+.container {
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: Montserrat;
+  padding: 0 30px;
+}
+
+.wrapper {
+  overflow: hidden;
+  background-color: $globalColor;
+  padding: 30px 0 0 0;
+}
+
+@media (max-width: 1023px) {
+  .body-overlay {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 375px) {
+  .container {
+    padding: 0 20px;
+  }
+}

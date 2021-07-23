@@ -1,0 +1,88 @@
+.projects
+    padding-top: 90px
+    padding-bottom: 80px
+    position: relative
+    &__title
+        margin-bottom: 75px
+        @extend .title
+
+.cardSection
+    &__row
+        align-items: flex-start
+        margin-bottom: 30px
+
+    &__paragraph
+        margin-bottom: 56px
+        @extend .paragraph
+
+    &__nestedPicture
+        margin: 0 auto 50px auto
+        @extend .nestedPicture
+
+    &__information
+        & > *:not(:last-child)
+            margin-bottom: 55px
+
+    &__buttonWrapper
+        display: flex
+
+    &__title
+        font-weight: 600
+        font-size: 36px
+        margin-bottom: 60px
+        display: flex
+
+    &__button
+        width: 100%
+        min-height: 53px
+        max-height: 53px
+        &:first-of-type
+            margin-right: 20px
+
+.gistFrame
+    max-width: 1020px
+    width: 100%
+    margin: 0 auto 40px auto
+
+
+@media (min-width: 1025px)
+    .projects
+        &__title
+            margin-left: 110px
+
+@media (min-width: 768px)
+    .cardSection
+        &__title
+            padding-top: 15px
+            padding-left: 10px
+
+@media (max-width: 1024px)
+    .cardSection
+        &__row
+            margin-bottom: 20px
+
+        &__title
+            font-size: 28px
+
+@media (max-width: 767px)
+    .cardSection
+        &__row
+            display: flex
+            flex-direction: column
+
+@media (max-width: 575px)
+    .cardSection
+        &__paragraph
+            margin-bottom: 30px
+
+        .gist iframe.render-viewer
+            height: 300px
+
+@media (max-width: 375px)
+    .cardSection
+        .gist iframe.render-viewer
+            height: 200px
+
+        &__title
+            font-size: 20px
+            margin-bottom: 50px

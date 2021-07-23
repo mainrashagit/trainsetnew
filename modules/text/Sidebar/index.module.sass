@@ -1,0 +1,78 @@
+.link
+    font-family: Roboto
+    font-size: 24px
+    line-height: 130.19%
+    color: #000000
+
+    &[data-active="true"]
+        color: #3b79a8
+
+    @media screen and ( max-width: 1024px )
+        font-size: 22px
+
+    @media screen and ( max-width: 767px )
+        width: auto
+
+    @media screen and ( max-width: 575px )
+        font-size: 18px
+
+    @media screen and ( max-width: 375px )
+        font-size: 14px
+
+.sideBar
+    position: relative
+    z-index: 2
+    float: left
+    margin-bottom: 40px
+    &::before
+        content: ""
+        position: absolute
+        right: 0px
+        top: 0
+        background-color: #e5e5e5
+        z-index: 1
+        display: block
+        min-width: 100%
+        width: 100%
+        height: 100%
+        transform: translateX(-100%)
+
+    &__sliderContainer
+        margin: 0 70px 0 0
+
+    &__wrapperContent
+        display: flex
+        width: 100%
+
+@media (min-width: 768px)
+    .sideBar
+        &__wrapperContent
+            max-width: 19.8vw
+            background-color: rgba(255, 255, 255, 1)
+
+            padding: 50px 25px 25px
+            min-height: 600px
+            min-width: 320px
+            flex-direction: column
+            & > *:not(:last-child)
+                margin-bottom: 30px
+
+@media (max-width: 1024px)
+    .sideBar
+        padding-left: 0
+        &__sliderContainer
+            margin: 0 50px 0 0
+
+        &:before
+            background-color: rgba(255, 255, 255, 1)
+
+@media (max-width: 768px)
+    .sideBar
+        margin-bottom: 40px
+
+@media (max-width: 767px)
+    .sideBar
+        display: flex
+        max-width: 100%
+        &::before
+            display: none

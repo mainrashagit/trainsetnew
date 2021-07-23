@@ -1,0 +1,56 @@
+.img
+    position: relative
+    border-radius: 10px
+    overflow: hidden
+    width: 100%
+    min-width: 620px
+    max-width: 620px
+    max-height: 485px
+
+    @media screen and ( max-width: 768px )
+        min-width: auto
+
+    &Wrap
+        width: 100%
+        height: 100%
+
+    &Src
+        width: 100%
+        height: 100%
+        object-fit: contain
+
+.card
+    display: grid
+    grid-template-columns: 1fr 1fr
+    justify-content: space-between
+    gap: 30px
+    margin-bottom: 55px
+
+    @media screen and ( max-width: 1200px )
+        grid-template-columns: 1fr
+        justify-items: center
+        gap: 40px
+
+.info
+    max-width: 680px
+    width: 100%
+    display: grid
+    grid-template-columns: 1fr
+    gap: 55px
+    &__buttons
+        display: grid
+        grid-template-columns: repeat(auto-fill, minmax(260px, 288px))
+        justify-content: center
+        gap: 20px
+        width: 100%
+
+        @media screen and ( max-width: 1200px )
+            order: 2
+
+        @media screen and ( max-width: 575px )
+            grid-template-columns: repeat(auto-fill, 200px)
+
+    @media screen and ( max-width: 1200px )
+        grid-template-columns: 1fr
+        justify-items: center
+        gap: 40px

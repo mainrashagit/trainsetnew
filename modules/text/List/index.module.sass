@@ -1,0 +1,39 @@
+@import "@modules/text/P/index.module"
+
+.list
+    list-style-position: inside
+    margin-top: 20px
+    li
+        @extend .p
+
+    &[data-alpha="true"]
+        list-style-type: lower-alpha
+        li::marker
+            font-style: italic
+            font-weight: 500
+
+    @media (max-width: 1024px)
+        margin-top: 20px
+
+ul.list
+    li
+        position: relative
+        @extend .p
+        &::before
+            content: ""
+            top: 50%
+            transform: translateY(-50%)
+            left: 0
+            background-color: black
+            display: inline-block
+            width: 8px
+            height: 8px
+            border-radius: 100%
+            margin: 0 10px
+
+        @media (max-width: 575px)
+            position: relative
+            padding-left: 15px
+            &::before
+                width: 6px
+                height: 6px

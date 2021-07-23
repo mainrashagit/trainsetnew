@@ -1,0 +1,74 @@
+@use "@styles/abstracts/mixins" as *
+
+.button
+    display: inline-block
+    font-family: Roboto
+    font-weight: 300
+    font-size: 16px
+    color: #ffffff
+    background: #3b79a8
+    border: 1px solid #3b79a8
+    border-radius: 38px
+    padding: 8px 25px
+    transition: 0.4s ease
+    & *
+        color: inherit
+    &:hover
+        color: #3b79a8
+        background: transparent
+
+    @media (max-width: 375px)
+        font-size: 14px
+
+.inset
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 15px
+    @extend .button
+    box-shadow: inset -5px -5px 4px rgb(2 161 179 / 10%), inset 5px 5px 4px rgb(0 0 0 / 10%)
+
+.hollow
+    @extend .link
+    border: 1px solid #3b79a8
+    padding: 8px 17px
+    border-radius: 38px
+    width: 100%
+    &:hover
+        color: white
+        background-color: #3b79a8
+        text-align: center
+        &::after
+            display: none
+
+.link
+    font-size: 20px
+    font-family: Montserrat
+    position: relative
+    display: inline-block
+    color: #000000
+    transition: 0.4s ease
+    & *
+        color: inherit
+        display: inline-block
+    &:hover
+        transform: scale(1.1)
+
+    &::after
+        content: ""
+        display: inline-block
+        margin-left: 20px
+        transform: translateY(-50%)
+        @include backgroundImage("/iconsSprite/longArrow-icon.svg", contain)
+        width: 40px
+        height: 6px
+
+    @media (max-width: 375px)
+        font-size: 14px
+        &::after
+            margin-left: 10px
+            transform: translateY(-25%)
+            @include backgroundImage("/iconsSprite/longArrow-icon.svg", contain)
+            width: 38px
+            height: 6px

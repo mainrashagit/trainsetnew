@@ -1,0 +1,99 @@
+// .firstScreen {
+//   &__wrapper {
+//     display: flex;
+//     align-items: center;
+//     padding-bottom: 50px;
+//     padding-top: 90px;
+//     & > *:first-child {
+//       margin-right: 60px;
+//     }
+//   }
+//   &__column {
+//     max-width: 740px;
+//     flex-shrink: 1;
+//   }
+
+//   &__title {
+//     max-width: 370px;
+//     letter-spacing: 0.005em;
+//     margin-bottom: 35px;
+//     font-weight: bold;
+//   }
+
+//   &__suptitle {
+//     font-size: 24px;
+//     font-weight: 300;
+//     font-size: 24px;
+//     line-height: 191.69%;
+//     color: rgba(0, 0, 0, 0.7);
+//   }
+
+//   &__image {
+//     max-width: 510px;
+//     width: 100%;
+//     img,
+//     source {
+//       width: 100%;
+//       height: 100%;
+//       object-fit: contain;
+//     }
+//   }
+// }
+
+// @media (max-width: 1024px) {
+//   .firstScreen {
+//     &__title {
+//       margin-bottom: 45px;
+//     }
+
+//     &__suptitle {
+//       font-size: 18px;
+//     }
+//   }
+// }
+
+// @media (max-width: 999px) {
+//   .firstScreen {
+//     &__title {
+//       margin-bottom: 25px;
+//       max-width: 100%;
+//     }
+//     &__wrapper {
+//       flex-direction: column-reverse;
+//       text-align: center;
+//       & > *:first-child {
+//         margin: 30px 0 0 0;
+//       }
+//     }
+//   }
+// }
+
+// @media (max-width: 375px) {
+//   .firstScreen {
+//     &__title {
+//       font-size: 28px;
+//     }
+
+//     &__wrapper {
+//       padding-bottom: 30px;
+//       padding-top: 50px;
+//     }
+
+//     &__suptitle {
+//       font-size: 14px;
+//     }
+//   }
+// }
+
+// .topbutton {
+//   margin: 50px auto;
+//   padding: 9px 35px;
+//   color: #fff;
+//   font-weight: 500;
+//   font-size: 20px;
+//   font-family: "Montserrat";
+//   background: #337AB6;
+//   border-radius: 38px;
+//   display: block;
+//   width: fit-content;
+// }

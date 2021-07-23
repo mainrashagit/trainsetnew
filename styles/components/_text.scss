@@ -1,0 +1,39 @@
+@keyframes backgroundAnimation {
+  0% {
+    background-color: hsla(50, 100%, 84%, 0);
+  }
+
+  50% {
+    background-color: hsl(50, 100%, 84%);
+  }
+
+  0% {
+    background-color: hsla(50, 100%, 84%, 0);
+  }
+}
+
+
+.link {
+  font-family: Roboto;
+  font-weight: 300;
+  transition: 0.4s ease;
+  font-size: 20px;
+  color: #000000;
+
+  &_border {
+    border: 1px solid #3b79a8;
+    border-radius: 38px;
+    padding: 8px 20px;
+    @extend .link;
+    &:hover {
+      background-color: #3b79a8;
+      color: white;
+    }
+  }
+  &_animatedBG {
+    padding: 10px 30px;
+    border-radius: 36px;
+    animation: backgroundAnimation 4s ease infinite;
+    @extend .link;
+  }
+}

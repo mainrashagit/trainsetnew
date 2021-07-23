@@ -1,0 +1,31 @@
+.codeFrame {
+  max-width: 100%;
+  width: 100%;
+  background-color: white;
+  overflow-x: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  overflow-y: hidden;
+  border-right: 40px solid white;
+  border-left: 40px solid white;
+
+  &__text {
+    color: #05b98b;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    @extend .paragraph__text;
+    &:not(:last-of-type) {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .codeFrame {
+    border-right: 20px solid white;
+    border-left: 20px solid white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}

@@ -1,0 +1,120 @@
+.card
+    &__wrapper
+        background-color: white
+        max-width: 640px
+        font-family: Montserrat
+        width: 100%
+        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1)
+        border-radius: 44px
+        display: grid
+        grid-template-columns: 1fr 1fr
+        gap: 25px
+        height: 100%
+        padding: 26px 23px
+        position: relative
+
+    &__column
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        align-self: center
+        width: 100%
+        &:first-of-type
+            margin-right: 30px
+
+        &_big
+            @extend .card__column
+
+    &__title
+        font-weight: 600
+        font-size: 22px
+        line-height: 1.2
+        margin-bottom: 25px
+
+    &__suptitle
+        font-weight: 500
+        font-size: 20px
+        margin-bottom: 15px
+
+    &__text
+        font-size: 18px
+        line-height: 151.9%
+        color: rgba(0, 0, 0, 0.8)
+        &:not(:last-of-type)
+            margin-bottom: 30px
+
+    &__level
+        font-weight: 500
+        font-size: 16px
+        color: #163b69
+
+    &__image
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25)
+        border-radius: 44px
+        margin-top: 36px
+        position: relative
+        width: 100%
+        overflow: hidden
+        height: 300px
+
+        &_src
+            height: 100%
+            width: 100%
+            object-fit: cover
+            position: absolute
+            top: 0
+            left: 0
+
+    &__buttonLink
+        margin-top: 30px
+
+    &__buttonWrapper
+        display: flex
+
+@media (max-width: 1300px)
+    .card
+        &__wrapper
+            max-width: 100%
+            display: flex
+
+        &__column
+            max-width: 280px
+            &_big
+                max-width: 100%
+
+        &__image
+            height: 0
+            padding-bottom: 110%
+
+        &__buttonWrapper
+            display: none
+
+@media (max-width: 700px)
+    .card
+        &__wrapper
+            flex-direction: column
+
+        &__level,
+        &__column:first-of-type
+            margin-left: auto
+            margin-right: auto
+
+        &__column:first-of-type
+            margin-bottom: 30px
+
+@media (max-width: 375px)
+    .card
+        &__title
+            font-size: 20px
+            margin-bottom: 20px
+
+        &__suptitle
+            font-size: 18px
+
+        &__text
+            font-size: 14px
+            &:not(:last-of-type)
+                margin-bottom: 20px
+
+        &__buttonLink
+            margin-top: 20px

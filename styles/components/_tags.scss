@@ -1,0 +1,31 @@
+.tags {
+  max-width: 100%;
+  background: rgba(255, 248, 212, 0.17);
+  border: 1px solid #3b79a8;
+  box-sizing: border-box;
+  border-radius: 33px;
+  width: 100%;
+  padding: 23px;
+  &__title {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    font-weight: 300;
+    font-size: 16px;
+    border: 1px solid #3b79a8;
+    border-radius: 48px;
+    padding: 11px;
+    text-align: center;
+    margin-top: 15px;
+    &:not(:last-of-type) {
+      margin-right: 25px;
+    }
+  }
+}

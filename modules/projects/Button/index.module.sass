@@ -1,0 +1,33 @@
+.button
+    width: 100%
+    min-height: 53px
+    max-height: 53px
+    font-weight: 500
+    font-family: Montserrat
+    font-size: 18px
+    color: #ffffff
+    background: #3b79a8
+    border: 2px solid #3b79a8
+    border-radius: 38px
+    padding: 8px 25px
+    display: flex
+    align-items: center
+    justify-content: center
+    box-shadow: inset -5px -5px 4px rgb(2 161 179 / 10%), inset 5px 5px 4px rgb(0 0 0 / 10%)
+    transition: 0.3s ease
+    cursor: pointer
+
+    @media screen and ( max-width: 1024px )
+        font-size: 16px
+
+    @media (max-width: 575px)
+        font-size: 14px
+
+    &:hover
+        color: #3b79a8
+        background: #ffffff
+        transform: scale(1.05)
+
+    & *
+        color: inherit
+        display: inline-block

@@ -1,0 +1,32 @@
+.h
+    font-family: Oswald
+    font-size: 48px
+    font-weight: 500
+    line-height: 1.5
+    color: #000000
+
+    @media (max-width: 1024px)
+        font-size: 36px
+
+    @media (max-width: 375px)
+        font-size: 24px
+        text-align: center
+
+.h1
+    @extend .h
+    font-weight: 700
+
+.h2
+    @extend .h
+
+.h6
+    font-weight: 600
+    font-size: 36px
+    margin-bottom: 60px
+    display: flex
+
+    @media (max-width: 1024px)
+        font-size: 28px
+
+    @media (max-width: 375px)
+        font-size: 20px

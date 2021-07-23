@@ -1,0 +1,21 @@
+.wrapper
+    display: flex
+    flex-direction: column
+    justify-content: center
+    width: 55px
+    text-align: center
+    margin-top: 30px
+
+.arrow
+    font-size: 10px
+    color: #000000
+    &::before
+        height: 50px
+        display: block
+        content: ""
+        transform: rotate( 270deg )
+        background-position: center
+        background-repeat: no-repeat
+        background-size: 80%
+        background-image: url(/iconsSprite/longArrow-icon.svg)
+        margin-bottom: 5px
