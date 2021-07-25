@@ -9,8 +9,6 @@ const CustomHead: React.FC<Props> = ({ }) => {
       <meta name="format-detection" content="telephone=no" />
       <meta name="keywords" content="ключевые слова" />
       <meta name="description" content="крутой сайт" />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" id="">
-      </script>
     </Head>
   )
 }

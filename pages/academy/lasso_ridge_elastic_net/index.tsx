@@ -8,6 +8,7 @@ import P from '@modules/text/P/P'
 import Section from '@modules/text/Section/Section'
 import Title from '@modules/text/Title/Title'
 import styles from './index.module.sass'
+import Math from '@modules/text/Math/Math'
 
 interface Props { }
 
@@ -28,7 +29,34 @@ const index: React.FC<Props> = ({ }) => {
                 <P>Let’s look at the example of lasso regularization with linear models, where OLS method is used with its regularization term.</P>
                 <Center><img src="/academy/diag_1.webp" alt="" /></Center>
                 <P>The LASSO method puts a constraint on the sum of the absolute values of the model parameters, the sum has to be less than a fixed value (upper bound, or t):</P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <munderover>
+                        <mo>∑</mo>
+                        <mrow>
+                            <mi>k</mi>
+                        </mrow>
+                        <mrow>
+                            <mi>j</mi>
+                            <mo>=</mo>
+                            <mn>1</mn>
+                        </mrow>
+                    </munderover>
+                    <mrow>
+                        <mo>|</mo>
+                        <msub>
+                            <mi>β</mi>
+                            <mrow>
+                                <mi>j</mi>
+                            </mrow>
+                        </msub>
+                        <mo>|</mo>
+                    </mrow>
+                    <mo>&lt;</mo>
+                    <mi>t</mi>
+                    <mo>,</mo>
+                    </Math>
+                    </Center>
                 <P>where t is the upper bound for the sum of the coefficients.</P>
                 <P>In order to do so, the method applies a shrinking (regularization) process where it penalizes the coefficients of the regression variables shrinking some of them to zero. During features selection process the variables that still have a non-zero coefficient after the shrinking process are selected to be part of the model. The goal of this process is to minimize the prediction error.</P>
             </Section>
@@ -55,11 +83,242 @@ const index: React.FC<Props> = ({ }) => {
             </Section>
             <Section title="5. The Model">
                 <P>The LASSO minimizes the sum of squared errors, with an upper bound on the sum of the absolute values of the model parameters. The lasso estimate is defined by the solution to the L1 optimization problem:</P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <mo>&lt;</mo>
+                    <mi>i</mi>
+                    <mo>&gt;</mo>
+                    <mi>m</mi>
+                    <mi>i</mi>
+                    <mi>n</mi>
+                    <mi>i</mi>
+                    <mi>m</mi>
+                    <mi>i</mi>
+                    <mi>z</mi>
+                    <mi>e</mi>
+                    <mo>&lt;</mo>
+                    <mrow className="MJX-TeXAtom-ORD">
+                        <mo>/</mo>
+                    </mrow>
+                    <mi>i</mi>
+                    <mo>&gt;</mo>
+                    <mrow>
+                        <mo>[</mo>
+                        <mfrac>
+                            <mrow>
+                                <munderover>
+                                    <mo>∑</mo>
+                                    <mrow className="MJX-TeXAtom-ORD">
+                                        <mi>ı</mi>
+                                        <mo>=</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mrow className="MJX-TeXAtom-ORD">
+                                        <mi>n</mi>
+                                    </mrow>
+                                </munderover>
+                                <mo stretchy="false">(</mo>
+                                <msub>
+                                    <mi>y</mi>
+                                    <mrow className="MJX-TeXAtom-ORD">
+                                        <mi>i</mi>
+                                    </mrow>
+                                </msub>
+                                <mo>−</mo>
+                                <mo stretchy="false">)</mo>
+                                <mo stretchy="false">(</mo>
+                                <msub>
+                                    <mi>β</mi>
+                                    <mrow className="MJX-TeXAtom-ORD">
+                                        <mi>i</mi>
+                                    </mrow>
+                                </msub>
+                                <msub>
+                                    <mi>x</mi>
+                                    <mrow className="MJX-TeXAtom-ORD">
+                                        <mi>i</mi>
+                                    </mrow>
+                                </msub>
+                                <mo>+</mo>
+                                <msub>
+                                    <mi>β</mi>
+                                    <mrow className="MJX-TeXAtom-ORD">
+                                        <mn>0</mn>
+                                    </mrow>
+                                </msub>
+                                <mo stretchy="false">)</mo>
+                                <msup>
+                                    <mo stretchy="false">)</mo>
+                                    <mn>2</mn>
+                                </msup>
+                            </mrow>
+                            <mi>n</mi>
+                        </mfrac>
+                        <mo>]</mo>
+                    </mrow>
+                    <mo>&lt;</mo>
+                    <mi>i</mi>
+                    <mo>&gt;</mo>
+                    <mi>s</mi>
+                    <mi>u</mi>
+                    <mi>b</mi>
+                    <mi>j</mi>
+                    <mi>e</mi>
+                    <mi>c</mi>
+                    <mi>t</mi>
+                    <mi>t</mi>
+                    <mi>o</mi>
+                    <mo>&lt;</mo>
+                    <mrow className="MJX-TeXAtom-ORD">
+                        <mo>/</mo>
+                    </mrow>
+                    <mi>i</mi>
+                    <mo>&gt;</mo>
+                    <mrow>
+                        <mo>[</mo>
+                        <mrow>
+                            <mi>α</mi>
+                            <munderover>
+                                <mo>∑</mo>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mi>ȷ</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mi>k</mi>
+                                </mrow>
+                            </munderover>
+                            <mrow>
+                                <mo>|</mo>
+                                <msub>
+                                    <mi>β</mi>
+                                    <mrow className="MJX-TeXAtom-ORD">
+                                        <mi>ȷ</mi>
+                                    </mrow>
+                                </msub>
+                                <mo>|</mo>
+                            </mrow>
+                            <mo>&lt;</mo>
+                            <mi>t</mi>
+                        </mrow>
+                        <mo>]</mo>
+                    </mrow>
+                    <mo>,</mo>
+                    </Math>
+                </Center>
                 <P>where <b>t</b> is the upper bound for the sum of the coefficients, n is the number of response variables and</P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <mi>&#x3B1;</mi>
+                    <mo>&#x2265;</mo>
+                    <mn>0</mn>
+                    </Math>
+                </Center>
                 <P>is the parameter that controls the strength of the penalty, the larger the value of α, the greater the amount of shrinkage. This optimization problem is equivalent to the parameter estimation that follows:</P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <mrow className="MJX-TeXAtom-ORD">
+                        <mover>
+                            <mi>&#x3B2;</mi>
+                            <mo stretchy="false">^</mo>
+                        </mover>
+                    </mrow>
+                    <mo stretchy="false">(</mo>
+                    <mi>&#x3B1;</mi>
+                    <mo stretchy="false">)</mo>
+                    <mo>=</mo>
+                    <munder>
+                        <mrow>
+                            <mi>a</mi>
+                            <mi>r</mi>
+                            <mi>g</mi>
+                            <mi>m</mi>
+                            <mi>i</mi>
+                            <mi>n</mi>
+                        </mrow>
+                        <mi>&#x3B2;</mi>
+                    </munder>
+                    <mrow>
+                        <mo>[</mo>
+                        <mrow>
+                            <mfrac>
+                                <mrow>
+                                    <munderover>
+                                        <mo>&#x2211;</mo>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mi>i</mi>
+                                            <mo>=</mo>
+                                            <mn>1</mn>
+                                        </mrow>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mi>n</mi>
+                                        </mrow>
+                                    </munderover>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>y</mi>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mi>i</mi>
+                                        </mrow>
+                                    </msub>
+                                    <mo>&#x2212;</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>&#x3B2;</mi>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mi>i</mi>
+                                        </mrow>
+                                    </msub>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mi>i</mi>
+                                        </mrow>
+                                    </msub>
+                                    <mo>+</mo>
+                                    <msub>
+                                        <mi>&#x3B2;</mi>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mn>0</mn>
+                                        </mrow>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                    <msup>
+                                        <mo stretchy="false">)</mo>
+                                        <mn>2</mn>
+                                    </msup>
+                                </mrow>
+                                <mi>n</mi>
+                            </mfrac>
+                            <mo>+</mo>
+                            <mi>&#x3B1;</mi>
+                            <munderover>
+                                <mo>&#x2211;</mo>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mi>j</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mi>k</mi>
+                                </mrow>
+                            </munderover>
+                            <mrow>
+                                <mo>|</mo>
+                                <msub>
+                                    <mi>&#x3B2;</mi>
+                                    <mrow className="MJX-TeXAtom-ORD">
+                                        <mi>j</mi>
+                                    </mrow>
+                                </msub>
+                                <mo>|</mo>
+                            </mrow>
+                        </mrow>
+                        <mo>]</mo>
+                    </mrow>
+                    </Math>
+                </Center>
                 <P>The relation between α and the upper bound t is a reverse relationship. We already know that α controls the strength of the penalty. When α is large, coefficients are forced to be exactly equal to zero, and when α = 0, we have just an OLS (Ordinary Least Squares) method, which estimates parameters.</P>
                 <P>When <b>t</b> becomes close to 0, let us say 0.00001 (meaning that the absolute sum of all coefficients should be less than 0.00001), α goes to infinity as it forces coefficients to be exactly 0. On the contrary, as <b>t</b> becomes infinity (meaning that the absolute sum of all coefficients should be less than infinity), α becomes 0, as there is no urgency to shrink coefficients, so the problem becomes just an ordinary least squares.</P>
             </Section>
@@ -71,13 +330,52 @@ const index: React.FC<Props> = ({ }) => {
                 <P>Ridge Regression uses OLS method, but with one difference: it has a regularization {"term\alpha \sum_{j=1}^{p}w_{j}^{2}"}(also known as L2 penalty or penalty term).L2 penalty or penalty term</P>
                 <P>Ridge Regression allows you to regularize coefficients. This means that the estimated coefficients are pushed towards 0, to make them work better on new data-sets ("optimized for prediction"). This allows you to use complex models and avoid over-fitting at the same time.</P>
                 <P>For Ridge Regression you have to set an</P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <mi>&#x3B1;</mi>
+                    </Math>
+                </Center>
                 <P>("alpha") - a so-called "meta-parameter" (or "regularization parameter") that defines how aggressive regularization is performed. Alpha simply defines regularization strength and is usually chosen by cross-validation.</P>
                 <P>if</P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <mi>&#x3B1;</mi>
+                    </Math>
+                </Center>
                 <P>is too large,</P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <msub>
+                        <mi>h</mi>
+                        <mrow className="MJX-TeXAtom-ORD">
+                            <mi>v</mi>
+                        </mrow>
+                    </msub>
+                    <mo stretchy="false">(</mo>
+                    <mi>x</mi>
+                    <mo stretchy="false">)</mo>
+                    <mo>&#x2248;</mo>
+                    <msub>
+                        <mi>w</mi>
+                        <mrow className="MJX-TeXAtom-ORD">
+                            <mn>0</mn>
+                        </mrow>
+                    </msub>
+                    </Math>
+                </Center>
                 <P>and thus</P>
+                <Center>
+                    <Math>
+                    <msub>
+                        <mi>w</mi>
+                        <mrow className="MJX-TeXAtom-ORD">
+                            <mi>j</mi>
+                        </mrow>
+                    </msub>
+                    <mo>&#x2248;</mo>
+                    <mn>0</mn>
+                    </Math>
+                </Center>
                 <P>causing an underfitting.</P>
                 <P>Regularization works especially well when you have a relatively small amount of training data compared to the number of features in a model. It becomes less important as the amount of training data increases.</P>
             </Section>
@@ -96,10 +394,18 @@ const index: React.FC<Props> = ({ }) => {
             <Section title="1. Introduction">
                 <P>In this section, the difference between Lasso and Ridge regression models is outlined. We assume you to know both Ridge and Lasso regressions described above.</P>
                 <P>Ridge regression is an extension for linear regression. It’s basically a regularized linear regression model. The</P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <mi>&#x3B1;</mi>
+                    </Math>
+                </Center>
                 <P>parameter is a scalar that should be learned as well, using a method called cross-validation.</P>
                 <P>An extremely important fact we need to notice about ridge regression is that it enforces the</P>
-                <img src="" alt="" />
+                <Center><Math>
+                    <mi>&#x3B2;</mi>
+                    </Math>
+                </Center>
+
                 <P>coefficients to be lower, but it does not enforce them to be zero. That is, it will not get rid of irrelevant features but rather minimize their impact on the trained model.</P>
                 <P>The only difference from Ridge regression is that the regularization term is in <b>absolute value</b>. But this difference has a huge impact on the trade-off we’ve discussed before. Lasso method overcomes the disadvantage of Ridge regression by not only punishing high values of the coefficients β but actually setting them to zero if they are not relevant. Therefore, you might end up with fewer features included in the model than you started with, which is a huge advantage.</P>
                 <P>Keep in mind that Ridge regression <b>cannot zero out coefficients;</b> thus, you either end up including all the coefficients in the model or none of them. In contrast, the LASSO does both <b>parameter shrinkage</b> and <b>variable selection automatically</b>. If some of your covariates are highly correlated, you may want to look at the Elastic Net instead of the LASSO.</P>
@@ -110,7 +416,18 @@ const index: React.FC<Props> = ({ }) => {
                 <P>Thus, the optimal point is a point which is a common point between an ellipse and L1/L2 constraint. This point tries to find the minimum for the constraint that will work for the regression model. Exactly that point gives a minimum value for the Ridge or Lasso function.</P>
                 <List>
                     <li>For the LASSO method the constraint region is a diamond, thus it has corners; Because it has corners, there is a high probability that optimum point (minimum point) falls in the corner point of the diamond region. For P=2 case, if an optimal point falls in the corner point, it means that one of the feature estimate is zero.
-                        <img src="" alt="" />
+                        <Center>
+                            <Math>
+                            <msub>
+                                <mi>&#x3B2;</mi>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mi>j</mi>
+                                </mrow>
+                            </msub>
+                            <mo>=</mo>
+                            <mn>0</mn>
+                            </Math>
+                        </Center>
                     </li>
                     <li>For the RIDGE method the constraint region is a disk, thus it has no corners and the coefficients cannot be equal to zero, as point minimum will be located elsewhere.</li>
                 </List>
@@ -124,11 +441,169 @@ const index: React.FC<Props> = ({ }) => {
                     <li>If there is a group of highly correlated variables, LASSO tends to select one variable from a group and ignore the others.</li>
                 </List>
                 <P>To overcome these limitations, the elastic net adds a quadratic part to the L1 penalty, which when used alone is a ridge regression (known also as Tikhonov regularization or L2). The estimates from the elastic net method are defined by</P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <mrow className="MJX-TeXAtom-ORD">
+                        <mover>
+                            <mi>&#x3B2;</mi>
+                            <mo>^</mo>
+                        </mover>
+                    </mrow>
+                    <mo stretchy="false">(</mo>
+                    <mi>&#x3B1;</mi>
+                    <mo stretchy="false">)</mo>
+                    <mo>=</mo>
+                    <munder>
+                        <mrow>
+                            <mi>a</mi>
+                            <mi>r</mi>
+                            <mi>g</mi>
+                            <mi>m</mi>
+                            <mi>i</mi>
+                            <mi>n</mi>
+                        </mrow>
+                        <mi>&#x3B2;</mi>
+                    </munder>
+                    <mrow>
+                        <mo>[</mo>
+                        <mrow>
+                            <mfrac>
+                                <mrow>
+                                    <munderover>
+                                        <mo>&#x2211;</mo>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mi>i</mi>
+                                            <mo>=</mo>
+                                            <mn>1</mn>
+                                        </mrow>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mi>n</mi>
+                                        </mrow>
+                                    </munderover>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>y</mi>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mi>i</mi>
+                                        </mrow>
+                                    </msub>
+                                    <mo>&#x2212;</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>&#x3B2;</mi>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mi>i</mi>
+                                        </mrow>
+                                    </msub>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mi>i</mi>
+                                        </mrow>
+                                    </msub>
+                                    <mo>+</mo>
+                                    <msub>
+                                        <mi>&#x3B2;</mi>
+                                        <mrow className="MJX-TeXAtom-ORD">
+                                            <mn>0</mn>
+                                        </mrow>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                    <msup>
+                                        <mo stretchy="false">)</mo>
+                                        <mn>2</mn>
+                                    </msup>
+                                </mrow>
+                                <mi>n</mi>
+                            </mfrac>
+                            <mo>+</mo>
+                            <msub>
+                                <mi>&#x3B1;</mi>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mn>1</mn>
+                                </mrow>
+                            </msub>
+                            <munderover>
+                                <mo>&#x2211;</mo>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mi>j</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mi>k</mi>
+                                </mrow>
+                            </munderover>
+                            <mrow>
+                                <mo>|</mo>
+                                <msub>
+                                    <mi>&#x3B2;</mi>
+                                    <mrow className="MJX-TeXAtom-ORD">
+                                        <mi>j</mi>
+                                    </mrow>
+                                </msub>
+                                <mo>|</mo>
+                            </mrow>
+                            <mo>+</mo>
+                            <msub>
+                                <mi>&#x3B1;</mi>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mn>2</mn>
+                                </mrow>
+                            </msub>
+                            <munderover>
+                                <mo>&#x2211;</mo>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mi>j</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mi>k</mi>
+                                </mrow>
+                            </munderover>
+                            <mo stretchy="false">(</mo>
+                            <msub>
+                                <mi>&#x3B2;</mi>
+                                <mrow className="MJX-TeXAtom-ORD">
+                                    <mi>j</mi>
+                                </mrow>
+                            </msub>
+                            <msup>
+                                <mo stretchy="false">)</mo>
+                                <mn>2</mn>
+                            </msup>
+                        </mrow>
+                        <mo>]</mo>
+                    </mrow>
+                    </Math>
+                </Center>
                 <P><i>where</i></P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <msub>
+                        <mi>&#x3B1;</mi>
+                        <mrow className="MJX-TeXAtom-ORD">
+                            <mn>1</mn>
+                        </mrow>
+                    </msub>
+                    <mo>&#x2A7E;</mo>
+                    <mn>0</mn>
+                    </Math>
+                </Center>
                 <P><i>and</i></P>
-                <img src="" alt="" />
+                <Center>
+                    <Math>
+                    <msub>
+                        <mi>&#x3B1;</mi>
+                        <mrow className="MJX-TeXAtom-ORD">
+                            <mn>2</mn>
+                        </mrow>
+                    </msub>
+                    <mo>&#x2A7E;</mo>
+                    <mn>0</mn>
+                    </Math>
+                </Center>
                 <P><i>are two regularization parameters.</i></P>
             </Section>
             <Section title="2. Comparing L1 &amp; L2 with Elastic Net">

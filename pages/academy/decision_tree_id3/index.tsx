@@ -10,6 +10,8 @@ import Section from '@modules/text/Section/Section'
 import Title from '@modules/text/Title/Title'
 import styles from './index.module.sass'
 
+import Math from '@modules/text/Math/Math'
+
 interface Props { }
 
 const index: React.FC<Props> = ({ }) => {
@@ -44,11 +46,114 @@ const index: React.FC<Props> = ({ }) => {
                 <P>Entropy is the measure of the <b>amount of uncertainty</b> or <b>randomness</b> in data. Intuitively, it shows predictability of a certain event. If an outcome of an event has a probability of 100%, the entropy is zero (no randomness exists), and if an outcome is 50%, the entropy takes the maximum value (i.e. equals to 1 since it is the <Blue>log base 2</Blue>) as it projects perfect randomness. For example, consider a coin toss whose probability of heads is 0.5 and probability of tails is 0.5. The entropy here is the highest possible value (i.e., equals 1), since there’s no chance to precisely determine the outcome. Alternatively, consider a coin which has heads on both the sides, the outcome of such an event can be predicted perfectly since we know beforehand that it will always be heads. In other words, this event has no randomness, hence its entropy is zero. <b>ID3 follows the rule: a branch with an entropy of 0 is a leaf node (endpoint). A branch with an entropy more than 0 needs further splitting.</b> In case it is not possible to achieve zero entropy in the leaf nodes, the decision is made by the method of a <b>simple majority</b>.</P>
                 <P>To build a decision tree, we need to calculate two types of entropy using frequency tables as follows:</P>
                 <P>1. Entropy E ( S ) using the frequency table of one attribute, where S is a current state (existing outcomes) and P ( x ) is a probability of an event x of that state S :</P>
-                <P></P>
+                <Center>
+                    <Math>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <munderover>
+                            <mo>&#x2211;</mo>
+                            <mrow className="MJX-TeXAtom-ORD">
+                                <mi>x</mi>
+                                <mi>e</mi>
+                                <mi>p</mi>
+                                <mi>s</mi>
+                                <mi>i</mi>
+                                <mi>l</mi>
+                                <mi>o</mi>
+                                <mi>n</mi>
+                                <mi>X</mi>
+                            </mrow>
+                            <mrow className="MJX-TeXAtom-ORD">
+
+                            </mrow>
+                        </munderover>
+                        <mo>&#x2212;</mo>
+                        <mi>P</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>x</mi>
+                        <mo stretchy="false">)</mo>
+                        <mi>l</mi>
+                        <mi>o</mi>
+                        <msub>
+                            <mi>g</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mi>P</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>x</mi>
+                        <mo stretchy="false">)</mo>
+                    </Math>
+                </Center>
                 <P>2. Entropy E ( S , A ) using the frequency table of two attributes - S and A , where S is a current state with an attribute A (existing outcomes with an attribute A), A is a selected attribute, and P(x) is a probability of an event x of an attribute A.</P>
+                <Center>
+                    <Math>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>A</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <munderover>
+                            <mo>&#x2211;</mo>
+                            <mrow className="MJX-TeXAtom-ORD">
+                                <mi>x</mi>
+                                <mi>e</mi>
+                                <mi>p</mi>
+                                <mi>s</mi>
+                                <mi>i</mi>
+                                <mi>l</mi>
+                                <mi>o</mi>
+                                <mi>n</mi>
+                                <mi>X</mi>
+                            </mrow>
+                            <mrow className="MJX-TeXAtom-ORD">
+
+                            </mrow>
+                        </munderover>
+                        <mo stretchy="false">[</mo>
+                        <mi>P</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>x</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2217;</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo stretchy="false">(</mo>
+                        <mn>2</mn>
+                        <mo stretchy="false">)</mo>
+                        <mo stretchy="false">]</mo></Math>
+                </Center>
                 <P>E ( S ) is the Entropy of the entire set, while the second term E ( S , A ) relates to an Entropy of an attribute A.</P>
                 <Title type="h6">Information Gain (IG)</Title>
                 <P>Information gain (also called as Kullback-Leibler divergence) denoted by I G ( S , A ) for a state S is the <b>change in entropy</b> after deciding on a particular attribute A. It measures the relative change (decrease) in entropy with respect to the independent variables, as follows:</P>
+                <Center>
+                    <Math>
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>A</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>A</mi>
+                        <mo stretchy="false">)</mo></Math>
+                </Center>
                 <P>The information gain is based on the decrease in entropy after a dataset is split on an attribute. Constructing a decision tree is all about selecting each attribute ( A ) to calculate Information Gain and finding such an attribute that returns the highest IG (i.e., the most homogeneous branches). This attribute will be the next decision node for the tree.</P>
             </Section>
             <Section title="5. Example">
@@ -69,22 +174,524 @@ const index: React.FC<Props> = ({ }) => {
                 <P>Now we’ll go ahead and grow the decision tree. The initial step is to calculate E ( S ) , the Entropy of the current state (i.e. existing outcomes at this stage). In the above example, we can see in total there are 9 Yes’s and 5 No’s.</P>
                 <Center><img src="/academy/table_3.webp" alt="" /></Center>
                 <P>Let’s calculate E ( S ) using the formula (1):</P>
+                <Center>
+                    <Math>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>w</mi>
+                        </msub>
+                        <mi>e</mi>
+                        <mi>a</mi>
+                        <mi>k</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mo>&#x2212;</mo>
+                        <mfrac>
+                            <mn>6</mn>
+                            <mn>8</mn>
+                        </mfrac>
+                        <mi>l</mi>
+                        <mi>o</mi>
+                        <msub>
+                            <mi>g</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo stretchy="false">(</mo>
+                        <mfrac>
+                            <mn>6</mn>
+                            <mn>8</mn>
+                        </mfrac>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <mfrac>
+                            <mn>2</mn>
+                            <mn>8</mn>
+                        </mfrac>
+                        <mi>l</mi>
+                        <mi>o</mi>
+                        <msub>
+                            <mi>g</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo stretchy="false">(</mo>
+                        <mfrac>
+                            <mn>2</mn>
+                            <mn>8</mn>
+                        </mfrac>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.811</mn></Math>
+                </Center>
                 <P>Remember that the Entropy is 0 if all members belong to the same class, and 1 when half of them belong to one class and other half belong to other class, which is perfect randomness. Here it’s 0.94, which means the distribution is <b>fairly random</b>.</P>
                 <P>Now the next step is to choose the attribute that gives us highest possible Information Gain which we’ll choose as the root node. Let’s start with ‘Wind’ attribute, calculating its E ( S , W i n d ) and I G ( S , W i n d ) :</P>
+                <Center>
+                    <Math>
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>W</mi>
+                        <mi>i</mi>
+                        <mi>n</mi>
+                        <mi>d</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>W</mi>
+                        <mi>i</mi>
+                        <mi>n</mi>
+                        <mi>d</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo stretchy="false">&#x2192;</mo>
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>W</mi>
+                        <mi>I</mi>
+                        <mi>n</mi>
+                        <mi>d</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <munderover>
+                            <mo>&#x2211;</mo>
+                            <mrow className="MJX-TeXAtom-ORD">
+                                <mi>x</mi>
+                                <mi>e</mi>
+                                <mi>p</mi>
+                                <mi>s</mi>
+                                <mi>i</mi>
+                                <mi>l</mi>
+                                <mi>o</mi>
+                                <mi>n</mi>
+                                <mi>X</mi>
+                            </mrow>
+                            <mrow className="MJX-TeXAtom-ORD">
+
+                            </mrow>
+                        </munderover>
+                        <mo stretchy="false">[</mo>
+                        <mi>P</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>x</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2217;</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo stretchy="false">]</mo></Math>
+                </Center>
                 <P>where ‘x’ in P ( x ) are the possible values for an attribute. Here, attribute ‘Wind’ takes two possible values in the sample data.</P>
                 <P>Hence, x = W e a k , S t r o n g</P>
+                <Center>
+                    <Math>
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>W</mi>
+                        <mi>i</mi>
+                        <mi>n</mi>
+                        <mi>d</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <mi>P</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>w</mi>
+                        </msub>
+                        <mi>e</mi>
+                        <mi>a</mi>
+                        <mi>k</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2217;</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>w</mi>
+                        </msub>
+                        <mi>e</mi>
+                        <mi>a</mi>
+                        <mi>k</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <mi>P</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>t</mi>
+                        <mi>r</mi>
+                        <mi>o</mi>
+                        <mi>n</mi>
+                        <mi>g</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2217;</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>t</mi>
+                        <mi>r</mi>
+                        <mi>o</mi>
+                        <mi>n</mi>
+                        <mi>g</mi>
+                        <mo stretchy="false">)</mo></Math>
+                </Center>
                 <P>Thus, we have to find the following terms:</P>
+                <Center>
+                    <Math>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>w</mi>
+                        </msub>
+                        <mi>e</mi>
+                        <mi>a</mi>
+                        <mi>k</mi>
+                        <mo stretchy="false">)</mo>
+                        <mspace linebreak="newline" />
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>t</mi>
+                        <mi>r</mi>
+                        <mi>o</mi>
+                        <mi>n</mi>
+                        <mi>g</mi>
+                        <mo stretchy="false">)</mo>
+                        <mspace linebreak="newline" />
+                        <mi>P</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>w</mi>
+                        </msub>
+                        <mi>e</mi>
+                        <mi>a</mi>
+                        <mi>k</mi>
+                        <mo stretchy="false">)</mo>
+                        <mspace linebreak="newline" />
+                        <mi>P</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>t</mi>
+                        <mi>r</mi>
+                        <mi>o</mi>
+                        <mi>n</mi>
+                        <mi>g</mi>
+                        <mo stretchy="false">)</mo>
+                        <mspace linebreak="newline" />
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.940</mn></Math>
+                </Center>
                 <P>, which we have already calculated</P>
                 <P>Amongst all the 14 examples we have 8 places where the wind is Weak and 6 where the wind is <Blue>Strong</Blue>.</P>
                 <Center><img src="/academy/table_4.webp" alt="" /></Center>
                 <P>Now out of the 8 Weak examples, 6 of them were ‘Yes’ for Play Golf and 2 of them were ‘No’ for ‘Play Golf’. So, let’s calculate an entropy for “<Blue>Weak”</Blue> values of <Blue>Wind</Blue> attribute:</P>
+                <Center>
+                    <Math>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>w</mi>
+                        </msub>
+                        <mi>e</mi>
+                        <mi>a</mi>
+                        <mi>k</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mo>&#x2212;</mo>
+                        <mfrac>
+                            <mn>6</mn>
+                            <mn>8</mn>
+                        </mfrac>
+                        <mi>l</mi>
+                        <mi>o</mi>
+                        <msub>
+                            <mi>g</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo stretchy="false">(</mo>
+                        <mfrac>
+                            <mn>6</mn>
+                            <mn>8</mn>
+                        </mfrac>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <mfrac>
+                            <mn>2</mn>
+                            <mn>8</mn>
+                        </mfrac>
+                        <mi>l</mi>
+                        <mi>o</mi>
+                        <msub>
+                            <mi>g</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo stretchy="false">(</mo>
+                        <mfrac>
+                            <mn>2</mn>
+                            <mn>8</mn>
+                        </mfrac>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.811</mn></Math>
+                </Center>
                 <P>Similarly, out of 6 Strong examples, we have 3 examples where the outcome was ‘Yes’ for Play Golf and 3 where we had ‘No’ for Play Golf.</P>
                 <Center>
                     <img src="/academy/diag_1.webp" alt="" />
                 </Center>
+                <Center>
+                    <Math>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>t</mi>
+                        <mi>r</mi>
+                        <mi>o</mi>
+                        <mi>n</mi>
+                        <mi>g</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mo>&#x2212;</mo>
+                        <mfrac>
+                            <mn>3</mn>
+                            <mn>6</mn>
+                        </mfrac>
+                        <mi>l</mi>
+                        <mi>o</mi>
+                        <msub>
+                            <mi>g</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo stretchy="false">(</mo>
+                        <mfrac>
+                            <mn>3</mn>
+                            <mn>6</mn>
+                        </mfrac>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <mfrac>
+                            <mn>3</mn>
+                            <mn>6</mn>
+                        </mfrac>
+                        <mi>l</mi>
+                        <mi>o</mi>
+                        <msub>
+                            <mi>g</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo stretchy="false">(</mo>
+                        <mfrac>
+                            <mn>3</mn>
+                            <mn>6</mn>
+                        </mfrac>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>1.000</mn></Math>
+                </Center>
                 <P>Remember, here half items belong to one class while other half belong to other. Hence we have perfect randomness.</P>
                 <P>Now we have all the pieces required to calculate the Information Gain:</P>
+                <Center>
+                    <Math>
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>W</mi>
+                        <mi>i</mi>
+                        <mi>n</mi>
+                        <mi>d</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <mi>P</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>w</mi>
+                        </msub>
+                        <mi>e</mi>
+                        <mi>a</mi>
+                        <mi>k</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2217;</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>w</mi>
+                        </msub>
+                        <mi>e</mi>
+                        <mi>a</mi>
+                        <mi>k</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <mi>P</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>t</mi>
+                        <mi>r</mi>
+                        <mi>o</mi>
+                        <mi>n</mi>
+                        <mi>g</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2217;</mo>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>t</mi>
+                        <mi>r</mi>
+                        <mi>o</mi>
+                        <mi>n</mi>
+                        <mi>g</mi>
+                        <mo stretchy="false">)</mo>
+                        <mspace linebreak="newline" />
+                        <mo>=</mo>
+                        <mn>0.940</mn>
+                        <mo>&#x2212;</mo>
+                        <mfrac>
+                            <mn>8</mn>
+                            <mn>14</mn>
+                        </mfrac>
+                        <mo>&#x2217;</mo>
+                        <mn>0.811</mn>
+                        <mo>&#x2212;</mo>
+                        <mfrac>
+                            <mn>6</mn>
+                            <mn>14</mn>
+                        </mfrac>
+                        <mo>&#x2217;</mo>
+                        <mn>1</mn>
+                        <mspace linebreak="newline" />
+                        <mo>=</mo>
+                        <mn>0.048</mn></Math>
+                </Center>
                 <P>That tells us the Information Gain by considering ‘Wind’ as the attribute and gives us information gain of 0.048. Now the next step is to choose the attribute that gives us highest possible Information Gain which we’ll choose as the root node. Therefore, we must similarly calculate the Information Gain for all the other attributes and pick the one with the highest score.</P>
+                <Center>
+                    <Math>
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>O</mi>
+                        <mi>u</mi>
+                        <mi>t</mi>
+                        <mi>l</mi>
+                        <mi>o</mi>
+                        <mi>o</mi>
+                        <mi>k</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.246</mn>
+                        <mspace linebreak="newline" />
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>T</mi>
+                        <mi>e</mi>
+                        <mi>m</mi>
+                        <mi>p</mi>
+                        <mi>e</mi>
+                        <mi>r</mi>
+                        <mi>a</mi>
+                        <mi>t</mi>
+                        <mi>u</mi>
+                        <mi>r</mi>
+                        <mi>e</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.029</mn>
+                        <mspace linebreak="newline" />
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>H</mi>
+                        <mi>u</mi>
+                        <mi>m</mi>
+                        <mi>i</mi>
+                        <mi>d</mi>
+                        <mi>i</mi>
+                        <mi>t</mi>
+                        <mi>y</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.151</mn>
+                        <mspace linebreak="newline" />
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <mi>S</mi>
+                        <mo>,</mo>
+                        <mi>W</mi>
+                        <mi>i</mi>
+                        <mi>n</mi>
+                        <mi>d</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.048</mn></Math>
+                </Center>
                 <P>(calculated in a previous example)</P>
                 <P>We can clearly see that IG(S, Outlook) has the highest information gain of 0.246, hence we chose Outlook attribute as the root node. At this point, the decision tree looks like:</P>
                 <Center><img src="/academy/diag_2.webp" alt="" /></Center>
@@ -92,7 +699,134 @@ const index: React.FC<Props> = ({ }) => {
                 <P>Now how do we proceed from this point? We can simply apply recursion: you might want to look at the algorithm steps described earlier.</P>
                 <P>Now that we have used Outlook, we have got three of them remaining: <Blue>Humidity, Temperature</Blue>, and <Blue>Wind</Blue>. And, we had three possible values of Outlook: Sunny, Overcast, Rain. Where the Overcast node already ended up having leaf node ‘Yes’, so we’re left with two subtrees to compute: <Blue>Sunny</Blue> and <Blue>Rain</Blue>. Let’s start with <Blue>Sunny</Blue>, and compute its entropy.</P>
                 <P>Amongst all the 5 examples the attribute value of Outlook is Sunny, 2 of them were ‘Yes’ for Play Golf and 3 of them were ‘No’ for ‘Play Golf’.</P>
+                <Center>
+                    <Math>
+                        <mi>E</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>u</mi>
+                        <mi>n</mi>
+                        <mi>n</mi>
+                        <mi>y</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mo>&#x2212;</mo>
+                        <mfrac>
+                            <mn>3</mn>
+                            <mn>5</mn>
+                        </mfrac>
+                        <mi>l</mi>
+                        <mi>o</mi>
+                        <msub>
+                            <mi>g</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo stretchy="false">(</mo>
+                        <mfrac>
+                            <mn>3</mn>
+                            <mn>5</mn>
+                        </mfrac>
+                        <mo stretchy="false">)</mo>
+                        <mo>&#x2212;</mo>
+                        <mfrac>
+                            <mn>2</mn>
+                            <mn>5</mn>
+                        </mfrac>
+                        <mi>l</mi>
+                        <mi>o</mi>
+                        <msub>
+                            <mi>g</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo stretchy="false">(</mo>
+                        <mfrac>
+                            <mn>2</mn>
+                            <mn>5</mn>
+                        </mfrac>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.96</mn></Math>
+                </Center>
                 <P>In the similar fashion, we compute the following values:</P>
+                <Center>
+                    <Math>
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>u</mi>
+                        <mi>n</mi>
+                        <mi>n</mi>
+                        <mi>y</mi>
+                        <mo>,</mo>
+                        <mi>H</mi>
+                        <mi>u</mi>
+                        <mi>m</mi>
+                        <mi>i</mi>
+                        <mi>d</mi>
+                        <mi>i</mi>
+                        <mi>t</mi>
+                        <mi>y</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.963</mn>
+                        <mspace linebreak="newline" />
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>u</mi>
+                        <mi>n</mi>
+                        <mi>n</mi>
+                        <mi>y</mi>
+                        <mo>,</mo>
+                        <mi>T</mi>
+                        <mi>e</mi>
+                        <mi>m</mi>
+                        <mi>p</mi>
+                        <mi>e</mi>
+                        <mi>r</mi>
+                        <mi>a</mi>
+                        <mi>t</mi>
+                        <mi>u</mi>
+                        <mi>r</mi>
+                        <mi>e</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.570</mn>
+                        <mspace linebreak="newline" />
+                        <mi>I</mi>
+                        <mi>G</mi>
+                        <mo stretchy="false">(</mo>
+                        <msub>
+                            <mi>S</mi>
+                            <mi>s</mi>
+                        </msub>
+                        <mi>u</mi>
+                        <mi>n</mi>
+                        <mi>n</mi>
+                        <mi>y</mi>
+                        <mo>,</mo>
+                        <mi>W</mi>
+                        <mi>i</mi>
+                        <mi>n</mi>
+                        <mi>d</mi>
+                        <mo stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mn>0.019</mn>
+                        <mspace linebreak="newline" />
+
+                    </Math>
+                </Center>
                 <P>As we can see the highest Information Gain is given by <b>Humidity</b>. Proceeding in the same way with S r a i n will give us <Blue>Wind</Blue> as the one with <Blue>highest information gain</Blue>.</P>
                 <P>The final Decision Tree is going to be looked as such:</P>
                 <Center><img src="/academy/diag_3.webp" alt="" /></Center>
