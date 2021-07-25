@@ -6,6 +6,7 @@ import Author from "@modules/text/Author/Author"
 import ArrowTop from "@modules/text/ArrowTop/ArrowTop"
 import styles from "./index.module.sass"
 import Container from "@modules/Container/Container"
+import Nav from "@modules/academy/Nav/Nav"
 
 interface Props { }
 
@@ -14,111 +15,8 @@ const index: React.FC<Props> = ({ }) => {
     <>
       <Container>
         <Title type="h2" margin={true}>TrainSet Academy</Title>
-
-        {/* <div className="tableOfContent">
-              <h5 className="tableOfContent__title">MACHINE LEARNING</h5>
-
-              <div className="tableOfContent__wrapper">
-                <div className="navigationDocs">
-                  <h6 className="navigationDocs__title">SUPERVISED LEARNING</h6>
-                  <div className="navigationDocs__column">
-                    <p className="navigationDocs__suptitle">REGRESSION</p>
-                    <a href="#" className="navigationDocs__link">
-                      Lasso, Ridge &amp; Elastic Net
-                    </a>
-
-                    <a
-                      href="#"
-                      className="navigationDocs__link navigationDocs__link_active"
-                    >
-                      Linear Regression
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      KNN Regression
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Multivariate Regression
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Neural Network Regressor
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Polynomial Regression
-                    </a>
-                  </div>
-
-                  <div className="navigationDocs__column">
-                    <p className="navigationDocs__suptitle">
-                      CLASSIFICATION
-                    </p>
-
-                    <a href="#" className="navigationDocs__link">
-                      Random Forest
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Decision Tree (ID3)
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Logistic Regression
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Naive Bayes classifier
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Decision Tree (CART)
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Linear SVMs
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Kernelized SVMs
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Convulational Neural Nets
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Gradient Boosted Machines
-                    </a>
-                  </div>
-                </div>
-
-                <div className="navigationDocs">
-                  <h6 className="navigationDocs__title">
-                    UNSUPERVISED LEARNING
-                  </h6>
-                  <div className="navigationDocs__column">
-                    <p className="navigationDocs__suptitle">CLUSTERING</p>
-                    <a href="#" className="navigationDocs__link">
-                      K-Means
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      K-Medians
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      K-Medoids
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Fuzzy C-Means
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Hierarchial Clustering
-                    </a>
-                  </div>
-
-                  <div className="navigationDocs__column">
-                    <p className="navigationDocs__suptitle">GENERATION</p>
-
-                    <a href="#" className="navigationDocs__link">
-                      Hidden Markov Models
-                    </a>
-                    <a href="#" className="navigationDocs__link">
-                      Recurrent Neural Nets
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
+        <Nav />
+        
         <Title type="h6">Overview</Title>
 
         <P>

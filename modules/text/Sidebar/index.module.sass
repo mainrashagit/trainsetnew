@@ -74,5 +74,11 @@
     .sideBar
         display: flex
         max-width: 100%
-        &::before
-            display: none
+        float: none
+        background: white
+        padding: 1rem
+
+        &__wrapperContent
+            overflow: auto
+            & > * + *
+                margin-left: 30px

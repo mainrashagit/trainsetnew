@@ -1,6 +1,8 @@
+import RegressionNav from '@modules/academy/SubNav/RegressionNav'
 import Container from '@modules/Container/Container'
 import A from '@modules/text/A/A'
 import ArrowTop from '@modules/text/ArrowTop/ArrowTop'
+import Center from '@modules/text/Center/Center'
 import List from '@modules/text/List/List'
 import P from '@modules/text/P/P'
 import Section from '@modules/text/Section/Section'
@@ -12,13 +14,19 @@ interface Props { }
 const index: React.FC<Props> = ({ }) => {
     return (
         <Container>
+            <Title type="h2" margin={true}>TrainSet Academy</Title>
+            <RegressionNav activeLink={0} author={{
+                name: "Victor Popov",
+                about: ["Feb 29, 2020"],
+                img: "/academy/avatar_1.png"
+            }} />
             <Title type="h6">
                 Lasso, Ridge &amp; Elastic Net
             </Title>
             <Section title="1. Introduction to Lasso Regularization Term (L1)">
                 <P>LASSO - Least Absolute Shrinkage and Selection Operator - was first formulated by Robert Tibshirani in 1996. It is a powerful method that performs two main tasks: regularization and feature selection.</P>
                 <P>Let’s look at the example of lasso regularization with linear models, where OLS method is used with its regularization term.</P>
-                <img src="" alt="" />
+                <Center><img src="/academy/diag_1.webp" alt="" /></Center>
                 <P>The LASSO method puts a constraint on the sum of the absolute values of the model parameters, the sum has to be less than a fixed value (upper bound, or t):</P>
                 <img src="" alt="" />
                 <P>where t is the upper bound for the sum of the coefficients.</P>

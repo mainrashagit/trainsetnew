@@ -7,16 +7,31 @@ import A from "@modules/text/A/A"
 import MinorTitle from "@modules/text/MinorTitle/MinorTitle"
 import Author from "@modules/text/Author/Author"
 import ArrowTop from "@modules/text/ArrowTop/ArrowTop"
+import Sidebar from "@modules/text/Sidebar/Sidebar"
+import Container from "@modules/Container/Container"
+import Center from "@modules/text/Center/Center"
 
 interface Props { }
 
-const Center: React.FC = ({ children }) => <div style={{ width: "100%", textAlign: "center" }}>{children}</div>
-
 const index: React.FC<Props> = ({ }) => {
   return (
-    <section className="projects">
-      <div className="container">
-        <Title type="h2">TrainSet Academy</Title>
+    <>
+      <Container>
+        <Title margin={true}>TrainSet Academy</Title>
+        <Sidebar
+          items={[
+            {
+              text: "Cross-Validation the Right Way",
+              link: "/blog/cross_validation",
+              active: true,
+            },
+            {
+              text: "Running Jupyter Notebooks on Google Cloud",
+              link: "/blog/deploy_gcp",
+            },
+          ]}
+        />
+        <Title type="h6">Cross-Validation the Right Way</Title>
         <Section title="1. Introduction">
           <P>
             I assume you know the <A to="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation" target="_blank">basic idea behind Cross-Validation</A> (CV). Here are just a few points that I consider to be important:
@@ -47,7 +62,6 @@ const index: React.FC<Props> = ({ }) => {
 
         <Section title="2. Dependencies &amp; Dataset">
           <P>In this article we will use <A to="https://www.kaggle.com/vikrishnan/boston-house-prices" >Boston House Prices Dataset</A> which is a good and simple dataset for regression problem.</P>
-          {/* <script src="https://gist.github.com/v-popov/c5351f33cf5b4ecb75718d8b703d78e9.js"></script> */}
           <P>Snippet 1. Dependencies &amp; Dataset</P>
           <P> As you can see from Snippet 1, the dataset contains 506 records with 13 features and 1 target variable.</P>
         </Section>
@@ -68,7 +82,10 @@ const index: React.FC<Props> = ({ }) => {
           <P>In this section for simplicity we will stick to just one model (LGBMRegressor) and use cross-validation to select its hyperparameters. For the sake of hyperparameters space visualization we will tune just two parameters (_max_depth_ and _learning_rate)._ We will consider the most popular methods for performing CV as well as some less popular ones that are very powerful.</P>
           <MinorTitle>4.1 Grid Search CV</MinorTitle>
           <P><A to="https://scikit-learn.org/stable/modules/grid_search.html#exhaustive-grid-search" >Grid Search CV</A> performs an exhaustive search over the specified range of hyperparameters (grid). For this method you need to specify every single value for each parameter (which can be tricky, especially for the continuous parameters) that you want your model to try.</P>
-          <P>Figure 2. Randomized Search CV Hyperparameters Space Example</P>
+          <Center>
+            <img src="/academy/grid_search.png" alt="grid_search" />
+          </Center>
+          <Center><P>Figure 2. Grid Search CV Hyperparameters Space Example</P></Center>
 
           {/* <script src="https://gist.github.com/v-popov/703a560b5eb6e2a47be4bf74f0590768.js"></script> */}
           <P> Snippet 2. Grid Search CV Code Example</P>
@@ -78,8 +95,8 @@ const index: React.FC<Props> = ({ }) => {
           <MinorTitle>4.2 Randomized Search CV</MinorTitle>
           <P>In contrast to Grid Search CV, <A to="https://scikit-learn.org/stable/modules/grid_search.html#randomized-parameter-optimization" >Randomized Search CV</A> <b>doesn’t set up a grid</b> of hyperparameter values. Instead, we have to <b>specify a distribution</b> for each hyperparameter we want to tune. Randomized Search CV then sample values from these distributions and selects their random combinations. This allows you to explicitly <b>the number of parameter combinations</b> that are attempted. The number of search iterations is set based on time requirements or available resources.</P>
 
-          <Center><img src="/academy/2.png" alt="#" /></Center>
-          <P>Figure 2. Randomized Search CV Hyperparameters Space Example</P>
+          <Center><img src="/academy/randomized_search.png" alt="randomized_search" /></Center>
+          <Center><P>Figure 2. Randomized Search CV Hyperparameters Space Example</P></Center>
           {/* <script src="https://gist.github.com/v-popov/91b57dbeb2dc519f98e5a7f134e5e152.js"></script> */}
           <P>Snippet 3. Randomized Search CV Code Example</P>
           <P>As you can see from Snippet 2 (cell 11), the best_score has a negative value. It happened because the metric we pass to GridSearchCV is Negative MSE (“neg_mean_squared_error”).</P>
@@ -88,7 +105,7 @@ const index: React.FC<Props> = ({ }) => {
           <P>However, more advanced approaches are using the history of past trials to select hyperparameters for each trial in an informed manner. This often results in the faster hyperparameter tuning process and more accurate resulting models.</P>
           <P>I will provide examples of two of these methods: Hyperopt and Optuna. You can read more about them here and here respectively.</P>
           <MinorTitle>4.3.1 Hyperopt</MinorTitle>
-          <Center><img src="/academy/3.png" alt="#" /></Center>
+          <Center><img src="/academy/hyperopt.png" alt="hyperopt" /></Center>
           <P>Figure 3. Hyperopt Hyperparameters Space Example</P>
           <P>Take a look at the color bar in the right part of the graph. It indicates the dynamic of hyperparameters combinations selection. You can see that it converges at _max_depth_\=3 and _learning_rate_≈0.20. Note, that for Grid Search CV and Randomized CV we didn’t plot the color bar, because in those cases all the trials were performed independently.</P>
           {/* <script src="https://gist.github.com/v-popov/d17e848bd58513119533a82e2952e4d1.js"></script> */}
@@ -108,12 +125,12 @@ const index: React.FC<Props> = ({ }) => {
             </li>
           </List>
         </Section>
-        <Section title="">
+        <Section>
           <Author name="Andrew Wolf" about={["May 25, 2020"]} img="/academy/avatar_2.png" imgAlt="Andrew Wolf" />
           <ArrowTop />
         </Section>
-      </div>
-    </section>
+      </Container>
+    </>
   )
 }
 

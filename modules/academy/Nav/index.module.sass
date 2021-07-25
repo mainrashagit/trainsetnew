@@ -1,0 +1,140 @@
+.tableOfContent
+    margin-bottom: 10vw
+    &__title
+        text-align: center
+        font-size: 30px
+        font-weight: 500
+        margin-bottom: 50px
+
+    &__wrapper
+        display: grid
+        gap: 20px
+        grid-template-columns: 1fr 1fr
+
+$gap: 20px
+.navigationDocs
+    display: grid
+    line-height: 1.2
+    text-align: center
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: auto 1fr
+    column-gap: $gap
+
+    &__title
+        grid-column: 1/2 span
+        padding: 20px
+        background: #3b79a8
+        border-radius: 20px
+        font-weight: 500
+        font-size: 24px
+        margin-bottom: 30px
+        color: #ffffff
+
+    &__column
+        display: flex
+        flex-direction: column
+
+    &__suptitle
+        font-weight: 500
+        font-size: 22px
+        color: #000000
+        border: 1px solid #3b79a8
+        border-radius: 20px
+        padding: 20px
+        margin-bottom: 40px
+
+    &__link
+        font-size: 18px
+        color: #000000
+        display: inline-block
+        transition: 0.3s ease
+        &:hover:not(&_active)
+            transform: scale(1.1)
+
+        &:not(:last-of-type)
+            margin-bottom: 30px
+
+        &_active
+            color: #3b79a8
+
+@media (max-width: 1024px)
+    .tableOfContent
+        &__title
+            font-size: 28px
+            margin-bottom: 40px
+
+    .navigationDocs
+        &__title
+            font-size: 22px
+            padding: 15px
+            margin-bottom: 20px
+
+        &__suptitle
+            font-size: 18px
+            padding: 15px
+            margin-bottom: 20px
+
+        &__link
+            font-size: 14px
+            &:not(:last-of-type)
+                margin-bottom: 25px
+
+@media (min-width: 901px)
+    .navigationDocs
+        &:first-of-type > :last-child
+            position: relative
+            &:after
+                content: ""
+                display: block
+                position: absolute
+                top: 0
+                right: $gap / -2
+                transform: translateX(50%)
+                width: 2px
+                height: 100%
+                background-color: #3b79a8
+
+@media (max-width: 900px)
+    .tableOfContent
+        &__wrapper
+            grid-template-columns: 1fr
+            gap: 50px
+            justify-items: center
+
+    //     &__title
+
+    // .navigationDocs
+    //     &__title
+
+    //     &__suptitle
+
+    //     &__link
+
+@media (max-width: 480px)
+    .tableOfContent
+        margin-bottom: 70px
+        &__wrapper
+            gap: 40px
+
+        &__title
+            font-size: 20px
+            margin-bottom: 30px
+
+    .navigationDocs
+        display: flex
+        flex-direction: column
+        &__column
+            &:not(:last-of-type)
+                margin-bottom: 40px
+
+        &__title
+            font-size: 18px
+            margin-bottom: 15px
+
+        &__suptitle
+            margin-bottom: 25px
+
+        &__link
+            font-size: 14px
+            &:not(:last-of-type)
+                margin-bottom: 35px

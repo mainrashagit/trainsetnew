@@ -1,0 +1,27 @@
+.pre
+    max-width: 100%
+    width: 100%
+    background-color: white
+    overflow-x: auto
+    padding-top: 30px
+    padding-bottom: 30px
+    overflow-y: hidden
+    border-right: 40px solid white
+    border-left: 40px solid white
+    & > * + *
+        margin-top: 20px
+
+.code
+    color: #05b98b
+    display: flex
+    width: 100%
+    align-items: center
+    font-size: 24px
+    line-height: 193.9%
+
+@media (max-width: 480px)
+    .pre
+        border-right: 20px solid white
+        border-left: 20px solid white
+        padding-top: 20px
+        padding-bottom: 20px

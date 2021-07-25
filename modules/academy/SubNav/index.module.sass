@@ -1,0 +1,47 @@
+.n
+    margin: 50px 0 150px
+    &__title
+        font-style: normal
+        font-weight: 500
+        line-height: 1.2
+        font-size: 48px
+        font-family: Oswald
+        margin-bottom: 30px
+        color: #000000
+
+    &__row
+        display: grid
+        grid-template-columns: 1fr 1fr
+        -webkit-column-gap: 60px
+        -moz-column-gap: 60px
+        column-gap: 60px
+
+    &__linksWrapper
+        display: -webkit-box
+        display: -ms-flexbox
+        display: flex
+        -webkit-box-align: start
+        -ms-flex-align: start
+        align-items: flex-start
+        -webkit-box-orient: vertical
+        -webkit-box-direction: normal
+        -ms-flex-direction: column
+        flex-direction: column
+
+        & > * + *
+            margin-top: 30px
+
+    &__link
+        font-size: 18px
+        color: #000000
+        -webkit-transition: 0.3s ease
+        -o-transition: 0.3s ease
+        transition: 0.3s ease
+
+        &_big
+            @extend .n__link
+            font-size: 22px
+            font-weight: 500
+
+        &[data-active="true"]
+            color: #3b79a8

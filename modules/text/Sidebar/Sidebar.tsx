@@ -14,7 +14,7 @@ interface Props {
 const Sidebar: React.FC<Props> = ({ items }) => {
   return (
     <>
-      <aside className={styles.sidebar}>
+      <aside className={styles.sideBar}>
         <div className={styles.sideBar__sliderContainer}>
           <div className={styles.sideBar__wrapperContent}>
             {items.map(({ text, active, link }, i) => (

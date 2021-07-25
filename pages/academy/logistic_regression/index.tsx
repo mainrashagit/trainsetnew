@@ -1,7 +1,9 @@
+import ClassificationNav from '@modules/academy/SubNav/ClassificationNav'
 import Container from '@modules/Container/Container'
 import A from '@modules/text/A/A'
 import ArrowTop from '@modules/text/ArrowTop/ArrowTop'
 import Blue from '@modules/text/Blue'
+import Center from '@modules/text/Center/Center'
 import List from '@modules/text/List/List'
 import P from '@modules/text/P/P'
 import Section from '@modules/text/Section/Section'
@@ -13,16 +15,25 @@ interface Props { }
 const index: React.FC<Props> = ({ }) => {
     return (
         <Container>
+            <Title type="h2" margin={true}>TrainSet Academy</Title>
+            <ClassificationNav activeLink={2} author={{
+                name: "Victor Popov",
+                about: ["Feb 29, 2020"],
+                img: "/academy/avatar_1.png"
+            }} />
             <Title type="h6">Logistic Regression</Title>
             <Section title="1. Introduction">
                 <P>Logistic Regression despite the “regression” term in its name is used in <b>classification</b> problems when the dependent (target) variable has two possible outcomes. However, this model can be extended to tackle multiclass classification problems, and we will discuss it at the end of this article.</P>
             </Section>
             <Section title="2. Key Terms">
                 <P>Odds are used in Logistic Regression algorithm to model probabilities:</P>
+                <Center><img src="/academy/log_1.webp" alt="" /></Center>
                 <P>As you can see from formula (1), o d d s ( p ) [ 0 ; ∞ ] given that p ∈ [ 0 ; 1 ] . However, we want our model to take a real value number from [ − ∞ ; ∞ ] (as our features can have any values), and output a soft number in a range [0;1] to describe a probability. Logistic function (also called Sigmoid) possesses all of these traits. It can be derived as an inverse of a log-odds function which is also called <b>logit</b>.</P>
+                <Center><img src="/academy/log_2.webp" alt="" /></Center>
                 <P>We can achieve the required properties by reflecting the logit function about the line y = x . This transformation can be performed by calculating the inverse of expression (2) which is called a <b>logistic function:</b></P>
                 <P>In order to calculate that we should solve the equation:</P>
                 <P>Thus, the expression for logistic function (sigmoid function) is the following:</P>
+                <Center><img src="/academy/log_3.webp" alt="" /></Center>
             </Section>
             <Section title="3. Model Training">
                 <P>Logistic Regression represents logit function as a linear combination of predictors plus the intercept:</P>
@@ -46,6 +57,7 @@ const index: React.FC<Props> = ({ }) => {
                 <P>Then we plug this value into logistic function in order to determine the probability of the data belonging to Class 1 (True, “Yes”, etc):</P>
                 <P>The last step is to set up a threshold T (\in) [0;1] that will be used in order to make a prediction:</P>
                 <P>By default the threshold is set up to 0.5, but you can adjust it based on your needs (usually based on the True Positive Rate and False Positive Rate trade-off).</P>
+                <Center><img src="/academy/log_4.webp" alt="" /></Center>
             </Section>
             <Section title="5. Regularization">
                 <P>Regularization means making the model less complex which can allow it to generalize better (i.e. avoid overfitting) and perform better on a new data.</P>
@@ -58,6 +70,7 @@ const index: React.FC<Props> = ({ }) => {
             </Section>
             <Section title="6. Logistic Regression For Multinomial Problems">
                 <P>Logistic regression can be generalized to handle problems with more than two possible outcomes. The most popular approach is called “One-vs-Rest” logistic regression where we split our multinomial problem with M classes into M binary classification problems (see Figure 5).</P>
+                <Center><img src="/academy/log_5.webp" alt="" /></Center>
                 <P>In this case we generate different coefficients θ for each binary classification problem (basically we train M separate Logistic Regression models). When we have to classify a new observation, we calculate the probabilities of the data belonging to each class (which are the outputs of our models) and select the class that has the highest probability.</P>
             </Section>
             <ArrowTop />

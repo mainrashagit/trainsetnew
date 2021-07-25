@@ -1,3 +1,4 @@
+import ClassificationNav from '@modules/academy/SubNav/ClassificationNav'
 import Container from '@modules/Container/Container'
 import A from '@modules/text/A/A'
 import ArrowTop from '@modules/text/ArrowTop/ArrowTop'
@@ -13,6 +14,12 @@ interface Props { }
 const index: React.FC<Props> = ({ }) => {
     return (
         <Container>
+            <Title type="h2" margin={true}>TrainSet Academy</Title>
+            <ClassificationNav activeLink={0} author={{
+                name: "Victor Popov",
+                about: ["Feb 29, 2020"],
+                img: "/academy/avatar_1.png"
+            }} />
             <Title type="h6">Random Forest</Title>
             <Section title="1. Introduction">
                 <P>Random Forest is a flexible, easy to use machine learning algorithm that produces, even without hyper-parameter tuning, a great result most of the time. It can be used for both <b>classification</b> and <b>regression</b> tasks. In this article, you are going to learn how the random forest algorithm deals with classification and regression problems.</P>
@@ -20,7 +27,7 @@ const index: React.FC<Props> = ({ }) => {
                 <P>One of the common problems with decision trees, especially the ones that have a table full of columns, is that they tend to over fit a lot. Sometimes it looks like the tree just memorizes the data. Here are the typical examples of decision trees that overfit, both for categorical and continuous data:</P>
                 <List>
                     <li>Categorical: <Blue>If the client is male, between 15 and 25, from the US, likes ice-cream, has a German friend, hates birds and ate pancakes on August 25th, 2012, - he is likely to download Pokemon Go.</Blue></li>
-                    <li>Continuous</li>
+                    <li>Continuous <img src="/academy/diag_1.webp" alt="" /></li>
                 </List>
                 <P>where t is the upper bound for the sum of the coefficients.</P>
                 <P>Random Forest prevents this problem: it is an ensemble of multiple decision trees, not just one. And the more the number of these decision trees in Random Forest, the better the generalization.</P>

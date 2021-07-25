@@ -4,7 +4,7 @@ import Link from "next/link"
 import ResponsiveHeader from "@modules/ResponsiveHeader/ResponsiveHeader"
 import { useEffect } from "react"
 
-interface Props {}
+interface Props { }
 
 const Layout: React.FC<Props> = ({ children }) => {
   useEffect(() => {
@@ -36,9 +36,12 @@ const Layout: React.FC<Props> = ({ children }) => {
 
         <header className={styles.header}>
           <div className={styles.header__container}>
-            <a href="/" className={styles.header__logo}>
-              <img src="/images/logotype.svg" alt="логотип Train Set" />
-            </a>
+
+            <Link href="/">
+              <a className={styles.header__logo}>
+                <img src="/images/logotype.svg" alt="логотип Train Set" />
+              </a>
+            </Link>
 
             <nav className={styles.header__navigation}>
               <Link href="/academy">
@@ -61,7 +64,7 @@ const Layout: React.FC<Props> = ({ children }) => {
               </Link>
 
               <Link href="/auth/sign_up">
-                <a href="#" className={styles.link_border}>
+                <a className={styles.link_border}>
                   Get Started
                 </a>
               </Link>
@@ -73,15 +76,21 @@ const Layout: React.FC<Props> = ({ children }) => {
         <footer className={styles.footer}>
           <div className={styles.footer__wrapper}>
             <div className={styles.footer__row}>
-              <a href="#" className={styles.footer__link}>
-                Home
-              </a>
-              <a href="#" className={styles.footer__link}>
-                Blog
-              </a>
-              <a href="#" className={styles.footer__link}>
-                Contact
-              </a>
+              <Link href="/">
+                <a className={styles.footer__link}>
+                  Home
+                </a>
+              </Link>
+              <Link href="/blog/cross_validation/">
+                <a className={styles.footer__link}>
+                  Blog
+                </a>
+              </Link>
+              <Link href="/contact">
+                <a className={styles.footer__link}>
+                  Contact
+                </a>
+              </Link>
             </div>
 
             <div className={styles.footer__row}>

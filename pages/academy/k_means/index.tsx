@@ -1,6 +1,8 @@
+import ClusteringNav from '@modules/academy/SubNav/ClusteringNav'
 import Container from '@modules/Container/Container'
 import A from '@modules/text/A/A'
 import ArrowTop from '@modules/text/ArrowTop/ArrowTop'
+import Center from '@modules/text/Center/Center'
 import List from '@modules/text/List/List'
 import P from '@modules/text/P/P'
 import Section from '@modules/text/Section/Section'
@@ -12,6 +14,12 @@ interface Props { }
 const index: React.FC<Props> = ({ }) => {
     return (
         <Container>
+            <Title type="h2" margin={true}>TrainSet Academy</Title>
+            <ClusteringNav activeLink={1} author={{
+                name: "Victor Popov",
+                about: ["Feb 29, 2020"],
+                img: "/academy/avatar_2.png"
+            }} />
             <Title type="h6">
                 K-Means
             </Title>
@@ -51,6 +59,7 @@ const index: React.FC<Props> = ({ }) => {
                 </List>
                 <P>In order to achieve global optima, the algorithm should be run multiple times and clusters’ realization that is observed more often will be our <b>global optima</b>.</P>
                 <P>Example: In Figure 1, you can see a K-means algorithm. Training examples are shown as dots, and cluster centroids (K) are shown as crosses. (a) is an original dataset. (b) is a random initial cluster centroids. (c-f) is an illustration of running two iterations of k-means. In each iteration, we assign each training example to the closest cluster centroid (shown by ”painting” the training examples the same color as the cluster centroid to which is assigned); then we move each cluster centroid to the mean of the points assigned to it.</P>
+                <Center><img src="/academy/k_1.webp" alt="" /></Center>
             </Section>
             <Section title="5. Choosing K">
                 <P>There are three most common ways of selecting the number of clusters K.</P>

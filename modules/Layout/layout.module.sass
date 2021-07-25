@@ -1,7 +1,6 @@
 @use "@styles/abstracts/functions" as *
 @use "@styles/abstracts/mixins" as *
 @use "@styles/base/mainContainer" as *
-@use "@styles/components/text" as *
 @import "@styles/abstracts/variables"
 
 .header
@@ -186,3 +185,35 @@
         &__wrapper
             padding-top: 30px
             padding-bottom: 30px
+
+.link
+    font-family: Roboto
+    font-weight: 300
+    -webkit-transition: 0.4s ease
+    -o-transition: 0.4s ease
+    transition: 0.4s ease
+    font-size: 20px
+    color: #000000
+
+    &_animatedBG
+        @extend .link
+        padding: 10px 30px
+        border-radius: 36px
+        -webkit-animation: backgroundAnimation 4s ease infinite
+        animation: backgroundAnimation 4s ease infinite
+
+    &_border
+        @extend .link
+        border: 1px solid #3b79a8
+        border-radius: 38px
+        padding: 8px 20px
+
+@keyframes backgroundAnimation
+    0%
+        background-color: rgba(255,241,173,0)
+
+    50%
+        background-color: #fff1ad
+
+    0%
+        background-color: rgba(255,241,173,0)
