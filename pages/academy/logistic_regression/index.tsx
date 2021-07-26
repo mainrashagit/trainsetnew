@@ -206,7 +206,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>p</mi>
                     <msup>
                         <mo stretchy="false">)</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mo>&#x2212;</mo>
                             <mn>1</mn>
                         </mrow>
@@ -306,7 +306,7 @@ const index: React.FC<Props> = ({ }) => {
                             <mo>+</mo>
                             <msup>
                                 <mi>e</mi>
-                                <mrow class="MJX-TeXAtom-ORD">
+                                <mrow className="MJX-TeXAtom-ORD">
                                     <mo>&#x2212;</mo>
                                     <mi>y</mi>
                                 </mrow>
@@ -335,7 +335,7 @@ const index: React.FC<Props> = ({ }) => {
                             <mo>+</mo>
                             <msup>
                                 <mi>e</mi>
-                                <mrow class="MJX-TeXAtom-ORD">
+                                <mrow className="MJX-TeXAtom-ORD">
                                     <mo>&#x2212;</mo>
                                     <mi>y</mi>
                                 </mrow>
@@ -424,7 +424,7 @@ const index: React.FC<Props> = ({ }) => {
                                 <mtd>
                                     <msub>
                                         <mi>X</mi>
-                                        <mrow class="MJX-TeXAtom-ORD">
+                                        <mrow className="MJX-TeXAtom-ORD">
                                             <mn>1</mn>
                                         </mrow>
                                     </msub>
@@ -434,7 +434,7 @@ const index: React.FC<Props> = ({ }) => {
                                 <mtd>
                                     <msub>
                                         <mi>X</mi>
-                                        <mrow class="MJX-TeXAtom-ORD">
+                                        <mrow className="MJX-TeXAtom-ORD">
                                             <mn>2</mn>
                                         </mrow>
                                     </msub>
@@ -451,7 +451,7 @@ const index: React.FC<Props> = ({ }) => {
                                 <mtd>
                                     <msub>
                                         <mi>X</mi>
-                                        <mrow class="MJX-TeXAtom-ORD">
+                                        <mrow className="MJX-TeXAtom-ORD">
                                             <mi>k</mi>
                                         </mrow>
                                     </msub>
@@ -540,7 +540,7 @@ const index: React.FC<Props> = ({ }) => {
                         <mi>Y</mi>
                         <mo>=</mo>
                         <mn>1</mn>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mo stretchy="false">|</mo>
                         </mrow>
                         <mi>x</mi>
@@ -555,7 +555,7 @@ const index: React.FC<Props> = ({ }) => {
                                 <mo>+</mo>
                                 <msup>
                                     <mi>e</mi>
-                                    <mrow class="MJX-TeXAtom-ORD">
+                                    <mrow className="MJX-TeXAtom-ORD">
                                         <mo>&#x2212;</mo>
                                         <msup>
                                             <mi>&#x3B8;</mi>
@@ -580,7 +580,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>Y</mi>
                     <mo>=</mo>
                     <mn>0</mn>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -596,7 +596,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>Y</mi>
                     <mo>=</mo>
                     <mn>1</mn>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -614,7 +614,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>r</mi>
                     <mo stretchy="false">(</mo>
                     <mi>Y</mi>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -628,7 +628,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>Y</mi>
                     <mo>=</mo>
                     <mn>1</mn>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -636,7 +636,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>&#x3B8;</mi>
                     <msup>
                         <mo stretchy="false">)</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>Y</mi>
                         </mrow>
                     </msup>
@@ -649,7 +649,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>Y</mi>
                     <mo>=</mo>
                     <mn>1</mn>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -658,7 +658,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mo stretchy="false">)</mo>
                     <msup>
                         <mo stretchy="false">)</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mn>1</mn>
                             <mo>&#x2212;</mo>
                             <mi>Y</mi>
@@ -675,7 +675,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>r</mi>
                     <mo stretchy="false">(</mo>
                     <mi>Y</mi>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -689,14 +689,14 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>Y</mi>
                     <mo>=</mo>
                     <mn>1</mn>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
                     <mo>,</mo>
                     <mi>&#x3B8;</mi>
                     <mo stretchy="false">)</mo>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mtext>&#xA0;</mtext>
                         <mi mathvariant="normal">g</mi>
                         <mi mathvariant="normal">i</mi>
@@ -710,7 +710,7 @@ const index: React.FC<Props> = ({ }) => {
                     </mrow>
                     <mo>,</mo>
                     <mtext>&#xA0;</mtext>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mi mathvariant="normal">a</mi>
                         <mi mathvariant="normal">n</mi>
                         <mi mathvariant="normal">d</mi>
@@ -720,7 +720,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>r</mi>
                     <mo stretchy="false">(</mo>
                     <mi>Y</mi>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -736,7 +736,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>Y</mi>
                     <mo>=</mo>
                     <mn>1</mn>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -750,14 +750,14 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>Y</mi>
                     <mo>=</mo>
                     <mn>0</mn>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
                     <mo>,</mo>
                     <mi>&#x3B8;</mi>
                     <mo stretchy="false">)</mo>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mtext>&#xA0;</mtext>
                         <mi mathvariant="normal">g</mi>
                         <mi mathvariant="normal">i</mi>
@@ -776,7 +776,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>L</mi>
                     <mo stretchy="false">(</mo>
                     <mi>&#x3B8;</mi>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -786,7 +786,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>r</mi>
                     <mo stretchy="false">(</mo>
                     <mi>Y</mi>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -799,7 +799,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>x</mi>
                     <mo>,</mo>
                     <mspace linebreak="newline" />
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mi mathvariant="normal">w</mi>
                         <mi mathvariant="normal">h</mi>
                         <mi mathvariant="normal">e</mi>
@@ -811,7 +811,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>r</mi>
                     <mo stretchy="false">(</mo>
                     <mi>Y</mi>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -821,12 +821,12 @@ const index: React.FC<Props> = ({ }) => {
                     <mo>=</mo>
                     <munderover>
                         <mo>&#x220F;</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>i</mi>
                             <mo>=</mo>
                             <mn>1</mn>
                         </mrow>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>n</mi>
                         </mrow>
                     </munderover>
@@ -837,7 +837,7 @@ const index: React.FC<Props> = ({ }) => {
                         <mi>y</mi>
                         <mi>i</mi>
                     </msub>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <msub>
@@ -850,12 +850,12 @@ const index: React.FC<Props> = ({ }) => {
                     <mo>=</mo>
                     <munderover>
                         <mo>&#x220F;</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>i</mi>
                             <mo>=</mo>
                             <mn>1</mn>
                         </mrow>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>n</mi>
                         </mrow>
                     </munderover>
@@ -868,7 +868,7 @@ const index: React.FC<Props> = ({ }) => {
                     </msub>
                     <mo>=</mo>
                     <mn>1</mn>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <msub>
@@ -879,7 +879,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>&#x3B8;</mi>
                     <msup>
                         <mo stretchy="false">)</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <msub>
                                 <mi>y</mi>
                                 <mi>i</mi>
@@ -898,7 +898,7 @@ const index: React.FC<Props> = ({ }) => {
                     </msub>
                     <mo>=</mo>
                     <mn>1</mn>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <msub>
@@ -910,7 +910,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mo stretchy="false">)</mo>
                     <msup>
                         <mo stretchy="false">)</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mn>1</mn>
                             <mo>&#x2212;</mo>
                             <msub>
@@ -935,7 +935,7 @@ const index: React.FC<Props> = ({ }) => {
                         <mi>p</mi>
                         <mo stretchy="false">)</mo>
                         <mo>=</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mover>
                                 <mi>y</mi>
                                 <mo stretchy="false">^</mo>
@@ -951,14 +951,14 @@ const index: React.FC<Props> = ({ }) => {
                 </Center>
                 <P>Then we plug this value into logistic function in order to determine the probability of the data belonging to Class 1 (True, “Yes”, etc):</P>
                 <Center><Math>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mover>
                             <mi>p</mi>
                             <mo stretchy="false">^</mo>
                         </mover>
                     </mrow>
                     <mo>=</mo>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mover>
                             <mrow>
                                 <mi>p</mi>
@@ -985,7 +985,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>i</mi>
                     <mi>c</mi>
                     <mo stretchy="false">(</mo>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mover>
                             <mi>y</mi>
                             <mo stretchy="false">^</mo>
@@ -1000,9 +1000,9 @@ const index: React.FC<Props> = ({ }) => {
                             <mo>+</mo>
                             <msup>
                                 <mi>e</mi>
-                                <mrow class="MJX-TeXAtom-ORD">
+                                <mrow className="MJX-TeXAtom-ORD">
                                     <mo>&#x2212;</mo>
-                                    <mrow class="MJX-TeXAtom-ORD">
+                                    <mrow className="MJX-TeXAtom-ORD">
                                         <mover>
                                             <mi>y</mi>
                                             <mo stretchy="false">^</mo>
@@ -1015,7 +1015,7 @@ const index: React.FC<Props> = ({ }) => {
                 </Math></Center>
                 <P>The last step is to set up a threshold T (\in) [0;1] that will be used in order to make a prediction:</P>
                 <Center><Math>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mi mathvariant="normal">M</mi>
                         <mi mathvariant="normal">o</mi>
                         <mi mathvariant="normal">d</mi>
@@ -1035,7 +1035,7 @@ const index: React.FC<Props> = ({ }) => {
                         <mtable columnalign="left left" rowspacing=".2em" columnspacing="1em" displaystyle="false">
                             <mtr>
                                 <mtd>
-                                    <mrow class="MJX-TeXAtom-ORD">
+                                    <mrow className="MJX-TeXAtom-ORD">
                                         <mi mathvariant="normal">C</mi>
                                         <mi mathvariant="normal">l</mi>
                                         <mi mathvariant="normal">a</mi>
@@ -1050,7 +1050,7 @@ const index: React.FC<Props> = ({ }) => {
                                     </mrow>
                                 </mtd>
                                 <mtd>
-                                    <mrow class="MJX-TeXAtom-ORD">
+                                    <mrow className="MJX-TeXAtom-ORD">
                                         <mover>
                                             <mi>p</mi>
                                             <mo stretchy="false">^</mo>
@@ -1062,7 +1062,7 @@ const index: React.FC<Props> = ({ }) => {
                             </mtr>
                             <mtr>
                                 <mtd>
-                                    <mrow class="MJX-TeXAtom-ORD">
+                                    <mrow className="MJX-TeXAtom-ORD">
                                         <mi mathvariant="normal">C</mi>
                                         <mi mathvariant="normal">l</mi>
                                         <mi mathvariant="normal">a</mi>
@@ -1077,7 +1077,7 @@ const index: React.FC<Props> = ({ }) => {
                                     </mrow>
                                 </mtd>
                                 <mtd>
-                                    <mrow class="MJX-TeXAtom-ORD">
+                                    <mrow className="MJX-TeXAtom-ORD">
                                         <mover>
                                             <mi>p</mi>
                                             <mo stretchy="false">^</mo>
@@ -1098,7 +1098,7 @@ const index: React.FC<Props> = ({ }) => {
                 <P>Regularization means making the model less complex which can allow it to generalize better (i.e. avoid overfitting) and perform better on a new data.</P>
                 <P>As was mentioned above, the coefficients of logistic regression are usually fitted by maximizing the log-likelihood. As many optimization techniques are aimed at finding the minimum of a function we can redefine our goal as minimizing the negative log-likelihood:</P>
                 <Center><Math>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mover>
                             <mi>&#x3B8;</mi>
                             <mo stretchy="false">^</mo>
@@ -1107,7 +1107,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mo>=</mo>
                     <munder>
                         <mo form="prefix">min</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>&#x3B8;</mi>
                         </mrow>
                     </munder>
@@ -1120,7 +1120,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>L</mi>
                     <mo stretchy="false">(</mo>
                     <mi>&#x3B8;</mi>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -1130,7 +1130,7 @@ const index: React.FC<Props> = ({ }) => {
                 </Math></Center>
                 <P>We can penalize the model of having coefficients that are far from zero by adding a regularization term R ( θ ) multiplied by parameter λ which is called regularization strength:</P>
                 <Center><Math>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mover>
                             <mi>&#x3B8;</mi>
                             <mo stretchy="false">^</mo>
@@ -1139,7 +1139,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mo>=</mo>
                     <munder>
                         <mo form="prefix">min</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>&#x3B8;</mi>
                         </mrow>
                     </munder>
@@ -1152,7 +1152,7 @@ const index: React.FC<Props> = ({ }) => {
                     <mi>L</mi>
                     <mo stretchy="false">(</mo>
                     <mi>&#x3B8;</mi>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>x</mi>
@@ -1178,23 +1178,23 @@ const index: React.FC<Props> = ({ }) => {
                     <mo>=</mo>
                     <munderover>
                         <mo>&#x2211;</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>i</mi>
                             <mo>=</mo>
                             <mn>0</mn>
                         </mrow>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>K</mi>
                         </mrow>
                     </munderover>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <msub>
                         <mi>&#x3B8;</mi>
                         <mi>i</mi>
                     </msub>
-                    <mrow class="MJX-TeXAtom-ORD">
+                    <mrow className="MJX-TeXAtom-ORD">
                         <mo stretchy="false">|</mo>
                     </mrow>
                     <mi>L</mi>
@@ -1211,12 +1211,12 @@ const index: React.FC<Props> = ({ }) => {
                     </mfrac>
                     <munderover>
                         <mo>&#x2211;</mo>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>i</mi>
                             <mo>=</mo>
                             <mn>0</mn>
                         </mrow>
-                        <mrow class="MJX-TeXAtom-ORD">
+                        <mrow className="MJX-TeXAtom-ORD">
                             <mi>K</mi>
                         </mrow>
                     </munderover>

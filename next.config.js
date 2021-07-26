@@ -16,5 +16,13 @@ module.exports = {
   //   loader: 'imgix',
   //   path: 'paste url here',
   // },
-  trailingSlash: true
+  trailingSlash: true,
+  
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
 }

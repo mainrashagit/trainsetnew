@@ -328,14 +328,14 @@ const index: React.FC<Props> = ({ }) => {
             <Title type="h6">Ridge Regression</Title>
             <Section title="1. Introduction to Ridge Regularization Term (L2)">
                 <P>Ridge Regression uses OLS method, but with one difference: it has a regularization {"term\alpha \sum_{j=1}^{p}w_{j}^{2}"}(also known as L2 penalty or penalty term).L2 penalty or penalty term</P>
-                <P>Ridge Regression allows you to regularize coefficients. This means that the estimated coefficients are pushed towards 0, to make them work better on new data-sets ("optimized for prediction"). This allows you to use complex models and avoid over-fitting at the same time.</P>
+                <P>Ridge Regression allows you to regularize coefficients. This means that the estimated coefficients are pushed towards 0, to make them work better on new data-sets (&quot;optimized for prediction&quot;). This allows you to use complex models and avoid over-fitting at the same time.</P>
                 <P>For Ridge Regression you have to set an</P>
                 <Center>
                     <Math>
                     <mi>&#x3B1;</mi>
                     </Math>
                 </Center>
-                <P>("alpha") - a so-called "meta-parameter" (or "regularization parameter") that defines how aggressive regularization is performed. Alpha simply defines regularization strength and is usually chosen by cross-validation.</P>
+                <P>(&quot;alpha&quot;) - a so-called &quot;meta-parameter&quot; (or &quot;regularization parameter&quot;) that defines how aggressive regularization is performed. Alpha simply defines regularization strength and is usually chosen by cross-validation.</P>
                 <P>if</P>
                 <Center>
                     <Math>
@@ -412,7 +412,7 @@ const index: React.FC<Props> = ({ }) => {
             </Section>
             <Section title="2. Why Lasso Shrinks Coefficients">
                 <P>The main difference between ridge and lasso regression is a shape of their constraint regions. Ridge regression use L2 norm for a constraint. For P= 2 (where P is a number of regressors) case, the shape of the constraint region is a <b>circle</b>. Lasso uses L1 norm for a constraint. For P = 2 case, the shape of the constraint region is a <b>diamond</b>.</P>
-                <P>The elliptical contour plot in the figure represents sum of squares error term. The Lasso estimate is an estimate which minimizes the sum of squares as well as satisfies its "diamond" constraint. The Ridge estimate is an estimate which minimizes the sum of squares as well as satisfies its "circle" constraint.</P>
+                <P>The elliptical contour plot in the figure represents sum of squares error term. The Lasso estimate is an estimate which minimizes the sum of squares as well as satisfies its &quot;diamond&quot; constraint. The Ridge estimate is an estimate which minimizes the sum of squares as well as satisfies its &quot;circle&quot; constraint.</P>
                 <P>Thus, the optimal point is a point which is a common point between an ellipse and L1/L2 constraint. This point tries to find the minimum for the constraint that will work for the regression model. Exactly that point gives a minimum value for the Ridge or Lasso function.</P>
                 <List>
                     <li>For the LASSO method the constraint region is a diamond, thus it has corners; Because it has corners, there is a high probability that optimum point (minimum point) falls in the corner point of the diamond region. For P=2 case, if an optimal point falls in the corner point, it means that one of the feature estimate is zero.
