@@ -31,7 +31,7 @@ const index: React.FC<Props> = ({}) => {
     </SwiperSlide>
   ))
   useEffect(() => {
-    let slide = parseInt(localStorage.getItem("clickedSlide") ?? "0", 10) ?? 0
+    let slide = Number(localStorage.getItem("clickedSlide") ?? "0") ?? 0
     if (isNaN(slide)) slide = 0
     swiperMainInst?.slideTo(slide)
   }, [swiperMainInst])

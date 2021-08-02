@@ -5,6 +5,7 @@ import Button from "@modules/Button/Button"
 import Link from "next/link"
 import { GetStaticProps } from "next"
 import { getMainPage } from "../api/api"
+import React from "react"
 
 interface Props {
   page: {
@@ -45,7 +46,10 @@ interface Props {
     }
     screen6: {
       title: string
-      text: string
+      faq: {
+        a: any
+        q: any
+      }[]
     }
     screen7: {
       title: string
@@ -165,7 +169,8 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
             <Title type="h2">{screen6.title}</Title>
           </div>
 
-          <div className={styles.faq__column} dangerouslySetInnerHTML={{ __html: screen6.text }}>
+          <div className={styles.faq__column}>
+            {screen6.faq.map(({a, q}, i) => <React.Fragment key={`faq-${i}`}><p>{q}</p><p>{a}</p></React.Fragment>)}
           </div>
         </div>
       </section>

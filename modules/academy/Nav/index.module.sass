@@ -1,3 +1,5 @@
+@use "sass:math" as math
+    
 .tableOfContent
     margin-bottom: 10vw
     &__title
@@ -88,7 +90,7 @@ $gap: 20px
                 display: block
                 position: absolute
                 top: 0
-                right: $gap / -2
+                right: math.div($gap, -2)
                 transform: translateX(50%)
                 width: 2px
                 height: 100%

@@ -2,33 +2,37 @@ import styles from "./layout.module.sass"
 import CustomHead from "@modules/CustomHead/CustomHead"
 import Link from "next/link"
 import ResponsiveHeader from "@modules/ResponsiveHeader/ResponsiveHeader"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { getLayout, ILayout } from "@/api/api"
 
-interface Props { }
+interface Props {}
 
 const Layout: React.FC<Props> = ({ children }) => {
+  const [options, setOptions] = useState<ILayout>()
   useEffect(() => {
-    const headerBurgerMenu = new ResponsiveHeader(
-      styles.header,
-      styles.burgerIcon,
-      styles.header__active,
-      styles.burgerIcon__active
-    )
+    const headerBurgerMenu = new ResponsiveHeader(styles.header, styles.burgerIcon, styles.header__active, styles.burgerIcon__active)
+    const getOptions = async () => {
+      const res = await getLayout()
+      setOptions(res)
+    }
+    getOptions()
     return () => {
       headerBurgerMenu.unmount()
     }
   }, [])
+  const Logo = () => (
+    <Link href="/">
+      <a className={styles.header__logo}>
+        <img srcSet={options?.header?.logo?.srcSet ?? ""} alt={options?.header?.logo?.altText} />
+      </a>
+    </Link>
+  )
   return (
     <>
       <CustomHead />
       <div className={styles.wrapper}>
         <div className={styles.responsiveHeader}>
-          <Link href="/">
-            <a className={styles.header__logo}>
-              <img src="/images/logotype.svg" alt="логотип Train Set" />
-            </a>
-          </Link>
-
+          <Logo />
           <div className={styles.burgerIcon}>
             <span></span>
           </div>
@@ -36,26 +40,14 @@ const Layout: React.FC<Props> = ({ children }) => {
 
         <header className={styles.header}>
           <div className={styles.header__container}>
-
-            <Link href="/">
-              <a className={styles.header__logo}>
-                <img src="/images/logotype.svg" alt="логотип Train Set" />
-              </a>
-            </Link>
+            <Logo />
 
             <nav className={styles.header__navigation}>
-              <Link href="/academy">
-                <a className={styles.link}>Academy</a>
-              </Link>
-              <Link href="/projects">
-                <a className={styles.link_animatedBG}>Projeсts</a>
-              </Link>
-              <Link href="/contact">
-                <a className={styles.link}>Contact</a>
-              </Link>
-              <Link href="/blog/cross_validation">
-                <a className={styles.link}>Blog</a>
-              </Link>
+              {options?.header.nav?.map(({ link, text }, i) => (
+                <Link href={link} key={`nav-top-${i}`}>
+                  <a className={styles.link}>{text}</a>
+                </Link>
+              ))}
             </nav>
 
             <div className={styles.header__authorization}>
@@ -64,9 +56,7 @@ const Layout: React.FC<Props> = ({ children }) => {
               </Link>
 
               <Link href="/auth/sign_up">
-                <a className={styles.link_border}>
-                  Get Started
-                </a>
+                <a className={styles.link_border}>Get Started</a>
               </Link>
             </div>
           </div>
@@ -76,38 +66,19 @@ const Layout: React.FC<Props> = ({ children }) => {
         <footer className={styles.footer}>
           <div className={styles.footer__wrapper}>
             <div className={styles.footer__row}>
-              <Link href="/">
-                <a className={styles.footer__link}>
-                  Home
-                </a>
-              </Link>
-              <Link href="/blog/cross_validation/">
-                <a className={styles.footer__link}>
-                  Blog
-                </a>
-              </Link>
-              <Link href="/contact">
-                <a className={styles.footer__link}>
-                  Contact
-                </a>
-              </Link>
+              {options?.footer?.nav?.map(({ text, link }, i) => (
+                <Link href={link} key={`nav-bottom-${i}`}>
+                  <a className={styles.footer__link}>{text}</a>
+                </Link>
+              ))}
             </div>
 
             <div className={styles.footer__row}>
-              <a
-                href="https://www.facebook.com/thelearningm"
-                className={styles.footer__socialMedia}
-                target="_blank"
-              >
-                <img src="/iconsSprite/facebook-icon.svg" alt="facebook" />
-              </a>
-              <a
-                href="https://www.instagram.com/thelearningm"
-                target="_blank"
-                className={styles.footer__socialMedia}
-              >
-                <img src="/iconsSprite/instagram-icon.svg" alt="instagram" />
-              </a>
+              {options?.footer?.soc?.map(({ link, image }, i) => (
+                <a href={link} className={styles.footer__socialMedia} target="_blank" key={`nav-bottom-social-${i}`}>
+                  <img srcSet={image.srcSet} alt={image.altText} />
+                </a>
+              ))}
             </div>
           </div>
         </footer>
