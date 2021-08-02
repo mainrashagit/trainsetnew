@@ -78,7 +78,6 @@
         &__suptitle
             font-size: 14px
 
-
 .projects
     &__wrapper
         padding-top: 65px
@@ -246,7 +245,7 @@
         margin-bottom: 40px
         margin: 0 0 20px 0
 
-    &__text
+    & p
         font-weight: 300
         font-size: 18px
         line-height: 191.69%
@@ -319,59 +318,54 @@
         & > *:not(:last-child)
             margin-bottom: 40px
 
-    &__answer,
-    &__question
-        font-size: 20px
-        padding: 11px 20px
-        position: relative
-        line-height: 191.69%
+        & > *
+            font-size: 20px
+            padding: 11px 20px
+            position: relative
+            line-height: 191.69%
 
-        &::after
-            content: ""
-            position: absolute
-            top: 0
-            display: block
-            width: 25px
-            height: 13px
+            &::after
+                content: ""
+                position: absolute
+                top: 0
+                display: block
+                width: 25px
+                height: 13px
+                background: #3b79a8
+                clip-path: polygon(0 0, 50% 100%, 100% 0)
+
+        & > *:nth-child(odd)
+            color: #ffffff
             background: #3b79a8
-            clip-path: polygon(0 0, 50% 100%, 100% 0)
-
-    &__question
-        color: #ffffff
-        background: #3b79a8
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15)
-        border-radius: 5px
-        align-self: flex-start
-        max-width: 690px
-        &:after
-            left: 0
-            transform: translate(-50%, 0%)
-
-    &__answer
-        color: #000000
-        font-weight: 300
-        background: #ffffff
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15)
-        align-self: flex-end
-        border-radius: 10px
-        max-width: 900px
-        &_small
-            max-width: 700px
-            @extend .faq__answer
-
-        &:after
-            right: 0
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15)
+            border-radius: 5px
+            align-self: flex-start
+            max-width: 690px
+            &:after
+                left: 0
+                transform: translate(-50%, 0%)
+        & > *:nth-child(even)
+            color: #000000
+            font-weight: 300
             background: #ffffff
-            transform: translate(50%, 0%)
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15)
+            align-self: flex-end
+            border-radius: 10px
+            max-width: 900px
+
+            &:after
+                right: 0
+                background: #ffffff
+                transform: translate(50%, 0%)
 
 @media (max-width: 1024px)
     .faq
         &__title
             margin-bottom: 50px
 
-        &__answer,
-        &__question
-            font-size: 18px
+        &__column
+            & > *
+                font-size: 18px
 
 @media (max-width: 375px)
     .faq
@@ -381,12 +375,13 @@
         &__title
             margin-bottom: 40px
 
-        &__answer,
-        &__question
-            font-size: 14px
+        &__column
 
-        & > *:not(:last-child)
-            margin-bottom: 20px
+            & > *
+                font-size: 14px
+
+            & > *:not(:last-child)
+                margin-bottom: 20px
 
 .askQuestion
     &__wrapper
@@ -402,10 +397,9 @@
         font-weight: 300
         font-size: 18px
         line-height: 22px
-    
+
     &__button
         display: inline-block
-
 
 @media (max-width: 375px)
     .askQuestion

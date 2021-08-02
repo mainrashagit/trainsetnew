@@ -41,28 +41,34 @@ const Card: React.FC<Props> = ({
           {about.map((p, i) => <p key={Math.random() * i} className={styles.card__text}>{p}</p>)}
 
           {more && <div className={styles.card__buttonLink}>
-              <Button type={"link"}>
-                  <Link href={`/projects/${pId}`}>
-                    <a>more</a>
-                  </Link>
-              </Button>
+            <Link href={`/projects/${pId}`}>
+              <a>
+                <Button type={"link"}>
+                  more
+                </Button>
+              </a>
+            </Link>
           </div>}
         </div>
         {buttons && (
           <>
             <div className={styles.card__buttonWrapper}>
-              <Button type={"inset"}>
-                  <Link href={`/projects/${pId}/mark_for_later`}>
-                    <a>Mark for later</a>
-                  </Link>
-              </Button>
+              <Link href={`/projects/${pId}/mark_for_later`}>
+                <a>
+                  <Button type={"inset"}>
+                    Mark for later
+                  </Button>
+                </a>
+              </Link>
             </div>
             <div className={styles.card__buttonWrapper}>
-              <Button type={"inset"}>
-                  <Link href={`/projects/${pId}/start`}>
-                    <a>Start a project</a>
-                  </Link>
-              </Button>
+              <Link href={`/projects/${pId}/start`}>
+                <a>
+                  <Button type={"inset"}>
+                    Start a project
+                  </Button>
+                </a>
+              </Link>
             </div>
           </>
         )}

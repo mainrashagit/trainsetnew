@@ -10,6 +10,13 @@ module.exports = {
         "react-dom": "preact/compat",
       })
     }
+    config.module.rules.push(
+      {
+        test: /\.ipynb$/,
+        exclude: /node_modules/,
+        use: ['ipynb?cellsOnly=true']
+      }
+    )
     return config
   },
   // images: {

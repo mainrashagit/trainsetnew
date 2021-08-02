@@ -1,0 +1,1087 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "4B-PufZvpEAT"
+   },
+   "source": [
+    "# Car Price Prediction"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "bi0GNJMBp_cR"
+   },
+   "source": [
+    "[ML Cookbook](https://www.ml-book.com) | [SLACK Channel](https://join.slack.com/t/mlckbk/shared_invite/zt-9qsjm911-6nSHAcCSjKfuHi972iEfEg)\n",
+    "\n",
+    "## About\n",
+    "\n",
+    "In this project, you will build a model that **predicts a car price based on a certain independent variables**.\n",
+    "\n",
+    "The project contains 6 sections in total, each with **step-by-step instructions** of what to do.  Note that, as we go further with our lessons, we will try to step away from guided projects like this to \"less-guided\", with less intructions involved. Thus, my advice is try to understand why we do what we do in what order. \n",
+    "\n",
+    "## Structure\n",
+    "The project is split into **6 sections**, each containing **step-by-step instructions** of what to do. These sections are the following:\n",
+    "\n",
+    "\n",
+    "1.   Import the Libratries\n",
+    "2.   Import the datasets\n",
+    "3.   Data Preprocessing\n",
+    "4.   Data Overview\n",
+    "5.   Model Building\n",
+    "6.   Conclusion\n",
+    "\n",
+    "## Data\n",
+    "There are 3 datasets provided that you should use for this project:\n",
+    "\n",
+    "- Automobile_data1.csv\n",
+    "- Automobile_data2.csv\n",
+    "- Automobile_data3.csv"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "N8qNIFOYrO3b"
+   },
+   "source": [
+    "# 1. Import the Libraries"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "eoxcn92XrNvk"
+   },
+   "source": [
+    "Import the libraries needed (here you will also keep adding up the required libraries as you go further with this project)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "8y9j69xRpEAU"
+   },
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "IGScRS9srYdC"
+   },
+   "source": [
+    "# 2. Import the datasets"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "M2EbRN5hrYnC"
+   },
+   "source": [
+    "Do the following:\n",
+    "\n",
+    "*   **Step 1**: Import three datasets as df1, df2 and df3 **(we did that for you)**\n",
+    "*   **Step 2**: See what the dataframes look like\n",
+    "*   **Step 3**: Check the shape of each dataset by printing three lines: \n",
+    "\n",
+    "        Data shape of df1 is (X, Y),\n",
+    "        Data shape of df2 is (X, Y), \n",
+    "        Data shape of df3 is (X, Y)\n",
+    "\n",
+    "\n",
+    "Use .format funtion for that.\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 1\n",
+    "Import three datasets as df1, df2 and df3 **(we did that for you)**"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df1 = pd.read_csv('https://raw.githubusercontent.com/the-learning-machine/data/master/tlm_project1/Automobile_data1.csv')\n",
+    "df2 = pd.read_csv('https://raw.githubusercontent.com/the-learning-machine/data/master/tlm_project1/Automobile_data2.csv')\n",
+    "df3 = pd.read_csv('https://raw.githubusercontent.com/the-learning-machine/data/master/tlm_project1/Automobile_data3.csv')\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 2\n",
+    "See what the dataframes look like"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 3\n",
+    "Check the shape of each dataset by printing three lines: \n",
+    "\n",
+    "    Data shape of df1 is (X, Y),\n",
+    "    Data shape of df2 is (X, Y), \n",
+    "    Data shape of df3 is (X, Y)\n",
+    "\n",
+    "\n",
+    "Use .format funtion for that.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "8kRVSK1Opfyv"
+   },
+   "source": [
+    "# 3. Data Preprocessing"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "0ufLz0XHpgBW"
+   },
+   "source": [
+    "Do the following:\n",
+    "\n",
+    "\n",
+    "*   **Step 1:** Combine three datasets into 1\n",
+    "\n",
+    "\n",
+    "*   **Step 2**: Check data types. Change if needed.\n",
+    "\n",
+    "\n",
+    "*   **Step 3**: Check unique values of each column. Investigate them. Is everything fine? *Bonus*: create a function *unique(col)*, that would print unique values for a certain column 'col' (where 'col' is a name of a column in string format)\n",
+    "\n",
+    "\n",
+    "*   **Step 4**: Check the null and inapropriate values (like \"?\" or \"!\"). If there are any, replace them with 0 (if numeric), or 'None' (if categorical).\n",
+    "\n",
+    "\n",
+    "*   **Step 5**: Normalize the data. Divide the prices by 1000 so that the values are in thousand euros. \n",
+    "\n",
+    "\n",
+    "*   **Step 6**: Validate the data: check *dtypes* (presence of wrong values (?, !), null values etc), and unique values for each column"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "-----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "qKx2Nx7WunjR"
+   },
+   "source": [
+    "## Step 1\n",
+    "Combine three datasets into 1"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "5XB_v2TPpEAe"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "yumSBUj6uqfw"
+   },
+   "source": [
+    "## Step 2\n",
+    "Check data types. Change if needed."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "zXewDLr7pEAi"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "L0Y1WdJZvh7k"
+   },
+   "source": [
+    "## Step 3\n",
+    "Check unique values of each column. Investigate them. Is everything fine? Bonus: create a function unique(col), that would print unique values for a certain column 'col' (where 'col' is a name of a column in string format)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "IvDvI232pEAm"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "FGBz8NaUvjql"
+   },
+   "source": [
+    "## Step 4\n",
+    "Check the null and inapropriate values (like \"?\" or \"!\"). If there are any, replace them with 0 (if numeric), or 'None' (if categorical)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "5dk1O-dMpEAo"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "yicb8JvmvlPx"
+   },
+   "source": [
+    "## Step 5\n",
+    "Normalize the data. Divide the prices by 1000 so that the values are in thousand euros."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "NMkNttjZvskG"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "oQAZF9v3pEAw"
+   },
+   "source": [
+    "## Step 6\n",
+    "Validate the data: check dtypes (presence of wrong values (?, !), null values etc), and unique values for each column"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "k4xozgBWpEAx"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "Wdxk9oTq3ndy"
+   },
+   "source": [
+    "# 4. Data Overview"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "PQWZwzwz3qUC"
+   },
+   "source": [
+    "Observe the data:\n",
+    "\n",
+    "\n",
+    "*   **Step 1**: Find an average price,  an average engine size,  an average bore and  an average stroke across different car manufacturers (column named 'make'). \n",
+    "\n",
+    "\n",
+    "*   **Step 2**: Split car manufacturers into body styles (column named 'body-style' column) and find their an average price, an average engine size, an average bore and an average stroke\n",
+    "\n",
+    "\n",
+    "*   **Step 3**: Find a total amount of money manufacturers got from their cars. (sum the prices for each manufacturer)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "y5bSQ2_B4yuL"
+   },
+   "source": [
+    "## Step 1\n",
+    "Find an average price, an average engine size, an average bore and an average stroke across different car manufacturers (column named 'make')."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "KQpL0aMo4y3T"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "3hzyVeZG4y-Z"
+   },
+   "source": [
+    "## Step 2\n",
+    "Split car manufacturers into body styles (column named 'body-style' column) and find their an average price, an average engine size, an average bore and an average stroke"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "VuyIi2SR4zGx"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "M7ACBXgh4zN4"
+   },
+   "source": [
+    "## Step 3\n",
+    "Find a total amount of money manufacturers got from their cars. (sum the prices for each manufacturer)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "cIgbKU-v4zVs"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<a id='model_building'></a>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "lWjSbgMsv9fv"
+   },
+   "source": [
+    "# 5. Model Building"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "uH5OXofDv_4s"
+   },
+   "source": [
+    "Do the following:\n",
+    "\n",
+    "\n",
+    "*   **Step 1**: Select two variables, let's call them X1 and X2 (int) that you think are the most significant indicators for a price prediction (I'd advice taking horsepower as one of the two). Set y variable as price\n",
+    "\n",
+    "\n",
+    "*   **Step 2**: Split the data into train and test\n",
+    "\n",
+    "\n",
+    "*   **Step 3**: Import Lasso regression. You should know that Lasso() model has different parameters. Check them out on the web. Set alpha = 1.5 and max_iter = 10000)\n",
+    "\n",
+    "\n",
+    "*   **Step 4**: Fit the train data\n",
+    "\n",
+    "\n",
+    "*   **Step 5**: Print lasso's intercept and coefficients\n",
+    "\n",
+    "\n",
+    "*   **Step 6**: Print a score for the test data\n",
+    "\n",
+    "\n",
+    "*   **Step 7**: Predict a price of a car that has 90 hoursepowers and n (any value) of X2. Predict a price of a car that has 330 hoursepowers and n (any value) of X2. Is the car price different in this case? Do both results make sence? \n",
+    "\n",
+    "\n",
+    "*   **Step 8**: Code a loop that would print a score for Lasso with alpha = 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4.\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "E716ZuUc2cJV"
+   },
+   "source": [
+    "## Step 1\n",
+    "Select two variables, let's call them X1 and X2 (int) that you think are the most significant indicators for a price prediction (I'd advice taking horsepower as one of the two). Set y variable as price"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "ay4PMzQIpECJ"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "uMi03wxs2eg7"
+   },
+   "source": [
+    "## Step 2\n",
+    "Split the data into train and test"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "6cI1Jo8ixOFU"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "qRX8VZf82g_C"
+   },
+   "source": [
+    "## Step 3\n",
+    "Import Lasso regression. You should know that Lasso() model has different parameters. Check them out on the web. Set alpha = 1.5 and max_iter = 10000)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "EgL-1cWMxIpg"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "MIHwdcNo2i53"
+   },
+   "source": [
+    "## Step 4\n",
+    "Fit the train data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "uLIodxYHpECM"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "yd_Qm_1p2iJf"
+   },
+   "source": [
+    "## Step 5\n",
+    "Print lasso's intercept and coefficients"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "mm6m1Wx4pECR"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "ejMktDi_2mEX"
+   },
+   "source": [
+    "## Step 6\n",
+    "Print a score for the test data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "iDRS9B4TpECU"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "51JB5gu62ntX"
+   },
+   "source": [
+    "## Step 7\n",
+    "Predict a price of a car that has 90 hoursepowers and n (any value) of X2. Predict a price of a car that has 330 hoursepowers and n (any value) of X2. Is the car price different in this case? Do both results make sence?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "7HcSAQeypECY"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "9Ui382JY2p1A"
+   },
+   "source": [
+    "## Step 8\n",
+    "Code a loop that would print a score for Lasso with alpha = 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "R6af-juqxwQL"
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "d4KGlHfB49YP"
+   },
+   "source": [
+    "# 6. Conclusion"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "-7JZfIl95HHV"
+   },
+   "source": [
+    "Summarize your **findings**. Did you manage to build a reliable model? What **data preprocessing** strategies and **feature selection** techniques have you used in order to get the best model? Which model has performed the best?\n",
+    "\n",
+    "Feel free to share/discuss your findings in our [Slack Channel](https://join.slack.com/t/mlcookbook/shared_invite/zt-eyz4czw4-l95j_2iuETCbVRPpgA3kWA)!"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Answer:\n",
+    "\n",
+    "'''\n",
+    "\n",
+    "I used X model and achieved Y accuracy...\n",
+    "I believe the model is reliable as I performed X feature selection technique...\n",
+    "\n",
+    "'''"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 7.* Advance Zone (OPTIONAL)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "*This is a section intended for advanced students or those who is willing to do some additional googling in order to familiarize themselves with potentially new concepts. The steps outlined below are typically used in production data science applications, and that is why the ML-Book team thought it would be important to include it.*"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<a id='full_dataset'></a>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 7.1* Utilizing Full Dataset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "*In section 5.1 it was advised to select just two features for the sake of simplicity. However, oftentimes you want to give a model more features, so that it can extract more complex relationship from data and hopefully become more accurate.*\n",
+    "\n",
+    "*   **Step 1**: Select all numerical features from the dataset\n",
+    "\n",
+    "\n",
+    "*   **Step 2**: Complete steps 2-8 (except 7) from [section 5](#model_building).\n",
+    "\n",
+    "\n",
+    "*   **Step 3**: Compare the test set performance of the model with all numerical features included against the model from [section 5](#model_building) which has just 2 features.\n",
+    "\n",
+    "*As you can see, there are bunch of categorical columns in our dataset as well. Let's try plugging them in to our model as well. However, Lasso regression (as well as many other ML models) can only work with numerical values of features. Thus, some sort of encoding is needed.*\n",
+    "\n",
+    "*   **Step 4**: Use all numerical features and categorical features in the dataset. For categorical ones try any of the encodings techniques outlined in this [tutorial](https://medium.com/machine-learning-eli5/dealing-with-categorical-data-f4c8556cbda0).\n",
+    "\n",
+    "\n",
+    "*   **Step 5**: Complete steps 2-8 (except 7) from [section 5](#model_building).\n",
+    "\n",
+    "\n",
+    "*   **Step 6**: Compare the test set performance of the model with all numerical and categorical features included against the model with only numerical features."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "----------------"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 1\n",
+    "Select all numerical features from the dataset"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 2\n",
+    "Complete steps 2-8 (except 7) from [section 5](#model_building)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 3\n",
+    "Compare the test set performance of the model with all numerical features included against the model from [section 5](#model_building) which has just 2 features."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 4\n",
+    "*As you can see, there are bunch of categorical columns in our dataset as well. Let's try plugging them in to our model as well. However, Lasso regression (as well as many other ML models) can only work with numerical values of features. Thus, some sort of encoding is needed.*\n",
+    "\n",
+    "Use all numerical features and categorical features in the dataset. For categorical ones try any of the encodings techniques outlined in this [tutorial](https://medium.com/machine-learning-eli5/dealing-with-categorical-data-f4c8556cbda0)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 5\n",
+    "Complete steps 2-8 (except 7) from [section 5](#model_building)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 6\n",
+    "Compare the test set performance of the model with all numerical and categorical features included against the model with only numerical features."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 7.2* Exploring Different Models"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "*As you know, in data science there is no such algorithm that can outperform any other algorithms on any given dataset. Thus, model selection is typically an iterative process where we are not only searching for the optimal set of hyperparameters (as we did in [section 5, step 8](#model_building)) but also exploring different machine learning algorithms as well.*\n",
+    "\n",
+    "*You can imagine, that for models with many parameters it can easily get very boring to specify all the values of hyperparameters that you want to check. For this and some other reasons people are using [cross-validation](https://medium.com/machine-learning-eli5/cross-validation-the-right-way-386839ed39b1).*\n",
+    "\n",
+    "*   **Step 1**: Train [Elastic Net](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html) model on the train dataset. Perform any [cross-validation](https://medium.com/machine-learning-eli5/cross-validation-the-right-way-386839ed39b1) method of your choice to select an optimal values of hyperparameters *alpha* and *l1_ratio*. \n",
+    "\n",
+    "\n",
+    "*   **Step 2**: Train [Random Forest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) model on the train dataset. Perform any [cross-validation](https://medium.com/machine-learning-eli5/cross-validation-the-right-way-386839ed39b1) method of your choice to select an optimal values of hyperparameters *n_estimators* and *max_depth*.\n",
+    "\n",
+    "\n",
+    "*   **Step 3**: Compare the performance of models from steps 1 and 2 with the model built in [section 7.1](#full_dataset). Keep in mind that it makes sense only to compare models that were trained on the same set of data."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "--------"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 1\n",
+    "Train [Elastic Net](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html) model on the train dataset. Perform any [cross-validation](https://medium.com/machine-learning-eli5/cross-validation-the-right-way-386839ed39b1) method of your choice to select an optimal values of hyperparameters *alpha* and *l1_ratio*. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 2\n",
+    "Train [Random Forest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) model on the train dataset. Perform any [cross-validation](https://medium.com/machine-learning-eli5/cross-validation-the-right-way-386839ed39b1) method of your choice to select an optimal values of hyperparameters *n_estimators* and *max_depth*."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 3\n",
+    "Compare the performance of models from steps 1 and 2 with the model built in [section 7.1](#full_dataset). Keep in mind that it makes sense only to compare models that were trained on the same set of data."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 7.3* Feature Engineering"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "*Oftentimes the relationship between our features and target variable is very complex. Thus, it can be fruitful to include some additional features based on already existing ones. In this section we will explore feature engineering for numerical columns only, but there are techniques that can be applied to categorical features as well. You can experiment with transformations that are not listed below as well!*\n",
+    "\n",
+    "*   **Step 1**: Generate additional univariate numerical features. Feel free to select any number of features from your dataset to apply any of these transformations.\n",
+    "    *      Power of 2\n",
+    "    *      Square root (watch out for negative values!)\n",
+    "    *      Log transformation (can be applied only to positive values)\n",
+    "\n",
+    "\n",
+    "*   **Step 2**: Generate additional multivariate numerical features. Feel free to select any number of features from your dataset to apply any of these transformations:\n",
+    "    *      Multiplication of features' values\n",
+    "    *      Ratio of features' values (watch out for zero denominator)\n",
+    "    \n",
+    "    \n",
+    "*   **Step 3**: Train any model that was described in this notebook on this extended dataset.\n",
+    "\n",
+    "\n",
+    "*   **Step 4**: Compare the performance of the model trained on the extended dataset against the models trained on original dataset."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "--------"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 1\n",
+    "Generate additional univariate numerical features. Feel free to select any number of features from your dataset to apply any of these transformations.\n",
+    "- Power of 2\n",
+    "- Square root (watch out for negative values!)\n",
+    "- Log transformation (can be applied only to positive values)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 2\n",
+    "Generate additional multivariate numerical features. Feel free to select any number of features from your dataset to apply any of these transformations:\n",
+    "- Multiplication of features' values\n",
+    "- Ratio of features' values (watch out for zero denominator)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 3\n",
+    "Train any model that was described in this notebook on this extended dataset."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Step 4\n",
+    "Compare the performance of the model trained on the extended dataset against the models trained on original dataset."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "colab": {
+   "name": "case_project_1.ipynb",
+   "provenance": [],
+   "toc_visible": true,
+   "version": "0.3.2"
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}
