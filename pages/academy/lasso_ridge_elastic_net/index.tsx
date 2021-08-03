@@ -31,30 +31,7 @@ const index: React.FC<Props> = ({ }) => {
                 <P>The LASSO method puts a constraint on the sum of the absolute values of the model parameters, the sum has to be less than a fixed value (upper bound, or t):</P>
                 <Center>
                     <Math>
-                    <munderover>
-                        <mo>∑</mo>
-                        <mrow>
-                            <mi>k</mi>
-                        </mrow>
-                        <mrow>
-                            <mi>j</mi>
-                            <mo>=</mo>
-                            <mn>1</mn>
-                        </mrow>
-                    </munderover>
-                    <mrow>
-                        <mo>|</mo>
-                        <msub>
-                            <mi>β</mi>
-                            <mrow>
-                                <mi>j</mi>
-                            </mrow>
-                        </msub>
-                        <mo>|</mo>
-                    </mrow>
-                    <mo>&lt;</mo>
-                    <mi>t</mi>
-                    <mo>,</mo>
+                    <munderover> <mo>∑</mo> <mrow> <mi>k</mi> </mrow> <mrow> <mi>j</mi> <mo>=</mo> <mn>1</mn> </mrow> </munderover> <mrow> <mo>|</mo> <msub> <mi>β</mi> <mrow> <mi>j</mi> </mrow> </msub> <mo>|</mo> </mrow> <mo>&lt;</mo> <mi>t</mi> <mo>,</mo>
                     </Math>
                     </Center>
                 <P>where t is the upper bound for the sum of the coefficients.</P>

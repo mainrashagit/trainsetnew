@@ -1,6 +1,6 @@
 .n
     margin: 50px 0 150px
-    &__title
+    &__supertitle
         font-style: normal
         font-weight: 500
         line-height: 1.2
@@ -8,6 +8,7 @@
         font-family: Oswald
         margin-bottom: 30px
         color: #000000
+        text-transform: uppercase
 
     &__row
         display: grid
@@ -31,17 +32,19 @@
         & > * + *
             margin-top: 30px
 
-    &__link
+    & &__link
         font-size: 18px
         color: #000000
         -webkit-transition: 0.3s ease
         -o-transition: 0.3s ease
         transition: 0.3s ease
-
-        &_big
-            @extend .n__link
-            font-size: 22px
-            font-weight: 500
+        text-decoration: none
 
         &[data-active="true"]
             color: #3b79a8
+
+    &__title
+        @extend .n__link
+        font-size: 22px
+        font-weight: 500
+        text-transform: uppercase

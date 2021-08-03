@@ -3,7 +3,7 @@ import P from "@modules/text/P/P"
 import { v4 as uuid } from "uuid"
 
 interface Props {
-  img: string
+  img?: string
   imgAlt?: string
   name: string
   about: string[]
