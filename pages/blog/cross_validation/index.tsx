@@ -126,7 +126,7 @@ const index: React.FC<Props> = ({ }) => {
           </List>
         </Section>
         <Section>
-          <Author name="Andrew Wolf" about={["May 25, 2020"]} img="/academy/avatar_2.png" imgAlt="Andrew Wolf" />
+          <Author name="Andrew Wolf" about={"May 25, 2020"} src="/academy/avatar_2.png" imgAlt="Andrew Wolf" />
           <ArrowTop />
         </Section>
       </Container>

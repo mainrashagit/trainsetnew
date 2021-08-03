@@ -8,6 +8,7 @@
         border-radius: 44px
         display: grid
         grid-template-columns: 1fr 1fr
+        grid-template-rows: 1fr auto
         gap: 25px
         height: 100%
         padding: 26px 23px
@@ -17,8 +18,10 @@
         display: flex
         flex-direction: column
         align-items: flex-start
+        justify-content: space-between
         align-self: center
         width: 100%
+        height: 100%
         &:first-of-type
             margin-right: 30px
 
@@ -56,11 +59,12 @@
         width: 100%
         overflow: hidden
         height: 300px
+        justify-self: center
 
         &_src
             height: 100%
             width: 100%
-            object-fit: cover
+            object-fit: contain
             position: absolute
             top: 0
             left: 0
@@ -70,6 +74,12 @@
 
     &__buttonWrapper
         display: flex
+        width: 100%
+        align-items: flex-end
+
+        & a
+            display: block
+            width: 100%
 
 @media (max-width: 1300px)
     .card

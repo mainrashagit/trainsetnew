@@ -4,13 +4,13 @@ import Card from "@modules/Card/Card"
 import Button from "@modules/Button/Button"
 import Link from "next/link"
 import { GetStaticProps } from "next"
-import { getMainPage } from "../api/api"
+import { getMainPage, getProjectsPreview, ProjectsPreview } from "../api/api"
 import React from "react"
 
 interface Props {
   page: {
     screen1: {
-      button: { link: string, text: string }
+      button: { link: string; text: string }
       title: string
       subtitle: string
       image: {
@@ -60,26 +60,21 @@ interface Props {
       }
     }
   }
+  projectsPreview: ProjectsPreview
 }
 
-export default function Home({ page: { screen1, screen2, screen3, screen4, screen5, screen6, screen7 } }: Props) {
+export default function Home({ page: { screen1, screen2, screen3, screen4, screen5, screen6, screen7 }, projectsPreview }: Props) {
   return (
     <>
       <section className={styles.firstScreen}>
         <div className={styles.firstScreen__wrapper}>
           <div className={styles.firstScreen__column}>
             <div className={styles.firstScreen__title}>
-              <Title type="h1">
-                {screen1.title}
-              </Title>
+              <Title type="h1">{screen1.title}</Title>
             </div>
-            <h5 className={styles.firstScreen__suptitle}>
-              {screen1.subtitle}
-            </h5>
+            <h5 className={styles.firstScreen__suptitle}>{screen1.subtitle}</h5>
             <Link href={screen1.button.link}>
-              <a className={styles.firstScreen__topbutton}>
-                {screen1.button.text}
-              </a>
+              <a className={styles.firstScreen__topbutton}>{screen1.button.text}</a>
             </Link>
           </div>
 
@@ -89,52 +84,22 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
         </div>
       </section>
 
-      <div
-        className={styles.firstScreen__title}
-        style={{ marginTop: 0, maxWidth: "auto" }}
-      >
+      <div className={styles.firstScreen__title} style={{ marginTop: 0, maxWidth: "auto" }}>
         <Title type="h2">How does TrainSet Work?</Title>
       </div>
-      <h5 className={styles.firstScreen__suptitle} dangerouslySetInnerHTML={{ __html: screen2.subtitle }}>
-      </h5>
+      <h5 className={styles.firstScreen__suptitle} dangerouslySetInnerHTML={{ __html: screen2.subtitle }}></h5>
 
       <section className={styles.projects}>
         <div className={styles.projects__wrapper}>
           <div className={styles.projects__title}>
             <Title type="h2">{screen3.title}</Title>
           </div>
-          <div className={styles.projects__row}>
-            <Card
-              about={[
-                "Learn to predict the possibility of heart disease with popular ML tools. Accessible for beginners.",
-              ]}
-              level={"Level 1"}
-              img={"/cards/3.png"}
-              imgAlt={"heart"}
-              title={"Heart Disease Prediction"}
-              pId={2}
-              more={true}
-            />
-
-            <Card
-              title={"Time Series Forecasting"}
-              about={[
-                "The stock market goes up and down in a blink. Keep an eye on market fluctuations with the help of data science. For medium to advanced learners.",
-              ]}
-              img={"/cards/4.png"}
-              imgAlt={"time"}
-              pId={4}
-              level={"Level 3"}
-              more={true}
-            />
-          </div>
+          <div className={styles.projects__row}>{projectsPreview && [projectsPreview[Math.floor(Math.random() * projectsPreview.length)], projectsPreview[Math.floor(Math.random() * projectsPreview.length)]].map(({ link, level, brief, image, title }, i) => <Card about={brief} level={level} img={image.sourceUrl} link={link} title={title} key={`${link}-preview-${i}`} more={true} />)}</div>
 
           <div className={styles.projects__button}>
             <Link href={screen3.button.link}>
               <a>
-                <Button type="hollow">
-                  {screen3.button.text}
-                </Button>
+                <Button type="hollow">{screen3.button.text}</Button>
               </a>
             </Link>
           </div>
@@ -151,8 +116,7 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
             <img srcSet={screen4.image?.srcSet ?? ""} alt={screen4.image?.altText ?? ""} />
           </div>
 
-          <div className={styles.aboutUs__column} dangerouslySetInnerHTML={{ __html: screen4.text }}>
-          </div>
+          <div className={styles.aboutUs__column} dangerouslySetInnerHTML={{ __html: screen4.text }}></div>
         </div>
       </section>
 
@@ -170,7 +134,12 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
           </div>
 
           <div className={styles.faq__column}>
-            {screen6.faq.map(({a, q}, i) => <React.Fragment key={`faq-${i}`}><p>{q}</p><p>{a}</p></React.Fragment>)}
+            {screen6.faq.map(({ a, q }, i) => (
+              <React.Fragment key={`faq-${i}`}>
+                <p>{q}</p>
+                <p>{a}</p>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </section>
@@ -180,16 +149,12 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
           <div className={styles.askQuestion__title}>
             <Title type="h2">{screen7.title}</Title>
           </div>
-          <h5 className={styles.askQuestion__suptitle}>
-            {screen7.subtitle}
-          </h5>
+          <h5 className={styles.askQuestion__suptitle}>{screen7.subtitle}</h5>
 
           <div className={styles.askQuestion__button}>
             <Link href={screen7.button.link}>
               <a>
-                <Button>
-                  {screen7.button.text}
-                </Button>
+                <Button>{screen7.button.text}</Button>
               </a>
             </Link>
           </div>
@@ -201,9 +166,11 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const page = await getMainPage()
+  const projectsPreview = await getProjectsPreview()
   return {
     props: {
-      page
-    }
+      page,
+      projectsPreview,
+    },
   }
 }

@@ -49,8 +49,9 @@ const Article: React.FC<Props> = ({
         links={links}
         author={{
           name: author.name,
-          about: [date],
-          img: author.photo?.sourceUrl,
+          about: date,
+          src: author.photo?.sourceUrl,
+          srcSet: author.photo?.srcSet,
           imgAlt: author.photo?.altText,
         }}
       />

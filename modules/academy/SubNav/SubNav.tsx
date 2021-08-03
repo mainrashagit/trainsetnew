@@ -1,4 +1,4 @@
-import Author from "@modules/text/Author/Author"
+import Author, { AuthorProps } from "@modules/text/Author/Author"
 import Link from "next/link"
 import styles from "./index.module.sass"
 
@@ -9,12 +9,7 @@ interface Props {
     [link: string]: string
   }
   activeLink?: string
-  author: {
-    name: string
-    about: string[]
-    img?: string
-    imgAlt?: string
-  }
+  author: AuthorProps
 }
 
 const SubNav: React.FC<Props> = ({ supertitle, title, links, activeLink, author }) => {

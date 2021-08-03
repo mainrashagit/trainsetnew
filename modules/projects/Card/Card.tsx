@@ -6,13 +6,13 @@ import Tags from "../Tags/Tags"
 
 interface Props {
   title: string
-  pId: number
+  link: string
   img: string
   imgAlt?: string
   tags: string[]
 }
 
-const Card: React.FC<Props> = ({ title, pId, img, imgAlt, tags }) => {
+const Card: React.FC<Props> = ({ title, link, img, imgAlt, tags }) => {
   return (
     <div className={styles.card}>
       <div className={styles.img}>
@@ -25,12 +25,12 @@ const Card: React.FC<Props> = ({ title, pId, img, imgAlt, tags }) => {
 
         <div className={styles.info__buttons}>
           <Button>
-            <Link href={`/projects/${pId}/start`}>
+            <Link href={`/projects/${link}/start`}>
               <a>Start Project</a>
             </Link>
           </Button>
           <Button>
-            <Link href={`/projects/${pId}/mark_for_later`}>
+            <Link href={`/projects/${link}/mark-for-later`}>
               <a>Mark for Later</a>
             </Link>
           </Button>

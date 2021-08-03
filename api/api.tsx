@@ -451,3 +451,342 @@ export async function getArticleByTitle(title: string): Promise<IArticle> {
 
   return data.posts.edges[0].node
 }
+
+interface IProjectsPreview {
+  posts: {
+    edges: {
+      node: {
+        slug: string
+        projects: {
+          shortDesc: string
+          image: {
+            altText: string
+            sourceUrl: string
+            srcSet: string
+          }
+        }
+        categories: {
+          edges: {
+            node: {
+              name: string
+            }
+          }[]
+        }
+        title: string
+      }
+    }[]
+  }
+}
+
+export type ProjectsPreview = {
+  link: string
+  brief: string
+  image: {
+    altText: string
+    sourceUrl: string
+    srcSet: string
+  }
+  level: string
+  title: string
+}[]
+
+export async function getProjectsPreview(): Promise<ProjectsPreview> {
+  const data = (await fetchAPI(`
+  query MyQuery {
+    posts(where: {categoryName: "projects"}) {
+      edges {
+        node {
+          slug
+          projects {
+            shortDesc
+            image {
+              altText
+              sourceUrl
+              srcSet
+            }
+          }
+          categories {
+            edges {
+              node {
+                name
+              }
+            }
+          }
+          title
+        }
+      }
+    }
+  }
+  `)) as IProjectsPreview
+
+  const res = data.posts.edges
+    .map((edge) => ({
+      link: edge.node.slug,
+      brief: edge.node.projects.shortDesc,
+      image: edge.node.projects.image,
+      level: edge.node.categories.edges.find((item) => item.node.name.includes("Level"))!.node.name,
+      title: edge.node.title,
+    }))
+    .sort((prev, curr) => Number(prev.level.match(/\d+/)) - Number(curr.level.match(/\d+/)))
+
+  return res
+}
+
+interface IProjectLevels {
+  categories: {
+    edges: {
+      node: {
+        name: string
+      }
+    }[]
+  }
+}
+
+type ProjectLevels = string[]
+
+export async function getProjectLevels(): Promise<ProjectLevels> {
+  const data = (await fetchAPI(`
+  query {
+    categories(where: {nameLike: "level"}) {
+      edges {
+        node {
+          name
+        }
+      }
+    }
+  }
+  `)) as IProjectLevels
+
+  return data.categories.edges.map((edge) => edge.node.name)
+}
+
+interface IProjectPaths {
+  posts: {
+    nodes: {
+      slug: string
+    }[]
+  }
+}
+
+type ProjectPaths = {
+  params: {
+    proj: string
+  }
+}[]
+
+export async function getProjectPaths(): Promise<ProjectPaths> {
+  const data = (await fetchAPI(`
+  query MyQuery {
+    posts(where: {categoryName: "projects"}) {
+      nodes {
+        slug
+      }
+    }
+  }
+  `)) as IProjectPaths
+  return data.posts.nodes.map((node) => ({ params: { proj: node.slug } }))
+}
+
+interface IProject {
+  post: {
+    projects: {
+      about: {
+        text: string
+        title: string
+      }
+      author: {
+        title: string
+        name: string
+        aboutAuthor: string
+        photo: {
+          altText: string
+          sourceUrl: string
+          srcSet: string
+        }
+      }
+      image: {
+        altText: string
+        sourceUrl: string
+        srcSet: string
+      }
+      requirements: {
+        title: string
+        text: string
+      }
+      support: {
+        title: string
+        text: string
+      }
+      tags: {
+        tag: string
+      }[]
+    }
+    categories: {
+      nodes: {
+        name: string
+      }[]
+    }
+  }
+}
+
+export type ProjectBySlug = {
+  content: IProject["post"]["projects"]
+  category: string
+}
+
+export async function getProjectBySlug(id: string): Promise<ProjectBySlug> {
+  const data = (await fetchAPI(`
+  query {
+    post(id: "${id}", idType: SLUG) {
+      projects {
+        about {
+          text
+          title
+        }
+        author {
+          title
+          name
+          aboutAuthor
+          photo {
+            altText
+            srcSet
+            sourceUrl
+          }
+        }
+        image {
+          altText
+          sourceUrl
+          srcSet
+        }
+        requirements {
+          title
+          text
+        }
+        support {
+          title
+          text
+        }
+        tags {
+          tag
+        }
+      }
+      categories(where: {nameLike: "level"}) {
+        nodes {
+          name
+        }
+      }
+    }
+  }
+  `)) as IProject
+  return {
+    content: data.post.projects,
+    category: data.post.categories.nodes[0].name,
+  }
+}
+
+interface IBlogPaths {
+  posts: {
+    nodes: {
+      slug: string
+    }[]
+  }
+}
+
+type BlogPaths = {
+  params: {
+    blog: string
+  }
+}[]
+
+export async function getBlogPaths(): Promise<BlogPaths> {
+  const data = (await fetchAPI(`
+  query MyQuery {
+    posts(where: {categoryName: "blog"}) {
+      nodes {
+        slug
+      }
+    }
+  }  
+  `)) as IBlogPaths
+
+  return data.posts.nodes.map((node) => ({ params: { blog: node.slug } }))
+}
+
+interface IBlogLinks {
+  posts: {
+    nodes: {
+      slug: string
+      title: string
+    }[]
+  }
+}
+
+export type BlogLinks = {
+  link: string
+  title: string
+}[]
+
+export async function getBlogLinks(): Promise<BlogLinks> {
+  const data = (await fetchAPI(`
+  query MyQuery {
+    posts(where: {categoryName: "blog"}) {
+      nodes {
+        slug
+        title
+      }
+    }
+  }  
+  `)) as IBlogLinks
+
+  return data.posts.nodes.map((node) => ({ link: node.slug, title: node.title }))
+}
+
+interface IBlogBySlug {
+  post: {
+    blog: {
+      author: {
+        name: string
+        photo: {
+          altText: string
+          sourceUrl: string
+          srcSet: string
+        }
+      }
+      sections: {
+        title: string
+        info: string
+      }[]
+      date: string
+    }
+    title: string
+  }
+}
+
+export type BlogBySlug = IBlogBySlug["post"]
+
+export async function getBlogBySlug(id: string): Promise<BlogBySlug> {
+  const data = (await fetchAPI(`
+  query MyQuery {
+    post(id: "${id}", idType: SLUG) {
+      blog {
+        author {
+          name
+          photo {
+            altText
+            sourceUrl
+            srcSet
+          }
+        }
+        sections {
+          title
+          info
+        }
+        date
+      }
+      title
+    }
+  }
+  `)) as IBlogBySlug
+
+  return data.post
+}

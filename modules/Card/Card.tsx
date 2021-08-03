@@ -5,8 +5,8 @@ import Button from "@modules/Button/Button"
 interface Props {
   level?: string
   title: string
-  about: string[]
-  pId: number
+  about: string
+  link: string
   buttons?: boolean
   img: string
   imgAlt?: string
@@ -17,7 +17,7 @@ const Card: React.FC<Props> = ({
   level,
   title,
   about,
-  pId,
+  link,
   buttons,
   img,
   imgAlt,
@@ -38,10 +38,10 @@ const Card: React.FC<Props> = ({
 
           <p className={styles.card__suptitle}>About this course</p>
 
-          {about.map((p, i) => <p key={Math.random() * i} className={styles.card__text}>{p}</p>)}
+          <p className={styles.card__text} dangerouslySetInnerHTML={{__html: about}}></p>
 
           {more && <div className={styles.card__buttonLink}>
-            <Link href={`/projects/${pId}`}>
+            <Link href={`/projects/${link}`}>
               <a>
                 <Button type={"link"}>
                   more
@@ -53,7 +53,7 @@ const Card: React.FC<Props> = ({
         {buttons && (
           <>
             <div className={styles.card__buttonWrapper}>
-              <Link href={`/projects/${pId}/mark_for_later`}>
+              <Link href={`/projects/${link}/mark-for-later`}>
                 <a>
                   <Button type={"inset"}>
                     Mark for later
@@ -62,7 +62,7 @@ const Card: React.FC<Props> = ({
               </Link>
             </div>
             <div className={styles.card__buttonWrapper}>
-              <Link href={`/projects/${pId}/start`}>
+              <Link href={`/projects/${link}/start`}>
                 <a>
                   <Button type={"inset"}>
                     Start a project
