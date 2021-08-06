@@ -184,11 +184,9 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const page = await getMainPage()
-  // const projectsPreview = await getProjectsPreview()
   return {
     props: {
       page,
-      // projectsPreview,
     },
   }
 }
