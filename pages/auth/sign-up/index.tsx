@@ -19,12 +19,6 @@ const index: React.FC<Props> = ({}) => {
         <Formik
           initialValues={{name: "", email: "", password: "", confirmPassword: ""}}
           onSubmit={(values) => {
-            // console.log(values)
-            // fetch("/api/user", {
-            //   method: "POST",
-            //   headers: { "Content-Type": "application/json" },
-            //   body: JSON.stringify(values)
-            // })
           }}
         >
           {({handleChange}) =>

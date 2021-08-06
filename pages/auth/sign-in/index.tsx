@@ -2,41 +2,11 @@ import styles from "../auth.module.sass"
 import Link from "next/link"
 import Input from "@modules/form/Input/Input"
 import Checkbox from "@modules/form/Checkbox/Checkbox"
-import useUser from "@/lib/useUser"
-import { FormEvent, useState } from "react"
-import fetchJson from "@/lib/fetchJson"
 import { Formik, Form } from "formik"
 
 interface Props {}
 
 const index: React.FC<Props> = ({}) => {
-  const { mutateUser } = useUser({
-    redirectTo: "/user",
-    redirectIfFound: true,
-  })
-
-  const [errorMsg, setErrorMsg] = useState("")
-
-  // async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-  //   event.preventDefault()
-
-  //   const body = {
-  //     username: event.currentTarget.username.value,
-  //   }
-
-  //   try {
-  //     mutateUser(
-  //       await fetchJson("/api/login", {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify(body),
-  //       })
-  //     )
-  //   } catch (error) {
-  //     console.error("An unexpected error happened:", error)
-  //     setErrorMsg(error.data.message)
-  //   }
-  // }
   return (
     <div className={styles.fullHeightWrapper}>
       <div className={styles.authorization}>
@@ -49,13 +19,6 @@ const index: React.FC<Props> = ({}) => {
         <Formik
           initialValues={{ username: "", password: "" }}
           onSubmit={async (values) => {
-            // console.log(values)
-            // const res = await fetch("/api/user", {
-            //   method: "POST",
-            //   headers: { "Content-Type": "application/json" },
-            //   body: JSON.stringify(values),
-            // })
-            // console.log(res)
           }}
         >
           {({ handleChange }) => (
