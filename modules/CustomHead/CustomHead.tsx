@@ -9,6 +9,7 @@ const CustomHead: React.FC<Props> = ({ }) => {
       <meta name="format-detection" content="telephone=no" />
       <meta name="keywords" content="ключевые слова" />
       <meta name="description" content="крутой сайт" />
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     </Head>
   )
 }
