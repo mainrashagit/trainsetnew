@@ -32,4 +32,6 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  
+  poweredByHeader: false,
 }
