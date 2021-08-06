@@ -5,17 +5,17 @@ import styles from "./index.module.sass"
 import { Swiper, SwiperSlide } from "swiper/react"
 import SwiperCore, { Navigation } from "swiper/core"
 import { v4 as uuid } from "uuid"
-import { GetStaticProps } from "next"
-import { getProjectLevels, getProjectsPreview, ProjectsPreview } from "@/api/api"
+import { ProjectsPreview } from "@/pages/api/projectsPreview"
+import { ProjectLevels } from "../api/levels"
 
 SwiperCore.use([Navigation])
 
 interface Props {
-  projectsPreview: ProjectsPreview
-  levels: string[]
 }
 
-const index: React.FC<Props> = ({ projectsPreview, levels }) => {
+const index: React.FC<Props> = ({ }) => {
+  const [projects, setProjects] = useState<ProjectsPreview>()
+  const [levels, setLevels] = useState<ProjectLevels>()
   const [swiperMainInst, setSwiperMainInst] = useState<SwiperCore>()
   const slideTo = (e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return
@@ -25,7 +25,7 @@ const index: React.FC<Props> = ({ projectsPreview, levels }) => {
     localStorage.setItem("clickedSlide", String(num))
   }
   const [currentSlide, setCurrentSlide] = useState(0)
-  const navSlides = levels.map((v, i) => (
+  const navSlides = levels?.map((v, i) => (
     <SwiperSlide key={uuid()}>
       <div className={styles.slide} onClick={slideTo} data-slide={i} data-current={currentSlide === i}>
         {v}
@@ -36,6 +36,13 @@ const index: React.FC<Props> = ({ projectsPreview, levels }) => {
     let slide = Number(localStorage.getItem("clickedSlide") ?? "0") || 0
     swiperMainInst?.slideTo(slide)
   }, [swiperMainInst])
+  useEffect(() => {
+    fetch("/api/projectsPreview").then(res => res.json()).then(data => setProjects(data))
+    fetch("/api/levels").then(res => res.json()).then(data => setLevels(data))
+    return () => {
+      
+    }
+  }, [])
   return (
     <section className={styles.projects}>
       <div className="container">
@@ -72,9 +79,9 @@ const index: React.FC<Props> = ({ projectsPreview, levels }) => {
             }}
             spaceBetween={50}
           >
-            {levels.map((lvl) => (
+            {levels?.map((lvl) => (
               <SwiperSlide key={uuid()} data-project={true}>
-                {projectsPreview.filter(({level}) => level === lvl).map(({ link, brief, image, level, title }) => (
+                {projects?.filter(({level}) => level === lvl).map(({ link, brief, image, level, title }) => (
                   <Card title={title} about={brief} link={link} img={image.sourceUrl} imgAlt={image.altText} buttons={true} more={true} key={uuid()} />
                 ))}
               </SwiperSlide>
@@ -87,14 +94,3 @@ const index: React.FC<Props> = ({ projectsPreview, levels }) => {
 }
 
 export default index
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const projectsPreview = await getProjectsPreview()
-  const levels = await getProjectLevels()
-  return {
-    props: {
-      projectsPreview,
-      levels,
-    },
-  }
-}

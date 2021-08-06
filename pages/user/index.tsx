@@ -26,7 +26,6 @@ const User: React.FC<Props> = ({}) => {
         <div className={styles.started}>
           <Link href={"#"}>
             <a className={styles.link}>
-              <Card title={"Car Price Prediction"} about={["Predicting a car price based on its parameters"]} img={"/cards/1.png"} level={"Level 0"} pId={1} />
             </a>
           </Link>
         </div>

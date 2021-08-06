@@ -1,21 +1,21 @@
 import { GetStaticPaths, GetStaticProps } from "next"
 import styles from "./index.module.sass"
 import { ParsedUrlQuery } from "querystring"
-import { getProjectBySlug, getProjectLevels, getProjectPaths, ProjectBySlug } from "@/api/api"
+import { getProjectBySlug, getProjectPaths, ProjectBySlug } from "@/api/api"
 import { Swiper, SwiperSlide } from "swiper/react"
 import SwiperCore, { Navigation } from "swiper/core"
 import { v4 as uuid } from "uuid"
 import Link from "next/link"
-import { MouseEvent } from "react"
+import { MouseEvent, useEffect, useState } from "react"
 import Container from "@modules/Container/Container"
 import Card from "@modules/projects/Card/Card"
 import Author from "@modules/text/Author/Author"
+import { ProjectLevels } from "../api/levels"
 
 SwiperCore.use([Navigation])
 
 interface Props {
   page: ProjectBySlug
-  levels: string[]
   link: string
 }
 
@@ -25,14 +25,22 @@ const Project: React.FC<Props> = ({
     category,
   },
   link,
-  levels,
 }) => {
+  const [levels, setLevels] = useState<ProjectLevels>()
   const slideTo = (e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return
     localStorage.setItem("clickedSlide", e.target.dataset.slide ?? "0")
   }
 
-  const navSlides = levels.map((v, i) => (
+  useEffect(() => {
+    
+    fetch("/api/levels").then(res => res.json()).then(data => setLevels(data))
+    return () => {
+      
+    }
+  }, [])
+
+  const navSlides = levels?.map((v, i) => (
     <SwiperSlide key={uuid()}>
       <Link href="/projects">
         <a className={styles.slide} onClick={slideTo} data-slide={i} data-current={v === category}>
@@ -92,7 +100,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getProjectPaths()
   return {
     paths: paths,
-    fallback: false,
+    fallback: "blocking"
   }
 }
 
@@ -103,12 +111,11 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { proj } = params as IParams
   const content = await getProjectBySlug(proj)
-  const levels = await getProjectLevels()
   return {
     props: {
       page: content,
-      levels,
       link: proj,
     },
+    revalidate: 10
   }
 }

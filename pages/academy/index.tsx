@@ -27,7 +27,7 @@ const index: React.FC<Props> = ({
         <Nav />
 
         <section dangerouslySetInnerHTML={{ __html: text }}></section>
-        <Author about={[date]} name={name} img={photo?.sourceUrl ?? ""} imgAlt={photo?.altText ?? ""} />
+        <Author about={date} name={name} src={photo?.sourceUrl ?? ""} imgAlt={photo?.altText ?? ""} />
         <ArrowTop />
       </Container>
     </>

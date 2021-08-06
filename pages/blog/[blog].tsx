@@ -53,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getBlogPaths()
   return {
     paths: paths,
-    fallback: false,
+    fallback: "blocking",
   }
 }
 
@@ -71,5 +71,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       links,
       current: blog,
     },
+    revalidate: 10
   }
 }

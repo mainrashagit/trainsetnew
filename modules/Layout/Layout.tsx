@@ -3,7 +3,7 @@ import CustomHead from "@modules/CustomHead/CustomHead"
 import Link from "next/link"
 import ResponsiveHeader from "@modules/ResponsiveHeader/ResponsiveHeader"
 import { useEffect, useState } from "react"
-import { getLayout, ILayout } from "@/api/api"
+import { ILayout } from "@/pages/api/layout"
 
 interface Props {}
 
@@ -12,8 +12,9 @@ const Layout: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     const headerBurgerMenu = new ResponsiveHeader(styles.header, styles.burgerIcon, styles.header__active, styles.burgerIcon__active)
     const getOptions = async () => {
-      const res = await getLayout()
-      setOptions(res)
+      const res = await fetch("/api/layout")
+      const content = await res.json() as ILayout
+      setOptions(content)
     }
     getOptions()
     return () => {
@@ -51,11 +52,11 @@ const Layout: React.FC<Props> = ({ children }) => {
             </nav>
 
             <div className={styles.header__authorization}>
-              <Link href="/auth/sign_in">
+              <Link href="/auth/sign-in">
                 <a className={styles.link_border}>Sign in</a>
               </Link>
 
-              <Link href="/auth/sign_up">
+              <Link href="/auth/sign-up">
                 <a className={styles.link_border}>Get Started</a>
               </Link>
             </div>
@@ -76,7 +77,7 @@ const Layout: React.FC<Props> = ({ children }) => {
             <div className={styles.footer__row}>
               {options?.footer?.soc?.map(({ link, image }, i) => (
                 <a href={link} className={styles.footer__socialMedia} target="_blank" key={`nav-bottom-social-${i}`}>
-                  <img srcSet={image.srcSet} alt={image.altText} />
+                  <img srcSet={image?.srcSet} alt={image?.altText} src={image?.sourceUrl} />
                 </a>
               ))}
             </div>

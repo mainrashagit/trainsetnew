@@ -8,7 +8,7 @@ import styles from "./index.module.sass"
 import parse, { domToReact } from "html-react-parser"
 import { Fragment } from "react"
 import Math from "@modules/text/Math/Math"
-import {v4 as uuid} from "uuid"
+import { v4 as uuid } from "uuid"
 
 interface Props {
   current: string
@@ -28,7 +28,6 @@ const Article: React.FC<Props> = ({
   },
   category,
 }) => {
-
   const polyMath = (str: string) => {
     if (typeof str !== "string") return
     const reacted = parse(str, {
@@ -79,7 +78,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllAcademyArticlePaths()
   return {
     paths: paths,
-    fallback: false,
+    fallback: "blocking",
   }
 }
 
@@ -100,5 +99,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       content: articleContent,
       category,
     },
+    revalidate: 10,
   }
 }

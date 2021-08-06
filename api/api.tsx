@@ -1,6 +1,6 @@
-const API_URL = process.env.WORDPRESS_API_URL ?? ("http://wp-trainset.ai.xsph.ru/graphql" as string)
+const API_URL = process.env.WORDPRESS_API_URL as string
 
-async function fetchAPI(query: string, { variables }: any = {}) {
+export async function fetchAPI(query: string, { variables }: any = {}) {
   const headers: any = { "Content-Type": "application/json" }
 
   if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
@@ -107,70 +107,6 @@ export async function getMainPage() {
   return data.page.mainpage
 }
 
-export interface ILayout {
-  header: {
-    nav: {
-      link: string
-      text: string
-    }[]
-    logo: {
-      altText: string
-      srcSet: string
-    }
-  }
-  footer: {
-    nav: {
-      link: string
-      text: string
-    }[]
-    soc: {
-      link: string
-      image: {
-        altText: string
-        srcSet: string
-      }
-    }[]
-  }
-}
-
-export async function getLayout(): Promise<ILayout> {
-  const data = await fetchAPI(
-    `
-    query MyQuery {
-       pageBy(pageId: 109) {
-         global {
-           header {
-             nav {
-               link
-               text
-             }
-             logo {
-               altText
-               srcSet
-             }
-           }
-           footer {
-             nav {
-               text
-               link
-             }
-             soc {
-               link
-               image {
-                 altText
-                 srcSet
-               }
-             }
-           }
-         }
-       }
-     }  
-  `
-  )
-
-  return data.pageBy.global
-}
-
 export interface IAcademyPage {
   title: string
   text: string
@@ -256,61 +192,6 @@ export async function getAllAcademyArticlePaths(): Promise<ArticlePaths> {
   )) as IArticlePaths
 
   return data.posts.edges.map((edge) => ({ params: { category: edge.node.categories.edges.find((item) => item.node.slug !== "docs")!.node.slug, article: edge.node.slug } }))
-}
-
-interface IArticleLinksAll {
-  posts: {
-    edges: {
-      node: {
-        slug: string
-        categories: {
-          edges: {
-            node: {
-              slug: string
-            }
-          }[]
-        }
-        title: string
-      }
-    }[]
-  }
-}
-
-type ArticleLinks = {
-  category: string
-  link: string
-  title: string
-}[]
-
-export async function getAllAcademyArticleLinks(): Promise<ArticleLinks> {
-  const data = (await fetchAPI(
-    `
-    query MyQuery {
-      posts(where: {categoryName: "docs"}) {
-        edges {
-          node {
-            slug
-            categories {
-              edges {
-                node {
-                  slug
-                }
-              }
-            }
-            title
-          }
-        }
-      }
-    }
-    
-  `
-  )) as IArticleLinksAll
-
-  return data.posts.edges.map((edge) => ({
-    category: edge.node.categories.edges.find((item) => item.node.slug !== "docs")!.node.slug,
-    link: edge.node.slug,
-    title: edge.node.title,
-  }))
 }
 
 interface ICategoryArticleLinks {
@@ -450,114 +331,6 @@ export async function getArticleByTitle(title: string): Promise<IArticle> {
   )) as IArticleByTitle
 
   return data.posts.edges[0].node
-}
-
-interface IProjectsPreview {
-  posts: {
-    edges: {
-      node: {
-        slug: string
-        projects: {
-          shortDesc: string
-          image: {
-            altText: string
-            sourceUrl: string
-            srcSet: string
-          }
-        }
-        categories: {
-          edges: {
-            node: {
-              name: string
-            }
-          }[]
-        }
-        title: string
-      }
-    }[]
-  }
-}
-
-export type ProjectsPreview = {
-  link: string
-  brief: string
-  image: {
-    altText: string
-    sourceUrl: string
-    srcSet: string
-  }
-  level: string
-  title: string
-}[]
-
-export async function getProjectsPreview(): Promise<ProjectsPreview> {
-  const data = (await fetchAPI(`
-  query MyQuery {
-    posts(where: {categoryName: "projects"}) {
-      edges {
-        node {
-          slug
-          projects {
-            shortDesc
-            image {
-              altText
-              sourceUrl
-              srcSet
-            }
-          }
-          categories {
-            edges {
-              node {
-                name
-              }
-            }
-          }
-          title
-        }
-      }
-    }
-  }
-  `)) as IProjectsPreview
-
-  const res = data.posts.edges
-    .map((edge) => ({
-      link: edge.node.slug,
-      brief: edge.node.projects.shortDesc,
-      image: edge.node.projects.image,
-      level: edge.node.categories.edges.find((item) => item.node.name.includes("Level"))!.node.name,
-      title: edge.node.title,
-    }))
-    .sort((prev, curr) => Number(prev.level.match(/\d+/)) - Number(curr.level.match(/\d+/)))
-
-  return res
-}
-
-interface IProjectLevels {
-  categories: {
-    edges: {
-      node: {
-        name: string
-      }
-    }[]
-  }
-}
-
-type ProjectLevels = string[]
-
-export async function getProjectLevels(): Promise<ProjectLevels> {
-  const data = (await fetchAPI(`
-  query {
-    categories(where: {nameLike: "level"}) {
-      edges {
-        node {
-          name
-        }
-      }
-    }
-  }
-  `)) as IProjectLevels
-
-  return data.categories.edges.map((edge) => edge.node.name)
 }
 
 interface IProjectPaths {
