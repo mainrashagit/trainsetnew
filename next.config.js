@@ -34,7 +34,7 @@ module.exports = {
     return [
       {
         source: "/(.*)",
-        headers: [{ key: "Content-Security-Policy", value: "upgrade-insecure-requests" }],
+        headers: [{ key: "Content-Security-Policy", value: "default-src 'self' wp-trainset.ai.xsph.ru *.wp-trainset.ai.xsph.ru" }],
       },
     ]
   },
