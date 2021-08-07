@@ -8,7 +8,8 @@ interface Props {
   about: string
   link: string
   buttons?: boolean
-  img: string
+  src: string
+  srcSet?: string
   imgAlt?: string
   more?: boolean
 }
@@ -19,7 +20,8 @@ const Card: React.FC<Props> = ({
   about,
   link,
   buttons,
-  img,
+  src,
+  srcSet,
   imgAlt,
   more
 }) => {
@@ -29,7 +31,7 @@ const Card: React.FC<Props> = ({
         <div className={styles.card__column}>
           {level && <span className={styles.card__level}>{level}</span>}
           <div className={styles.card__image}>
-            <img className={styles.card__image_src} src={img} alt={imgAlt} />
+            <img className={styles.card__image_src} src={src} srcSet={srcSet} alt={imgAlt} />
           </div>
         </div>
 

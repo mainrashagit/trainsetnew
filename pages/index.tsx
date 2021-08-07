@@ -4,83 +4,31 @@ import Card from "@modules/Card/Card"
 import Button from "@modules/Button/Button"
 import Link from "next/link"
 import { GetStaticProps } from "next"
-import { getMainPage } from "@/api/api"
+import { getMainPage, MainPage } from "@/api/api"
 import { Fragment, useEffect, useState } from "react"
 import { ProjectsPreview } from "@/pages/api/projectsPreview"
 
-
 interface Props {
-  page: {
-    screen1: {
-      button: { link: string; text: string }
-      title: string
-      subtitle: string
-      image: {
-        srcSet: string | null
-        altText: string | null
-      } | null
-    }
-    screen2: {
-      subtitle: string
-      text: string
-    }
-    screen3: {
-      title: string
-      button: {
-        text: string
-        link: string
-      }
-    }
-    screen4: {
-      title: string
-      text: string
-      image: {
-        srcSet: string | null
-        altText: string | null
-      } | null
-    }
-    screen5: {
-      title: string
-      image: {
-        srcSet: string | null
-        altText: string | null
-      } | null
-    }
-    screen6: {
-      title: string
-      faq: {
-        a: any
-        q: any
-      }[]
-    }
-    screen7: {
-      title: string
-      subtitle: string
-      button: {
-        text: string
-        link: string
-      }
-    }
-  }
+  page: MainPage
 }
 
 export default function Home({ page: { screen1, screen2, screen3, screen4, screen5, screen6, screen7 } }: Props) {
   const [projects, setProjects] = useState<ProjectsPreview>()
   const getTwoRandomProjects = (projects: any[]) => {
     const set = new Set<number>()
-    while(set.size < 2) {
+    while (set.size < 2) {
       set.add(Math.floor(Math.random() * projects.length))
     }
     const nums = [...set]
     return [projects[nums[0]], projects[nums[1]]]
   }
-  const cards = projects ? getTwoRandomProjects(projects).map(({ link, level, brief, image, title }, i) => <Card about={brief} level={level} img={image.sourceUrl} link={link} title={title} key={`${link}-preview-${i}`} more={true} />) : ""
+  const cards = projects ? getTwoRandomProjects(projects).map(({ link, level, brief, image, title }, i) => <Card about={brief} level={level} src={image?.sourceUrl} srcSet={image?.srcSet} link={link} title={title} key={`${link}-preview-${i}`} more={true} />) : ""
 
   useEffect(() => {
-    fetch("/api/projectsPreview").then(res => res.json()).then(data => setProjects(data))
-    return () => {
-      
-    }
+    fetch("/api/projectsPreview")
+      .then((res) => res.json())
+      .then((data) => setProjects(data))
+    return () => {}
   }, [])
   return (
     <>
@@ -97,7 +45,7 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
           </div>
 
           <div className={styles.firstScreen__image}>
-            <img srcSet={screen1.image?.srcSet ?? ""} alt={screen1.image?.altText ?? ""} />
+            <img srcSet={screen1.image?.srcSet ?? ""} src={screen1.image?.sourceUrl ?? ""} alt={screen1.image?.altText ?? ""} />
           </div>
         </div>
       </section>
@@ -131,7 +79,7 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
           </div>
 
           <div className={styles.aboutUs__image}>
-            <img srcSet={screen4.image?.srcSet ?? ""} alt={screen4.image?.altText ?? ""} />
+            <img srcSet={screen4.image?.srcSet ?? ""} src={screen4.image?.sourceUrl ?? ""} alt={screen4.image?.altText ?? ""} />
           </div>
 
           <div className={styles.aboutUs__column} dangerouslySetInnerHTML={{ __html: screen4.text }}></div>
@@ -142,7 +90,7 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
         <div className={styles.faq__title} style={{ textAlign: "center" }}>
           <Title type="h2">{screen5.title}</Title>
         </div>
-        <img className={styles.faq__diag} srcSet={screen5.image?.srcSet ?? ""} alt={screen5.image?.altText ?? ""} />
+        <img className={styles.faq__diag} srcSet={screen5.image?.srcSet ?? ""} src={screen5.image?.sourceUrl ?? ""} alt={screen5.image?.altText ?? ""} />
       </section>
 
       <section className={styles.faq}>

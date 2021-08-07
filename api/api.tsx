@@ -1,5 +1,11 @@
 const API_URL = process.env.WORDPRESS_API_URL as string
 
+export type WP_Image = {
+  srcSet: string | null
+  altText: string | null
+  sourceUrl: string | null
+} | null
+
 export async function fetchAPI(query: string, { variables }: any = {}) {
   const headers: any = { "Content-Type": "application/json" }
 
@@ -39,7 +45,52 @@ export async function getPageByID(id: number) {
 
   return data.pageBy
 }
-export async function getMainPage() {
+
+export type MainPage = {
+  screen1: {
+    button: { link: string; text: string }
+    title: string
+    subtitle: string
+    image: WP_Image
+  }
+  screen2: {
+    subtitle: string
+    text: string
+  }
+  screen3: {
+    title: string
+    button: {
+      text: string
+      link: string
+    }
+  }
+  screen4: {
+    title: string
+    text: string
+    image: WP_Image
+  }
+  screen5: {
+    title: string
+    image: WP_Image
+  }
+  screen6: {
+    title: string
+    faq: {
+      a: any
+      q: any
+    }[]
+  }
+  screen7: {
+    title: string
+    subtitle: string
+    button: {
+      text: string
+      link: string
+    }
+  }
+}
+
+export async function getMainPage(): Promise<MainPage> {
   const data = await fetchAPI(
     `
     query {
@@ -59,6 +110,7 @@ export async function getMainPage() {
             image {
               srcSet
               altText
+              sourceUrl
             }
           }
           screen3 {
@@ -74,6 +126,7 @@ export async function getMainPage() {
             image {
               srcSet
               altText
+              sourceUrl
             }
           }
           screen5 {
@@ -81,6 +134,7 @@ export async function getMainPage() {
             image {
               srcSet
               altText
+              sourceUrl
             }
           }
           screen6 {

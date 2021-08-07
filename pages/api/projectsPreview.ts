@@ -1,4 +1,4 @@
-import { fetchAPI } from "@/api/api"
+import { fetchAPI, WP_Image } from "@/api/api"
 import type { NextApiRequest, NextApiResponse } from "next"
 
 interface IProjectsPreview {
@@ -8,11 +8,7 @@ interface IProjectsPreview {
         slug: string
         projects: {
           shortDesc: string
-          image: {
-            altText: string
-            sourceUrl: string
-            srcSet: string
-          }
+          image: WP_Image
         }
         categories: {
           edges: {
@@ -30,11 +26,7 @@ interface IProjectsPreview {
 export type ProjectsPreview = {
   link: string
   brief: string
-  image: {
-    altText: string
-    sourceUrl: string
-    srcSet: string
-  }
+  image: WP_Image
   level: string
   title: string
 }[]

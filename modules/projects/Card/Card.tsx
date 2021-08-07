@@ -7,17 +7,18 @@ import Tags from "../Tags/Tags"
 interface Props {
   title: string
   link: string
-  img: string
+  src: string
+  srcSet?: string
   imgAlt?: string
   tags: string[]
 }
 
-const Card: React.FC<Props> = ({ title, link, img, imgAlt, tags }) => {
+const Card: React.FC<Props> = ({ title, link, src, srcSet, imgAlt, tags }) => {
   return (
     <div className={styles.card}>
       <div className={styles.img}>
         <div className={styles.imgWrap}>
-          <img className={styles.imgSrc} src={img} alt={imgAlt} />
+          <img className={styles.imgSrc} src={src} srcSet={srcSet} alt={imgAlt} />
         </div>
       </div>
       <div className={styles.info}>

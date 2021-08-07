@@ -24,7 +24,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   const Logo = () => (
     <Link href="/">
       <a className={styles.header__logo}>
-        <img srcSet={options?.header?.logo?.srcSet ?? ""} alt={options?.header?.logo?.altText} />
+        <img srcSet={options?.header?.logo?.srcSet ?? ""} src={options?.header?.logo?.sourceUrl ?? ""} alt={options?.header?.logo?.altText ?? ""} />
       </a>
     </Link>
   )
@@ -77,7 +77,7 @@ const Layout: React.FC<Props> = ({ children }) => {
             <div className={styles.footer__row}>
               {options?.footer?.soc?.map(({ link, image }, i) => (
                 <a href={link} className={styles.footer__socialMedia} target="_blank" key={`nav-bottom-social-${i}`}>
-                  <img srcSet={image?.srcSet} alt={image?.altText} src={image?.sourceUrl} />
+                  <img srcSet={image?.srcSet ?? ""} alt={image?.altText ?? ""} src={image?.sourceUrl ?? ""} />
                 </a>
               ))}
             </div>

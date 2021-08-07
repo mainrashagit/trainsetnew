@@ -82,7 +82,7 @@ const index: React.FC<Props> = ({ }) => {
             {levels?.map((lvl) => (
               <SwiperSlide key={uuid()} data-project={true}>
                 {projects?.filter(({level}) => level === lvl).map(({ link, brief, image, level, title }) => (
-                  <Card title={title} about={brief} link={link} img={image.sourceUrl} imgAlt={image.altText} buttons={true} more={true} key={uuid()} />
+                  <Card title={title} about={brief} link={link} src={image?.sourceUrl ?? ""} imgAlt={image?.altText ?? ""} srcSet={image?.srcSet ?? ""} buttons={true} more={true} key={uuid()} />
                 ))}
               </SwiperSlide>
             ))}

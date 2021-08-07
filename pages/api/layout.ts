@@ -1,4 +1,4 @@
-import { fetchAPI } from "@/api/api"
+import { fetchAPI, WP_Image } from "@/api/api"
 import type { NextApiRequest, NextApiResponse } from "next"
 
 
@@ -8,10 +8,7 @@ export interface ILayout {
       link: string
       text: string
     }[]
-    logo: {
-      altText: string
-      srcSet: string
-    }
+    logo: WP_Image
   }
   footer: {
     nav: {
@@ -20,11 +17,7 @@ export interface ILayout {
     }[]
     soc: {
       link: string
-      image: {
-        altText: string
-        srcSet: string
-        sourceUrl: string
-      }
+      image: WP_Image
     }[]
   }
 }
@@ -43,6 +36,7 @@ export async function getLayout(): Promise<ILayout> {
              logo {
                altText
                srcSet
+               sourceUrl
              }
            }
            footer {

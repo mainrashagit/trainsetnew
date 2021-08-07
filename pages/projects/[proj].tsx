@@ -71,7 +71,7 @@ const Project: React.FC<Props> = ({
         </Swiper>
         <div className={styles.nav__btnRight} id={"navBtnRight"}></div>
       </div>
-      <Card title={"Car Price Prediction"} img={image.sourceUrl} imgAlt={image.altText} tags={tags.map((tag) => tag.tag)} link={link} />
+      <Card title={"Car Price Prediction"} src={image?.sourceUrl ?? ""} imgAlt={image?.altText ?? ""} srcSet={image?.srcSet ?? ""} tags={tags.map((tag) => tag.tag)} link={link} />
       <Container>
         <section>
           <h4>{about.title}</h4>
