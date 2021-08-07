@@ -1,4 +1,3 @@
-import styles from "./index.module.sass"
 import { GetStaticPaths, GetStaticProps } from "next"
 import { ParsedUrlQuery } from "querystring"
 import Container from "@modules/Container/Container"

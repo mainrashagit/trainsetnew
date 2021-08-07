@@ -9,7 +9,7 @@ interface Props {
 
 const SidebarItem: React.FC<Props> = ({ text, active, link }) => {
   return (
-    <Link href={link}>
+    <Link href={`/blog/${link}`}>
       <a
         className={styles.link}
         data-active={active}
