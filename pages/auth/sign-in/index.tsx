@@ -19,6 +19,15 @@ const index: React.FC<Props> = ({}) => {
         <Formik
           initialValues={{ username: "", password: "" }}
           onSubmit={async (values) => {
+            const res = await fetch("/api/login", {
+              method: "POST",
+              credentials: 'include',
+              body: JSON.stringify(values)
+            })
+            const res2 = await fetch("/api/user", {
+              method: "POST",
+              credentials: "include"
+            })
           }}
         >
           {({ handleChange }) => (

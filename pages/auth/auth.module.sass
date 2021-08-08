@@ -57,12 +57,11 @@
         position: absolute
         opacity: 0
         visibility: hidden
-        &_active
+        &:not(:empty)
             padding: 0 0 10px 0
             position: static
             opacity: 1
             visibility: visible
-            @extend .form__errorMessage
 
     &__checkbox,
     &__restorePassword
