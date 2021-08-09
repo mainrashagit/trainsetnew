@@ -12,10 +12,11 @@ const Layout: React.FC<Props> = ({ children }) => {
   const [options, setOptions] = useState<ILayout>()
   const [loggedIn, setLoggedIn] = useState(false)
   const router = useRouter()
+  const hostname = window?.location?.hostname === "localhost" ? "" : window?.location?.hostname
   useEffect(() => {
     const headerBurgerMenu = new ResponsiveHeader(styles.header, styles.burgerIcon, styles.header__active, styles.burgerIcon__active)
     ;(async () => {
-      const res = await fetch("/api/layout")
+      const res = await fetch(`${hostname}/api/layout`)
       const content = (await res.json()) as ILayout
       setOptions(content)
     })()
@@ -26,7 +27,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     ;(async () => {
-      const res = await fetch("/api/isLoggedIn", {
+      const res = await fetch(`${hostname}/api/isLoggedIn`, {
         method: "POST",
         credentials: "include",
       })
@@ -38,7 +39,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   }, [router.route])
 
   const logOut = async () => {
-    const res = await fetch("/api/logOut", {
+    const res = await fetch(`${hostname}/api/logOut`, {
       method: "POST",
     })
     const { success } = await res.json()

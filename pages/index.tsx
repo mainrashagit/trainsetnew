@@ -8,6 +8,7 @@ import { getMainPage, MainPage } from "@/api/api"
 import { Fragment, useEffect, useState } from "react"
 import { ProjectsPreview } from "@/pages/api/projectsPreview"
 
+
 interface Props {
   page: MainPage
 }
@@ -25,7 +26,8 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
   const cards = projects ? getTwoRandomProjects(projects).map(({ link, level, brief, image, title }, i) => <Card about={brief} level={level} src={image?.sourceUrl} srcSet={image?.srcSet} link={link} title={title} key={`${link}-preview-${i}`} more={true} />) : ""
 
   useEffect(() => {
-    fetch("/api/projectsPreview")
+    const hostname = window?.location?.hostname === "localhost" ? "" : window?.location?.hostname
+    fetch(`${hostname}/api/projectsPreview`)
       .then((res) => res.json())
       .then((data) => setProjects(data))
     return () => {}
