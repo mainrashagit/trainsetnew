@@ -4,10 +4,7 @@ import cookie from "cookie"
 const query = `
 query GetViewer {
   viewer {
-    username
-    avatar {
-      url
-    }
+    id
   }
 }
 `
@@ -15,17 +12,16 @@ query GetViewer {
 interface IUser {
   data: {
     viewer: {
-      avatar: {
-        url: string
-      }
-      username: string
+      id: string
     }
   }
 }
 
-export type User = IUser["data"]["viewer"] | {
-  success: boolean
-}
+export type User =
+  | IUser["data"]["viewer"]
+  | {
+      success: boolean
+    }
 
 async function getUser(cookie: string) {
   const headers: any = { "Content-Type": "application/json" }
@@ -35,16 +31,16 @@ async function getUser(cookie: string) {
     headers,
     body: JSON.stringify({ query }),
   })
-  const json = await res.json() as IUser
-  if (json.data.viewer !== null) return json.data.viewer
-  return { success: false }
+  const json = (await res.json()) as IUser
+  return json.data.viewer
 }
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  // const body = JSON.parse(req.body)
   const { jazz } = cookie.parse(req.headers.cookie ?? "")
+  if (!jazz) return res.send({ success: false })
   const content = await getUser(jazz)
-  res.send(content)
+  if (content?.id) return res.status(200).send({ success: true })
+  return res.status(403).send({ success: false })
   // const content = await loginUser(body)
   // res.status(200).json({ success: Boolean(content?.login?.authToken) })
   // res.send(content)

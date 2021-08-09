@@ -12,7 +12,6 @@ const Purchase: React.FC<Props> = ({}) => {
     script.addEventListener("load", () => setLoaded(true))
     document.body.appendChild(script)
 
-    
     return () => {}
   }, [])
   useEffect(() => {
@@ -37,16 +36,21 @@ const Purchase: React.FC<Props> = ({}) => {
             },
             // @ts-ignore
             onApprove: async (data, actions) => {
+              const headers: any = { "Content-Type": "application/json" }
               const order = await actions.order.capture()
+              console.log(data, actions)
+              const res = await fetch("/api/purchase", {
+                method: "POST",
+                headers,
+                body: JSON.stringify(order),
+              })
               console.log(order)
             },
           })
           .render(paypalRef.current)
       })
     }
-    return () => {
-      
-    }
+    return () => {}
   }, [loaded])
   return (
     <>

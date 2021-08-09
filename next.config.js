@@ -30,12 +30,4 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-  // async headers() {
-  //   return [
-  //     {
-  //       source: "/(.*)",
-  //       headers: [{ key: "Content-Security-Policy", value: "default-src 'self' wp-trainset.ai.xsph.ru *.wp-trainset.ai.xsph.ru" }],
-  //     },
-  //   ]
-  // },
 }

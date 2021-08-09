@@ -21,6 +21,7 @@ const index: React.FC<Props> = ({}) => {
         <Formik
           initialValues={{ username: "", email: "", password: "", confirmPassword: "" }}
           onSubmit={async ({ username, email, password, confirmPassword }) => {
+            setErrorMessage("")
             if (password !== confirmPassword) return setErrorMessage("Passwords do not match!")
             const res = await fetch("/api/register", {
               method: "POST",

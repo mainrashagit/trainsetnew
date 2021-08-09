@@ -4,23 +4,49 @@ import Link from "next/link"
 import ResponsiveHeader from "@modules/ResponsiveHeader/ResponsiveHeader"
 import { useEffect, useState } from "react"
 import { ILayout } from "@/pages/api/layout"
+import { useRouter } from "next/dist/client/router"
 
 interface Props {}
 
 const Layout: React.FC<Props> = ({ children }) => {
   const [options, setOptions] = useState<ILayout>()
+  const [loggedIn, setLoggedIn] = useState(false)
+  const router = useRouter()
   useEffect(() => {
     const headerBurgerMenu = new ResponsiveHeader(styles.header, styles.burgerIcon, styles.header__active, styles.burgerIcon__active)
-    const getOptions = async () => {
+    ;(async () => {
       const res = await fetch("/api/layout")
-      const content = await res.json() as ILayout
+      const content = (await res.json()) as ILayout
       setOptions(content)
-    }
-    getOptions()
+    })()
     return () => {
       headerBurgerMenu.unmount()
     }
   }, [])
+
+  useEffect(() => {
+    ;(async () => {
+      const res = await fetch("/api/isLoggedIn", {
+        method: "POST",
+        credentials: "include",
+      })
+      const { success } = await res.json()
+      if (success) return setLoggedIn(true)
+      setLoggedIn(false)
+    })()
+    return () => {}
+  }, [router.route])
+
+  const logOut = async () => {
+    const res = await fetch("/api/logOut", {
+      method: "POST",
+    })
+    const { success } = await res.json()
+    if (success) {
+      setLoggedIn(false)
+      router.push("/")
+    }
+  }
   const Logo = () => (
     <Link href="/">
       <a className={styles.header__logo}>
@@ -52,9 +78,15 @@ const Layout: React.FC<Props> = ({ children }) => {
             </nav>
 
             <div className={styles.header__authorization}>
-              <Link href="/auth/sign-in">
-                <a className={styles.link_border}>Sign in</a>
-              </Link>
+              {loggedIn ? (
+                <a className={styles.link_border} onClick={logOut}>
+                  Sign out
+                </a>
+              ) : (
+                <Link href="/auth/sign-in">
+                  <a className={styles.link_border}>Sign in</a>
+                </Link>
+              )}
 
               <Link href="/auth/sign-up">
                 <a className={styles.link_border}>Get Started</a>

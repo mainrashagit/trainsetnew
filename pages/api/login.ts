@@ -26,17 +26,17 @@ async function loginUser({ username, password }: LoginUserProps) {
   })
   if (res.status === 404) throw res.statusText
   const json = await res.json()
+  if (json.errors) return json.errors
   return json.data
-  // const json = await res.json()
-  // console.log(res.headers, json)
 }
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   const body = JSON.parse(req.body)
   const content = await loginUser(body)
+  if (!content.login) return res.status(403).json(content)
   res.setHeader(
     "Set-Cookie",
-    cookie.serialize("auth", String(content?.login?.authToken ?? ""), {
+    cookie.serialize("jazz", String(content?.login?.refreshToken ?? ""), {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "development",
       path: "/",
@@ -44,5 +44,4 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     })
   )
   res.status(200).json({ success: Boolean(content?.login?.authToken) })
-  // res.send(content)
 }
