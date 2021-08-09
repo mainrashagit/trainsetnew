@@ -5,6 +5,7 @@ import ResponsiveHeader from "@modules/ResponsiveHeader/ResponsiveHeader"
 import { useEffect, useState } from "react"
 import { ILayout } from "@/pages/api/layout"
 import { useRouter } from "next/dist/client/router"
+import { server } from "@/config"
 
 interface Props {}
 
@@ -13,10 +14,9 @@ const Layout: React.FC<Props> = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false)
   const router = useRouter()
   useEffect(() => {
-    const hostname = window?.location?.hostname === "localhost" ? "" : window?.location?.hostname
     const headerBurgerMenu = new ResponsiveHeader(styles.header, styles.burgerIcon, styles.header__active, styles.burgerIcon__active)
     ;(async () => {
-      const res = await fetch(`${hostname}/api/layout`)
+      const res = await fetch(`${server}/api/layout`)
       const content = (await res.json()) as ILayout
       setOptions(content)
     })()
@@ -26,9 +26,8 @@ const Layout: React.FC<Props> = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    const hostname = window?.location?.hostname === "localhost" ? "" : window?.location?.hostname
     ;(async () => {
-      const res = await fetch(`${hostname}/api/isLoggedIn`, {
+      const res = await fetch(`${server}/api/isLoggedIn`, {
         method: "POST",
         credentials: "include",
       })
@@ -40,8 +39,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   }, [router.route])
 
   const logOut = async () => {
-    const hostname = window?.location?.hostname === "localhost" ? "" : window?.location?.hostname
-    const res = await fetch(`${hostname}/api/logOut`, {
+    const res = await fetch(`${server}/api/logOut`, {
       method: "POST",
     })
     const { success } = await res.json()
