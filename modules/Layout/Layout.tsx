@@ -16,9 +16,9 @@ const Layout: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     const headerBurgerMenu = new ResponsiveHeader(styles.header, styles.burgerIcon, styles.header__active, styles.burgerIcon__active)
     ;(async () => {
-      const res = await fetch(`${server}/api/layout`)
-      const content = (await res.json()) as ILayout
-      setOptions(content)
+      // const res = await fetch(`${server}/api/layout`)
+      // const content = (await res.json()) as ILayout
+      // setOptions(content)
     })()
     return () => {
       headerBurgerMenu.unmount()
@@ -27,13 +27,13 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     ;(async () => {
-      const res = await fetch(`${server}/api/isLoggedIn`, {
-        method: "POST",
-        credentials: "include",
-      })
-      const { success } = await res.json()
-      if (success) return setLoggedIn(true)
-      setLoggedIn(false)
+      // const res = await fetch(`${server}/api/isLoggedIn`, {
+      //   method: "POST",
+      //   credentials: "include",
+      // })
+      // const { success } = await res.json()
+      // if (success) return setLoggedIn(true)
+      // setLoggedIn(false)
     })()
     return () => {}
   }, [router.route])

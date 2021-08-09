@@ -26,9 +26,9 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
   const cards = projects ? getTwoRandomProjects(projects).map(({ link, level, brief, image, title }, i) => <Card about={brief} level={level} src={image?.sourceUrl} srcSet={image?.srcSet} link={link} title={title} key={`${link}-preview-${i}`} more={true} />) : ""
 
   useEffect(() => {
-    fetch(`${server}/api/projectsPreview`)
-      .then((res) => res.json())
-      .then((data) => setProjects(data))
+    // fetch(`${server}/api/projectsPreview`)
+    //   .then((res) => res.json())
+    //   .then((data) => setProjects(data))
     return () => {}
   }, [])
   return (
