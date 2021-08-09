@@ -12,8 +12,8 @@ const Layout: React.FC<Props> = ({ children }) => {
   const [options, setOptions] = useState<ILayout>()
   const [loggedIn, setLoggedIn] = useState(false)
   const router = useRouter()
-  const hostname = window?.location?.hostname === "localhost" ? "" : window?.location?.hostname
   useEffect(() => {
+    const hostname = window?.location?.hostname === "localhost" ? "" : window?.location?.hostname
     const headerBurgerMenu = new ResponsiveHeader(styles.header, styles.burgerIcon, styles.header__active, styles.burgerIcon__active)
     ;(async () => {
       const res = await fetch(`${hostname}/api/layout`)
@@ -26,6 +26,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   }, [])
 
   useEffect(() => {
+    const hostname = window?.location?.hostname === "localhost" ? "" : window?.location?.hostname
     ;(async () => {
       const res = await fetch(`${hostname}/api/isLoggedIn`, {
         method: "POST",
@@ -39,6 +40,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   }, [router.route])
 
   const logOut = async () => {
+    const hostname = window?.location?.hostname === "localhost" ? "" : window?.location?.hostname
     const res = await fetch(`${hostname}/api/logOut`, {
       method: "POST",
     })
