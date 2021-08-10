@@ -1,0 +1,111 @@
+@use "@styles/abstracts/mixins" as *
+@import "@styles/abstracts/functions"
+@import "@styles/layout/fullHeightWrapper"
+
+.authorization
+    max-width: 410px
+    width: 100%
+    align-items: center
+
+    &_active
+        @extend .authorization_active
+
+    &__titlesLinksWrapper
+        max-width: 100%
+        width: 100%
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-bottom: 50px
+        &:not(:last-of-type)
+            margin-right: 20px
+
+    &__titleLink
+        font-family: Oswald
+        font-size: 36px
+        width: 100%
+        color: #707070
+        cursor: pointer
+        margin: 0
+        &:last-child
+            text-align: right
+        &_active
+            font-weight: 500
+            color: #000000
+            font-size: 48px
+            @extend .authorization__titleLink
+
+.form
+    max-width: 100%
+    width: 100%
+    font-family: Montserrat
+    grid-column: 1/3 span
+    flex-direction: column
+    display: none
+
+    & > * + *
+        margin-top: 16px
+
+    &_active
+        display: flex
+        @extend .form
+
+    &__errorMessage
+        font-size: 14px
+        color: rgb(192, 40, 40)
+        text-align: center
+        position: absolute
+        opacity: 0
+        visibility: hidden
+        &:not(:empty)
+            padding: 0 0 10px 0
+            position: static
+            opacity: 1
+            visibility: visible
+
+    &__checkbox,
+    &__restorePassword
+        margin-left: 20px
+
+    &__restorePassword
+        font-size: 16px
+        color: #000000
+        margin-top: 16px
+
+    &__checkbox
+        margin-bottom: 20px
+
+@media (max-width: 1024px)
+    .authorization
+        max-width: 350px
+        &__titleLink
+            font-size: 30px
+        &_active
+            width: 100%
+            font-size: 36px
+
+        &__titlesLinksWrapper
+            margin-bottom: 40px
+
+    .form
+        &__errorMessage
+            font-size: 12px
+
+@media (max-width: 480px)
+    .authorization
+        max-width: 275px
+        &__titleLink
+            font-size: 18px
+        &_active
+            font-size: 24px
+
+        &__titlesLinksWrapper
+            margin-bottom: 25px
+
+    .form
+
+        &__restorePassword
+            font-size: 12px
+
+        &__errorMessage
+            font-size: 10px
