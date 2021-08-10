@@ -13,7 +13,7 @@ interface Props {
   page: MainPage
 }
 
-export default function Home(/* { page: { screen1, screen2, screen3, screen4, screen5, screen6, screen7 } }: Props */) {
+export default function Home({ page: { screen1, screen2, screen3, screen4, screen5, screen6, screen7 } }: Props) {
 
   const getTwoRandomProjects = (projects: any[]) => {
     const set = new Set<number>()
@@ -29,8 +29,7 @@ export default function Home(/* { page: { screen1, screen2, screen3, screen4, sc
   return (
     <>
       <section className={styles.firstScreen}>
-        <div>Test <code>{JSON.stringify(error) + JSON.stringify(projects)}</code></div>
-        {/* <div className={styles.firstScreen__wrapper}>
+        <div className={styles.firstScreen__wrapper}>
           <div className={styles.firstScreen__column}>
             <div className={styles.firstScreen__title}>
               <Title type="h1">{screen1?.title}</Title>
@@ -121,17 +120,17 @@ export default function Home(/* { page: { screen1, screen2, screen3, screen4, sc
               </a>
             </Link>
           </div>
-        </div> */}
+        </div>
       </section>
     </>
   )
 }
 
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const page = await getMainPage()
-//   return {
-//     props: {
-//       page,
-//     },
-//   }
-// }
+export const getStaticProps: GetStaticProps = async (context) => {
+  const page = await getMainPage()
+  return {
+    props: {
+      page,
+    },
+  }
+}
