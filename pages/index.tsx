@@ -26,14 +26,10 @@ export default function Home(/* { page: { screen1, screen2, screen3, screen4, sc
   const { data: projects, error } = useSWR<ProjectsPreview>("http://localhost:3000/api/projectsPreview", (url) => fetch(url).then(r => r.json()))
   const cards = projects ? getTwoRandomProjects(projects).map(({ link, level, brief, image, title }, i) => <Card about={brief} level={level} src={image?.sourceUrl} srcSet={image?.srcSet} link={link} title={title} key={`${link}-preview-${i}`} more={true} />) : ""
 
-  useEffect(() => {
-    throw new Error(error)
-    return () => {}
-  }, [error])
   return (
     <>
       <section className={styles.firstScreen}>
-        <div>Test</div>
+        <div>Test {error}</div>
         {/* <div className={styles.firstScreen__wrapper}>
           <div className={styles.firstScreen__column}>
             <div className={styles.firstScreen__title}>
