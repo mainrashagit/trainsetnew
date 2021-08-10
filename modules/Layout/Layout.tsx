@@ -5,48 +5,34 @@ import ResponsiveHeader from "@modules/ResponsiveHeader/ResponsiveHeader"
 import { useEffect, useState } from "react"
 import { ILayout } from "@/pages/api/layout"
 import { useRouter } from "next/dist/client/router"
-import { server } from "@/config"
+import useSWR from "swr"
 
 interface Props {}
 
 const Layout: React.FC<Props> = ({ children }) => {
-  const [options, setOptions] = useState<ILayout>()
-  const [loggedIn, setLoggedIn] = useState(false)
   const router = useRouter()
+  const { data: options, error: optionsError } = useSWR<ILayout>("/api/layout", (url) => fetch(url).then((r) => r.json()))
+  const {data: loggedIn, error: loggedInError} = useSWR<boolean>("/api/isLoggedIn", (url) => fetch(url).then(r => r.json()).then(d => d?.success))
   useEffect(() => {
     const headerBurgerMenu = new ResponsiveHeader(styles.header, styles.burgerIcon, styles.header__active, styles.burgerIcon__active)
-    ;(async () => {
-      // const res = await fetch(`${server}/api/layout`)
-      // const content = (await res.json()) as ILayout
-      // setOptions(content)
-    })()
     return () => {
       headerBurgerMenu.unmount()
     }
   }, [])
 
   useEffect(() => {
-    ;(async () => {
-      // const res = await fetch(`${server}/api/isLoggedIn`, {
-      //   method: "POST",
-      //   credentials: "include",
-      // })
-      // const { success } = await res.json()
-      // if (success) return setLoggedIn(true)
-      // setLoggedIn(false)
-    })()
     return () => {}
   }, [router.route])
 
   const logOut = async () => {
-    const res = await fetch(`${server}/api/logOut`, {
-      method: "POST",
-    })
-    const { success } = await res.json()
-    if (success) {
-      setLoggedIn(false)
-      router.push("/")
-    }
+    // const res = await fetch(`${server}/api/logOut`, {
+    //   method: "POST",
+    // })
+    // const { success } = await res.json()
+    // if (success) {
+    //   setLoggedIn(false)
+    //   router.push("/")
+    // }
   }
   const Logo = () => (
     <Link href="/">

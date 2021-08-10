@@ -7,14 +7,14 @@ import { GetStaticProps } from "next"
 import { getMainPage, MainPage } from "@/api/api"
 import { Fragment, useEffect, useState } from "react"
 import { ProjectsPreview } from "@/pages/api/projectsPreview"
-import { server } from "@/config"
+import useSWR from "swr"
 
 interface Props {
   page: MainPage
 }
 
 export default function Home({ page: { screen1, screen2, screen3, screen4, screen5, screen6, screen7 } }: Props) {
-  const [projects, setProjects] = useState<ProjectsPreview>()
+  // const [projects, setProjects] = useState<ProjectsPreview>()
   const getTwoRandomProjects = (projects: any[]) => {
     const set = new Set<number>()
     while (set.size < 2) {
@@ -23,12 +23,10 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
     const nums = [...set]
     return [projects[nums[0]], projects[nums[1]]]
   }
+  const { data: projects, error } = useSWR<ProjectsPreview>("/api/projectsPreview", (url) => fetch(url).then(r => r.json()))
   const cards = projects ? getTwoRandomProjects(projects).map(({ link, level, brief, image, title }, i) => <Card about={brief} level={level} src={image?.sourceUrl} srcSet={image?.srcSet} link={link} title={title} key={`${link}-preview-${i}`} more={true} />) : ""
 
   useEffect(() => {
-    // fetch(`${server}/api/projectsPreview`)
-    //   .then((res) => res.json())
-    //   .then((data) => setProjects(data))
     return () => {}
   }, [])
   return (
