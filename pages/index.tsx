@@ -29,7 +29,7 @@ export default function Home(/* { page: { screen1, screen2, screen3, screen4, sc
   return (
     <>
       <section className={styles.firstScreen}>
-        <div>Test {error}</div>
+        <div>Test <code>{JSON.stringify(error)}</code></div>
         {/* <div className={styles.firstScreen__wrapper}>
           <div className={styles.firstScreen__column}>
             <div className={styles.firstScreen__title}>
