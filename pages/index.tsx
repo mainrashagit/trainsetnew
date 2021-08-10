@@ -23,13 +23,13 @@ export default function Home(/* { page: { screen1, screen2, screen3, screen4, sc
     const nums = [...set]
     return [projects[nums[0]], projects[nums[1]]]
   }
-  const { data: projects, error } = useSWR<ProjectsPreview>("https://trainset.ai/api/projectsPreview", (url) => fetch(url).then(r => r.json()))
+  const { data: projects, error } = useSWR<ProjectsPreview>("/api/projectsPreview", (url) => fetch(url).then(r => r.json()))
   const cards = projects ? getTwoRandomProjects(projects).map(({ link, level, brief, image, title }, i) => <Card about={brief} level={level} src={image?.sourceUrl} srcSet={image?.srcSet} link={link} title={title} key={`${link}-preview-${i}`} more={true} />) : ""
 
   return (
     <>
       <section className={styles.firstScreen}>
-        <div>Test <code>{JSON.stringify(error)}</code></div>
+        <div>Test <code>{JSON.stringify(error) + JSON.stringify(projects)}</code></div>
         {/* <div className={styles.firstScreen__wrapper}>
           <div className={styles.firstScreen__column}>
             <div className={styles.firstScreen__title}>
