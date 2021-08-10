@@ -5,14 +5,14 @@ import { useEffect } from "react"
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    return () => {
-      
-    }
+    return () => {}
   }, [])
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      {/* <Layout> */}
+        <Component {...pageProps} />
+      {/* </Layout> */}
+    </>
   )
 }
 
