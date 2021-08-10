@@ -12,7 +12,14 @@ interface Props {}
 const Layout: React.FC<Props> = ({ children }) => {
   const router = useRouter()
   const { data: options, error: optionsError } = useSWR<ILayout>("/api/layout", (url) => fetch(url).then((r) => r.json()))
-  const {data: loggedIn, error: loggedInError} = useSWR<boolean>("/api/isLoggedIn", (url) => fetch(url).then(r => r.json()).then(d => d?.success))
+  const { data: loggedIn, error: loggedInError, revalidate } = useSWR<boolean>(
+    "/api/isLoggedIn",
+    (url) =>
+      fetch(url)
+        .then((r) => r.json())
+        .then((d) => d?.success),
+    { revalidateOnMount: true }
+  )
   useEffect(() => {
     const headerBurgerMenu = new ResponsiveHeader(styles.header, styles.burgerIcon, styles.header__active, styles.burgerIcon__active)
     return () => {
@@ -21,18 +28,19 @@ const Layout: React.FC<Props> = ({ children }) => {
   }, [])
 
   useEffect(() => {
+    ;(async () => {})()
     return () => {}
   }, [router.route])
 
   const logOut = async () => {
-    // const res = await fetch(`${server}/api/logOut`, {
-    //   method: "POST",
-    // })
-    // const { success } = await res.json()
-    // if (success) {
-    //   setLoggedIn(false)
-    //   router.push("/")
-    // }
+    const res = await fetch(`/api/logOut`, {
+      method: "POST",
+    })
+    const { success } = await res.json()
+    if (success) {
+      revalidate()
+      router.push("/")
+    }
   }
   const Logo = () => (
     <Link href="/">
