@@ -3,11 +3,18 @@ import Link from "next/link"
 import Input from "@modules/form/Input/Input"
 import { Formik, Form } from "formik"
 import { useState } from "react"
+import { useRouter } from "next/dist/client/router"
 
 interface Props {}
 
 const index: React.FC<Props> = ({}) => {
   const [errorMessage, setErrorMessage] = useState<string>()
+  const router = useRouter()
+  function htmlDecode(content: any) {
+    let e = document.createElement("div")
+    e.innerHTML = content
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue ?? ""
+  }
   return (
     <div className={styles.fullHeightWrapper}>
       <div className={styles.authorization}>
@@ -32,8 +39,16 @@ const index: React.FC<Props> = ({}) => {
               }),
             })
             const json = await res.json()
-            if (json.message) setErrorMessage(json.message)
-            console.log(res, json)
+            if (json.message) return setErrorMessage(htmlDecode(json.message))
+            const res2 = await fetch("/api/login", {
+              method: "POST",
+              credentials: "include",
+              body: JSON.stringify({ username, password }),
+            })
+            if (!res2.ok) return setErrorMessage(htmlDecode(`${res2.status}: ${res2.statusText}`))
+            const { success } = await res2.json()
+            if (success) return router.push("/user")
+            return setErrorMessage("Something went wrong!")
           }}
         >
           {({ handleChange }) => (
@@ -42,7 +57,7 @@ const index: React.FC<Props> = ({}) => {
               <Input type="email" placeholder="Email" name="email" onChange={handleChange} />
               <Input type="password" placeholder="Password" name="password" onChange={handleChange} />
               <Input type="password" placeholder="Confirm Password" name="confirmPassword" onChange={handleChange} />
-              <span className={styles.form__errorMessage} dangerouslySetInnerHTML={{__html: errorMessage ?? ""}}></span>
+              <span className={styles.form__errorMessage} dangerouslySetInnerHTML={{ __html: errorMessage ?? "" }}></span>
               <Input type="submit" value={"Sign Up"} />
             </Form>
           )}

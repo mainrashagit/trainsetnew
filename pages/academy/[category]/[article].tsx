@@ -53,7 +53,7 @@ const Article: React.FC<Props> = ({
           imgAlt: author.photo?.altText,
         }}
       />
-      <article /* dangerouslySetInnerHTML={{ __html: doc }} */>
+      <article>
         {sections.map(({ title, subsections }) => (
           <Fragment key={uuid()}>
             <h3>{title}</h3>

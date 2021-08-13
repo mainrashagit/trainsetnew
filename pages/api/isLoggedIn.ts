@@ -5,6 +5,12 @@ const query = `
 query GetViewer {
   viewer {
     id
+    username
+    roles {
+      nodes {
+        name
+      }
+    }
   }
 }
 `
@@ -13,12 +19,22 @@ interface IUser {
   data: {
     viewer: {
       id: string
+      username: string
+      roles: {
+        nodes: {
+          name: string
+        }[]
+      }
     }
   }
 }
 
 export type User =
-  | IUser["data"]["viewer"]
+  | {
+      id: string
+      username: string
+      role: string
+    }
   | {
       success: boolean
     }
@@ -39,7 +55,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   const { jazz } = cookie.parse(req.headers.cookie ?? "")
   if (!jazz) return res.send({ success: false })
   const content = await getUser(jazz)
-  if (content?.id) return res.status(200).send({ success: true })
+  console.log(content)
+  if (content?.id) return res.status(200).send({ username: content?.username, role: content?.roles.nodes[0].name, id: content?.id })
   return res.status(403).send({ success: false })
   // const content = await loginUser(body)
   // res.status(200).json({ success: Boolean(content?.login?.authToken) })
