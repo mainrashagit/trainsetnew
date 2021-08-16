@@ -36,12 +36,12 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (!content.login) return res.status(403).json(content)
   res.setHeader(
     "Set-Cookie",
-    cookie.serialize("jazz", String(content?.login?.authToken ?? ""), {
+    cookie.serialize("funk", String(content?.login?.refreshToken ?? ""), {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "development",
       path: "/",
       maxAge: 60 * 60 * 24 * 7, // 1 week
     })
   )
-  res.status(200).json({ success: Boolean(content?.login?.authToken) })
+  res.status(200).json({ success: Boolean(content?.login?.authToken), jazz: content?.login?.authToken })
 }

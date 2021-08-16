@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import cookie from "cookie"
+import { refreshToken } from "./isLoggedIn"
 
 const query = `
 query GetViewer {
@@ -7,6 +8,11 @@ query GetViewer {
     username
     avatar {
       url
+    }
+    roles {
+      nodes {
+        name
+      }
     }
   }
 }
@@ -19,15 +25,26 @@ interface IUser {
         url: string
       }
       username: string
+      roles: {
+        nodes: { name: string }[]
+      }
     }
   }
 }
 
-export type User = IUser["data"]["viewer"] | {
-  success: boolean
-}
+export type User =
+  | {
+    avatar: {
+      url: string
+    }
+    username: string
+    role: string
+  }
+  | {
+      success: boolean
+    }
 
-async function getUser(cookie: string) {
+async function getUser(cookie: string): Promise<User> {
   const headers: any = { "Content-Type": "application/json" }
   headers["Authorization"] = `Bearer ${cookie}`
   const res = await fetch(process.env.WORDPRESS_API_URL as string, {
@@ -35,17 +52,24 @@ async function getUser(cookie: string) {
     headers,
     body: JSON.stringify({ query }),
   })
-  const json = await res.json() as IUser
-  if (json.data.viewer !== null) return json.data.viewer
+  const json = (await res.json()) as IUser
+  if (json.data.viewer !== null) return {
+    avatar: json.data.viewer.avatar,
+    username: json.data.viewer.username,
+    role: json.data.viewer.roles.nodes[0].name
+  }
   return { success: false }
 }
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  // const body = JSON.parse(req.body)
-  const { jazz } = cookie.parse(req.headers.cookie ?? "")
-  const content = await getUser(jazz)
-  res.send(content)
-  // const content = await loginUser(body)
-  // res.status(200).json({ success: Boolean(content?.login?.authToken) })
-  // res.send(content)
+  let jazz = req.body
+  const { funk } = cookie.parse(req.headers.cookie ?? "")
+  let content = await getUser(jazz)
+  if ("success" in content && !content.success) {
+    jazz = await refreshToken(funk)
+    content = await getUser(jazz)
+    res.send({ jazz, content })
+    return
+  }
+  res.send({ content })
 }

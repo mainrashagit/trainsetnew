@@ -39,7 +39,7 @@ export type User =
       success: boolean
     }
 
-async function getUser(cookie: string) {
+async function getUser(cookie: string): Promise<User> {
   const headers: any = { "Content-Type": "application/json" }
   headers["Authorization"] = `Bearer ${cookie}`
   const res = await fetch(process.env.WORDPRESS_API_URL as string, {
@@ -47,18 +47,52 @@ async function getUser(cookie: string) {
     headers,
     body: JSON.stringify({ query }),
   })
+  if (res.status !== 200) return { success: false }
   const json = (await res.json()) as IUser
-  return json.data.viewer
+  if (json.data.viewer === null) return { success: false }
+  return {
+    id: json.data.viewer.id,
+    username: json.data.viewer.username,
+    role: json.data.viewer.roles.nodes[0].name,
+  }
+}
+
+interface IRefreshToken {
+  data: {
+    refreshJwtAuthToken: {
+      authToken: string
+    }
+  }
+}
+
+export async function refreshToken(token: string) {
+  const headers: any = { "Content-Type": "application/json" }
+  const query = `
+  mutation RefreshAuthToken {
+    refreshJwtAuthToken(input: {jwtRefreshToken: "${token}"}) {
+      authToken
+    }
+  }  
+  `
+  const res = await fetch(process.env.WORDPRESS_API_URL as string, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ query }),
+  })
+  const json = (await res.json()) as IRefreshToken | { errors: { message: string } }
+  if ("errors" in json) {
+    return json.errors
+  }
+  return json.data.refreshJwtAuthToken.authToken
 }
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  const { jazz } = cookie.parse(req.headers.cookie ?? "")
-  if (!jazz) return res.send({ success: false })
-  const content = await getUser(jazz)
-  console.log(content)
-  if (content?.id) return res.status(200).send({ username: content?.username, role: content?.roles.nodes[0].name, id: content?.id })
-  return res.status(403).send({ success: false })
-  // const content = await loginUser(body)
-  // res.status(200).json({ success: Boolean(content?.login?.authToken) })
-  // res.send(content)
+  let jazz = req.body
+  const { funk } = cookie.parse(req.headers.cookie ?? "")
+  let content = await getUser(jazz)
+  if ("success" in content && content.success === false) {
+    jazz = await refreshToken(funk)
+    content = await getUser(jazz)
+  }
+  res.send({ jazz, content })
 }

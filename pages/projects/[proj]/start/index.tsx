@@ -9,13 +9,13 @@ const Start: React.FC<Props> = ({}) => {
   const router = useRouter()
   const [user, setUser] = useState("")
   useEffect(() => {
-    console.log(router.query)
+    // console.log(router.query)
     ;(async () => {
       const res = await fetch("/api/isLoggedIn")
-      const json = await res.json() as User
-      if ("success" in json) return router.push("/auth/sign-in")
-      if (json.role !== "paid_subscriber") return router.push("/purchase")
-      setUser(json.username)
+      const { content } = (await res.json()) as { jazz: string; content: User }
+      if ("success" in content) return router.push("/auth/sign-in")
+      if (content.role !== "paid_subscriber") return router.push("/purchase")
+      setUser(content.username)
     })()
     // function hideMenuBar() {
     //   const menubar = document.getElementById("menubar")

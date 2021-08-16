@@ -5,6 +5,7 @@ import Checkbox from "@modules/form/Checkbox/Checkbox"
 import { Formik, Form } from "formik"
 import { useState } from "react"
 import { useRouter } from "next/dist/client/router"
+import { setJazz } from "@modules/token"
 
 interface Props {}
 
@@ -38,7 +39,8 @@ const index: React.FC<Props> = ({}) => {
               return setErrorMessage(`Uncaught error: ${errors[0].message}. Please, report this error to us so we could fix it.`)
             }
             if (!res.ok) return setErrorMessage(`${res.status}: ${res.statusText}`)
-            const { success } = await res.json()
+            const { success, jazz } = await res.json()
+            setJazz(jazz)
             if (success) return router.push('/user')
             return setErrorMessage("Something went wrong!")
           }}

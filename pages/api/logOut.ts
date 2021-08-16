@@ -4,7 +4,7 @@ import cookie from "cookie"
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   res.setHeader(
     "Set-Cookie",
-    cookie.serialize("jazz", "", {
+    cookie.serialize("funk", "", {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "development",
       path: "/",

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { ILayout } from "@/pages/api/layout"
 import { useRouter } from "next/dist/client/router"
 import useSWR from "swr"
+import { getJazz, setJazz } from "@modules/token"
 
 interface Props {}
 
@@ -21,11 +22,17 @@ const Layout: React.FC<Props> = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    fetch("/api/isLoggedIn").then((r) => r.json())
-    .then((d) => setLoggedIn(!!d?.username))
-    return () => {
-      
-    }
+    fetch("/api/isLoggedIn", {
+      method: "POST",
+      credentials: "include",
+      body: getJazz(),
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        setLoggedIn(!!d?.content?.username)
+        if (typeof d?.jazz === "string" && d?.jazz?.length > 0) setJazz(d?.jazz)
+      })
+    return () => {}
   }, [router.route])
 
   const logOut = async () => {
@@ -33,7 +40,9 @@ const Layout: React.FC<Props> = ({ children }) => {
       method: "POST",
     })
     const { success } = await res.json()
+    setJazz("")
     if (success) {
+      setLoggedIn(false)
       router.push("/")
     }
   }
