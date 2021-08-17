@@ -12,13 +12,25 @@ const Purchase: React.FC<Props> = ({}) => {
   const [errorMessage, setErrorMessage] = useState("")
   const router = useRouter()
   const [title, setTitle] = useState("")
+  const [text, setText] = useState<any>()
   useEffect(() => {
     fetch("/api/title", {
       method: "POST",
-      body: "261"
-    }).then(r => r.text()).then(d => setTitle(d))
-    return () => {
-    }
+      body: "261",
+    })
+      .then((r) => r.text())
+      .then((d) => setTitle(d))
+    fetch("/api/purchaseText")
+      .then((r) => r.json())
+      .then(({ description, clientid }) => {
+        setText(description)
+
+        const script = document.createElement("script")
+        script.src = `https://www.paypal.com/sdk/js?client-id=${clientid}`
+        script.addEventListener("load", () => setLoaded(true))
+        document.body.appendChild(script)
+      })
+    return () => {}
   }, [])
   useEffect(() => {
     fetch("/api/isLoggedIn", {
@@ -32,11 +44,6 @@ const Purchase: React.FC<Props> = ({}) => {
         if (d?.content?.role?.includes("paid")) router.push("/user")
         if (typeof d?.jazz === "string" && d?.jazz?.length > 0) setJazz(d?.jazz)
       })
-
-    const script = document.createElement("script")
-    script.src = `https://www.paypal.com/sdk/js?client-id=AeCM8h3gwb-t6sUJa3RyOF2tPWeKePZioJxuWNaqI691i2OfZiHcacb0aPlSOStk_TFZeyN2jTVmy6uq`
-    script.addEventListener("load", () => setLoaded(true))
-    document.body.appendChild(script)
 
     return () => {}
   }, [router.route])
@@ -90,14 +97,13 @@ const Purchase: React.FC<Props> = ({}) => {
         <title>{title}</title>
       </Head>
       <div className={styles.page}>
-        <div className={styles.description}>
-          <h4>Paid Courses</h4>
-          <p>
-            Just for <b>20$</b> get access to ALL our paid courses.
-          </p>
-          <div className={styles.error}>{errorMessage}</div>
+        <div className={styles.wrap}>
+          <div className={styles.description}>
+            <div className={styles.description__text} dangerouslySetInnerHTML={{ __html: text ?? "" }}></div>
+            <div className={styles.error}>{errorMessage}</div>
+          </div>
+          <div ref={paypalRef} className={styles.paypal}></div>
         </div>
-        <div ref={paypalRef} className={styles.paypal}></div>
       </div>
     </>
   )

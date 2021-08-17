@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import nodemailer from "nodemailer"
-import { fetchAPI, WP_Image } from "@/api/api"
+import { fetchAPI } from "@/api/api"
 
 interface IEmailInfo {
   page: {

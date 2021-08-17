@@ -2,7 +2,26 @@
   min-height: 90vh
   display: flex
   align-items: center
-  justify-content: space-around
+  justify-content: center
+
+.wrap
+  background: #000000
+  padding: 2em
+  border-radius: 5px
+  display: flex
+  align-items: center
+  justify-content: space-between
+  flex-wrap: wrap
+  width: 100%
+  color: #d1d1d1
+  & > *,
+  & *
+    color: #e4e4e4
+
+  @media screen and ( max-width: 768px )
+    justify-content: center
+    & > * + *
+      margin-top: 2rem
 
 .error
   font-size: 0.8rem
@@ -12,3 +31,14 @@
 .paypal
   position: relative
   z-index: 1
+  width: clamp(220px, 25vw, 50%)
+
+  @media screen and ( max-width: 768px )
+    width: 100%
+
+.description
+
+  @media screen and ( max-width: 768px )
+    width: 100%
+  &__text
+    font-size: 1rem

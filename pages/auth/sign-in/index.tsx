@@ -41,13 +41,13 @@ const index: React.FC<Props> = ({}) => {
             if (!res.ok) return setErrorMessage(`${res.status}: ${res.statusText}`)
             const { success, jazz } = await res.json()
             setJazz(jazz)
-            if (success) return router.push('/user')
+            if (success) return router.push("/user")
             return setErrorMessage("Something went wrong!")
           }}
         >
           {({ handleChange }) => (
             <Form className={styles.form_active}>
-            <span className={styles.form__errorMessage} dangerouslySetInnerHTML={{__html: errorMessage ?? ""}}></span>
+              <span className={styles.form__errorMessage} dangerouslySetInnerHTML={{ __html: errorMessage ?? "" }}></span>
               <Input type="text" placeholder="Name" name="username" onChange={handleChange} />
               <Input type="password" placeholder="Password" name="password" onChange={handleChange} />
               <div className={styles.form__checkbox}>
@@ -55,9 +55,11 @@ const index: React.FC<Props> = ({}) => {
               </div>
               <Input type="submit" value="Login In" />
 
-              <a href="#" className={styles.form__restorePassword}>
-                Forgot your password?
-              </a>
+              <Link href="/auth/forgot">
+                <a className={styles.form__restorePassword}>
+                  Forgot your password?
+                </a>
+              </Link>
             </Form>
           )}
         </Formik>
