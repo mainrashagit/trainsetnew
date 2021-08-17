@@ -3,7 +3,8 @@ import Link from "next/link"
 import Button from "@modules/Button/Button"
 
 interface Props {
-  level?: string
+  level: string
+  showLevel?: boolean
   title: string
   about: string
   link: string
@@ -16,6 +17,7 @@ interface Props {
 
 const Card: React.FC<Props> = ({
   level,
+  showLevel,
   title,
   about,
   link,
@@ -29,7 +31,7 @@ const Card: React.FC<Props> = ({
     <div className={styles.card}>
       <div className={styles.card__wrapper}>
         <div className={styles.card__column}>
-          {level && <span className={styles.card__level}>{level}</span>}
+          {showLevel && <span className={styles.card__level}>{level}</span>}
           <div className={styles.card__image}>
             <img className={styles.card__image_src} src={src} srcSet={srcSet} alt={imgAlt} />
           </div>
@@ -64,7 +66,7 @@ const Card: React.FC<Props> = ({
               </Link>
             </div>
             <div className={styles.card__buttonWrapper}>
-              <Link href={`/projects/${link}/start`}>
+              <Link href={`/projects/start?level=${level.slice(-1)}&project=${link}`}>
                 <a>
                   <Button type={"inset"}>
                     Start a project

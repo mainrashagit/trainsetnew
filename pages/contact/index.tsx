@@ -2,7 +2,8 @@ import Input from "@modules/form/Input/Input"
 import TextArea from "@modules/form/TextArea/TextArea"
 import Title from "@modules/text/Title/Title"
 import { Field, Form, Formik } from "formik"
-import { useState } from "react"
+import Head from "next/head"
+import { useEffect, useState } from "react"
 import styles from "./index.module.sass"
 
 interface Props {}
@@ -15,6 +16,16 @@ const index: React.FC<Props> = ({}) => {
     message: "",
   }
   const [message, setMessage] = useState<string>()
+  const [title, setTitle] = useState("")
+  useEffect(() => {
+    fetch("/api/title", {
+      method: "POST",
+      body: "248",
+    })
+      .then((r) => r.text())
+      .then((d) => setTitle(d))
+    return () => {}
+  }, [])
   const spinner = (
     <>
       <div className="lds-spinner">
@@ -115,57 +126,62 @@ const index: React.FC<Props> = ({}) => {
     </>
   )
   return (
-    <div className={styles.fullHeightWrapper}>
-      <div className={styles.authorization}>
-        <div className={styles.authorization__titlesLinksWrapper}>
-          <Title type="h1">Got Any Questions ?</Title>
-        </div>
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <div className={styles.fullHeightWrapper}>
+        <div className={styles.authorization}>
+          <div className={styles.authorization__titlesLinksWrapper}>
+            <Title type="h1">Got Any Questions ?</Title>
+          </div>
 
-        <Formik
-          initialValues={initialValues}
-          onSubmit={async (values, { setSubmitting, resetForm }) => {
-            const hasEmptyFields = Object.values(values).some((v) => v.length < 1)
-            const hasEmail = values.hasOwnProperty("email")
-            const emailTest = (value: string) => /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i.test(value)
-            const badEmail = !emailTest(values["email"])
-            if (hasEmptyFields || (hasEmail && badEmail)) {
-              setMessage("Please, fill all the fields correctly.")
-              return
-            }
-            setSubmitting(true)
-            setMessage("")
-            const res = await fetch("/api/contact", {
-              method: "POST",
-              headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(values),
-            })
-            if (res.ok === false) {
+          <Formik
+            initialValues={initialValues}
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
+              const hasEmptyFields = Object.values(values).some((v) => v.length < 1)
+              const hasEmail = values.hasOwnProperty("email")
+              const emailTest = (value: string) => /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i.test(value)
+              const badEmail = !emailTest(values["email"])
+              if (hasEmptyFields || (hasEmail && badEmail)) {
+                setMessage("Please, fill all the fields correctly.")
+                return
+              }
+              setSubmitting(true)
+              setMessage("")
+              const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                  Accept: "application/json, text/plain, */*",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+              })
+              if (res.ok === false) {
+                setSubmitting(false)
+                setMessage("Error")
+                return
+              }
               setSubmitting(false)
-              setMessage("Error")
-              return
-            }
-            setSubmitting(false)
-            setMessage("Message sent! We will contact you shortly.")
-            resetForm()
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form className={styles.form} style={{ display: "block" }}>
-              <div className={styles.error}>{isSubmitting ? spinner : message}</div>
-              <Field as={Input} type="text" placeholder="Name" name={"name"} />
-              <Field as={Input} type="email" placeholder="Email" name={"email"} />
-              <Field as={Input} type="text" placeholder="Subject" name={"subject"} />
-              <Field as={TextArea} placeholder="Message" name={"message"} />
+              setMessage("Message sent! We will contact you shortly.")
+              resetForm()
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form className={styles.form} style={{ display: "block" }}>
+                <div className={styles.error}>{isSubmitting ? spinner : message}</div>
+                <Field as={Input} type="text" placeholder="Name" name={"name"} />
+                <Field as={Input} type="email" placeholder="Email" name={"email"} />
+                <Field as={Input} type="text" placeholder="Subject" name={"subject"} />
+                <Field as={TextArea} placeholder="Message" name={"message"} />
 
-              <Input type="submit" value="Send" />
-            </Form>
-          )}
-        </Formik>
+                <Input type="submit" value="Send" />
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

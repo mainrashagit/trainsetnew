@@ -6,6 +6,7 @@ import Container from "@modules/Container/Container"
 import Nav from "@modules/academy/Nav/Nav"
 import { getAcademyPage, IAcademyPage } from "@/api/api"
 import { GetStaticProps } from "next"
+import Head from "next/head"
 
 interface Props {
   page: IAcademyPage
@@ -16,10 +17,14 @@ const index: React.FC<Props> = ({
     text,
     date,
     author: { name, photo },
+    pageTitle
   },
 }) => {
   return (
     <>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
       <Container>
         <Title type="h2" margin={true}>
           TrainSet Academy
@@ -42,5 +47,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       page,
     },
+    revalidate: 10
   }
 }

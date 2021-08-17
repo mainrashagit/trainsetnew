@@ -8,6 +8,7 @@ import parse, { domToReact } from "html-react-parser"
 import { Fragment } from "react"
 import Math from "@modules/text/Math/Math"
 import { v4 as uuid } from "uuid"
+import Head from "next/head"
 
 interface Props {
   current: string
@@ -39,35 +40,40 @@ const Article: React.FC<Props> = ({
     return reacted
   }
   return (
-    <Container>
-      <SubNav
-        supertitle={""}
-        title={category}
-        activeLink={current}
-        links={links}
-        author={{
-          name: author.name,
-          about: date,
-          src: author.photo?.sourceUrl,
-          srcSet: author.photo?.srcSet,
-          imgAlt: author.photo?.altText,
-        }}
-      />
-      <article>
-        {sections.map(({ title, subsections }) => (
-          <Fragment key={uuid()}>
-            <h3>{title}</h3>
-            {subsections.map(({ text, subtitle }) => (
-              <section key={uuid()}>
-                <h4>{subtitle}</h4>
-                {polyMath(text)}
-              </section>
-            ))}
-          </Fragment>
-        ))}
-      </article>
-      <ArrowTop />
-    </Container>
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Container>
+        <SubNav
+          supertitle={""}
+          title={category}
+          activeLink={current}
+          links={links}
+          author={{
+            name: author.name,
+            about: date,
+            src: author.photo?.sourceUrl,
+            srcSet: author.photo?.srcSet,
+            imgAlt: author.photo?.altText,
+          }}
+        />
+        <article>
+          {sections.map(({ title, subsections }) => (
+            <Fragment key={uuid()}>
+              <h3>{title}</h3>
+              {subsections.map(({ text, subtitle }) => (
+                <section key={uuid()}>
+                  <h4>{subtitle}</h4>
+                  {polyMath(text)}
+                </section>
+              ))}
+            </Fragment>
+          ))}
+        </article>
+        <ArrowTop />
+      </Container>
+    </>
   )
 }
 

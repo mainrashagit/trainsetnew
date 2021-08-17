@@ -7,6 +7,7 @@ import SwiperCore, { Navigation } from "swiper/core"
 import { v4 as uuid } from "uuid"
 import { ProjectsPreview } from "@/pages/api/projectsPreview"
 import { ProjectLevels } from "../api/levels"
+import Head from "next/head"
 
 SwiperCore.use([Navigation])
 
@@ -32,6 +33,7 @@ const index: React.FC<Props> = ({ }) => {
       </div>
     </SwiperSlide>
   ))
+  const [title, setTitle] = useState("")
   useEffect(() => {
     let slide = Number(localStorage.getItem("clickedSlide") ?? "0") || 0
     swiperMainInst?.slideTo(slide)
@@ -39,11 +41,19 @@ const index: React.FC<Props> = ({ }) => {
   useEffect(() => {
     fetch("/api/projectsPreview").then(res => res.json()).then(data => setProjects(data))
     fetch("/api/levels").then(res => res.json()).then(data => setLevels(data))
+    fetch("/api/title", {
+      method: "POST",
+      body: "158"
+    }).then(r => r.text()).then(d => setTitle(d))
     return () => {
       
     }
   }, [])
   return (
+    <>
+    <Head>
+      <title>{title}</title>
+    </Head>
     <section className={styles.projects}>
       <div className="container">
         <div className={styles.projects__title}>
@@ -82,7 +92,7 @@ const index: React.FC<Props> = ({ }) => {
             {levels?.map((lvl) => (
               <SwiperSlide key={uuid()} data-project={true}>
                 {projects?.filter(({level}) => level === lvl).map(({ link, brief, image, level, title }) => (
-                  <Card title={title} about={brief} link={link} src={image?.sourceUrl ?? ""} imgAlt={image?.altText ?? ""} srcSet={image?.srcSet ?? ""} buttons={true} more={true} key={uuid()} />
+                  <Card level={level} title={title} about={brief} link={link} src={image?.sourceUrl ?? ""} imgAlt={image?.altText ?? ""} srcSet={image?.srcSet ?? ""} buttons={true} more={true} key={uuid()} />
                 ))}
               </SwiperSlide>
             ))}
@@ -90,6 +100,7 @@ const index: React.FC<Props> = ({ }) => {
         </div>
       </div>
     </section>
+    </>
   )
 }
 

@@ -11,6 +11,7 @@ import Container from "@modules/Container/Container"
 import Card from "@modules/projects/Card/Card"
 import Author from "@modules/text/Author/Author"
 import { ProjectLevels } from "../api/levels"
+import Head from "next/head"
 
 SwiperCore.use([Navigation])
 
@@ -21,7 +22,7 @@ interface Props {
 
 const Project: React.FC<Props> = ({
   page: {
-    content: { about, author, tags, support, requirements, image },
+    content: { about, author, tags, support, requirements, image, title },
     category,
   },
   link,
@@ -33,11 +34,10 @@ const Project: React.FC<Props> = ({
   }
 
   useEffect(() => {
-    
-    fetch("/api/levels").then(res => res.json()).then(data => setLevels(data))
-    return () => {
-      
-    }
+    fetch("/api/levels")
+      .then((res) => res.json())
+      .then((data) => setLevels(data))
+    return () => {}
   }, [])
 
   const navSlides = levels?.map((v, i) => (
@@ -50,47 +50,52 @@ const Project: React.FC<Props> = ({
     </SwiperSlide>
   ))
   return (
-    <section className={styles.project}>
-      <div className={styles.nav}>
-        <div className={styles.nav__btnLeft} id={"navBtnLeft"}></div>
-        <Swiper
-          slidesPerView={1}
-          slideToClickedSlide={true}
-          breakpoints={{
-            600: { slidesPerView: 3 },
-            768: { slidesPerView: 4 },
-          }}
-          navigation={{
-            prevEl: "#navBtnLeft",
-            nextEl: "#navBtnRight",
-            disabledClass: styles.disabled,
-          }}
-          className={`${styles.slides}`}
-        >
-          {navSlides}
-        </Swiper>
-        <div className={styles.nav__btnRight} id={"navBtnRight"}></div>
-      </div>
-      <Card title={"Car Price Prediction"} src={image?.sourceUrl ?? ""} imgAlt={image?.altText ?? ""} srcSet={image?.srcSet ?? ""} tags={tags.map((tag) => tag.tag)} link={link} />
-      <Container>
-        <section>
-          <h4>{about.title}</h4>
-          {about.text}
-        </section>
-        <section>
-          <h4>{requirements.title}</h4>
-          {requirements.text}
-        </section>
-        <section>
-          <h4>{support.title}</h4>
-          {support.text}
-        </section>
-        <section>
-          <h4>{author.title}</h4>
-          <Author name={author.name} about={author.aboutAuthor} src={author.photo.sourceUrl} srcSet={author.photo.srcSet} imgAlt={author.photo.altText} />
-        </section>
-      </Container>
-    </section>
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <section className={styles.project}>
+        <div className={styles.nav}>
+          <div className={styles.nav__btnLeft} id={"navBtnLeft"}></div>
+          <Swiper
+            slidesPerView={1}
+            slideToClickedSlide={true}
+            breakpoints={{
+              600: { slidesPerView: 3 },
+              768: { slidesPerView: 4 },
+            }}
+            navigation={{
+              prevEl: "#navBtnLeft",
+              nextEl: "#navBtnRight",
+              disabledClass: styles.disabled,
+            }}
+            className={`${styles.slides}`}
+          >
+            {navSlides}
+          </Swiper>
+          <div className={styles.nav__btnRight} id={"navBtnRight"}></div>
+        </div>
+        <Card title={"Car Price Prediction"} src={image?.sourceUrl ?? ""} imgAlt={image?.altText ?? ""} srcSet={image?.srcSet ?? ""} tags={tags.map((tag) => tag.tag)} link={link} />
+        <Container>
+          <section>
+            <h4>{about.title}</h4>
+            {about.text}
+          </section>
+          <section>
+            <h4>{requirements.title}</h4>
+            {requirements.text}
+          </section>
+          <section>
+            <h4>{support.title}</h4>
+            {support.text}
+          </section>
+          <section>
+            <h4>{author.title}</h4>
+            <Author name={author.name} about={author.aboutAuthor} src={author.photo.sourceUrl} srcSet={author.photo.srcSet} imgAlt={author.photo.altText} />
+          </section>
+        </Container>
+      </section>
+    </>
   )
 }
 
@@ -100,7 +105,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getProjectPaths()
   return {
     paths: paths,
-    fallback: "blocking"
+    fallback: "blocking",
   }
 }
 
@@ -116,6 +121,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       page: content,
       link: proj,
     },
-    revalidate: 10
+    revalidate: 10,
   }
 }

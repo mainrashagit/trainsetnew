@@ -8,12 +8,13 @@ import { getMainPage, MainPage } from "@/api/api"
 import { Fragment, useEffect, useState } from "react"
 import { ProjectsPreview } from "@/pages/api/projectsPreview"
 import useSWR from "swr"
+import Head from "next/head"
 
 interface Props {
   page: MainPage
 }
 
-export default function Home({ page: { screen1, screen2, screen3, screen4, screen5, screen6, screen7 } }: Props) {
+export default function Home({ page: { screen1, screen2, screen3, screen4, screen5, screen6, screen7, title } }: Props) {
 
   const getTwoRandomProjects = (projects: any[]) => {
     const set = new Set<number>()
@@ -28,6 +29,9 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
 
   return (
     <>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <section className={styles.firstScreen}>
         <div className={styles.firstScreen__wrapper}>
           <div className={styles.firstScreen__column}>
@@ -132,5 +136,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       page,
     },
+    revalidate: 10
   }
 }

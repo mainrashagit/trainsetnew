@@ -7,6 +7,7 @@ import ArrowTop from "@modules/text/ArrowTop/ArrowTop"
 import Author from "@modules/text/Author/Author"
 import { BlogBySlug, BlogLinks, getBlogBySlug, getBlogLinks, getBlogPaths } from "@/api/api"
 import { v4 as uuid } from "uuid"
+import Head from "next/head"
 
 interface Props {
   page: BlogBySlug
@@ -19,12 +20,16 @@ const Blog: React.FC<Props> = ({
   page: {
     blog: { date, sections, author },
     title,
+    pageTitle
   },
   links,
   current,
 }) => {
   return (
     <>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
       <Container>
         <Title margin={true}>TrainSet Academy</Title>
         <Sidebar items={links.map(({ link, title }) => ({ text: title, link, active: link === current }))} />
@@ -70,6 +75,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       links,
       current: blog,
     },
-    revalidate: 10
+    revalidate: 10,
   }
 }

@@ -1,5 +1,6 @@
 import { getJazz, setJazz } from "@modules/token"
 import { useRouter } from "next/dist/client/router"
+import Head from "next/head"
 import { useEffect, useRef, useState } from "react"
 import styles from "./index.module.sass"
 
@@ -10,6 +11,15 @@ const Purchase: React.FC<Props> = ({}) => {
   let paypalRef = useRef<any>()
   const [errorMessage, setErrorMessage] = useState("")
   const router = useRouter()
+  const [title, setTitle] = useState("")
+  useEffect(() => {
+    fetch("/api/title", {
+      method: "POST",
+      body: "261"
+    }).then(r => r.text()).then(d => setTitle(d))
+    return () => {
+    }
+  }, [])
   useEffect(() => {
     fetch("/api/isLoggedIn", {
       method: "POST",
@@ -18,7 +28,6 @@ const Purchase: React.FC<Props> = ({}) => {
     })
       .then((r) => r.json())
       .then((d) => {
-        console.log(d)
         if (!d?.content?.username) return router.push("/auth/sign-in")
         if (d?.content?.role?.includes("paid")) router.push("/user")
         if (typeof d?.jazz === "string" && d?.jazz?.length > 0) setJazz(d?.jazz)
@@ -77,6 +86,9 @@ const Purchase: React.FC<Props> = ({}) => {
   }, [loaded])
   return (
     <>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <div className={styles.page}>
         <div className={styles.description}>
           <h4>Paid Courses</h4>
@@ -85,7 +97,7 @@ const Purchase: React.FC<Props> = ({}) => {
           </p>
           <div className={styles.error}>{errorMessage}</div>
         </div>
-        <div ref={paypalRef}></div>
+        <div ref={paypalRef} className={styles.paypal}></div>
       </div>
     </>
   )

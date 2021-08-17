@@ -88,6 +88,7 @@ export type MainPage = {
       link: string
     }
   }
+  title: string
 }
 
 export async function getMainPage(): Promise<MainPage> {
@@ -153,12 +154,16 @@ export async function getMainPage(): Promise<MainPage> {
             }
           }
         }
+        title
+        pageTitle {
+          title
+        }
       }
     }
   `
   )
 
-  return data.page.mainpage
+  return { ...data.page.mainpage, title: data.page.pageTitle?.title?.length > 0 ? data.page.pageTitle?.title : data.page.title }
 }
 
 export interface IAcademyPage {
@@ -172,6 +177,7 @@ export interface IAcademyPage {
       altText: string
     }
   }
+  pageTitle: string
 }
 
 export async function getAcademyPage(): Promise<IAcademyPage> {
@@ -191,11 +197,15 @@ export async function getAcademyPage(): Promise<IAcademyPage> {
           }
         }
       }
+      title
+      pageTitle {
+        title
+      }
     }
   }
 `
   )
-  return data.page.homeDocs
+  return { ...data.page.homeDocs, pageTitle: data.page.pageTitle?.title ?? data.page.title }
 }
 
 interface IArticlePaths {
@@ -306,6 +316,9 @@ interface IArticleByTitle {
     edges: {
       node: {
         title: string
+        pageTitle: {
+          title: string
+        }
         docs: {
           sections: {
             title: string
@@ -358,7 +371,6 @@ export async function getArticleByTitle(title: string): Promise<IArticle> {
       posts(where: {title: "${title}"}) {
         edges {
           node {
-            title
             docs {
               sections {
                 subsections {
@@ -377,6 +389,10 @@ export async function getArticleByTitle(title: string): Promise<IArticle> {
                 }
               }
             }
+            title
+            pageTitle {
+              title
+            }
           }
         }
       }
@@ -384,7 +400,7 @@ export async function getArticleByTitle(title: string): Promise<IArticle> {
   `
   )) as IArticleByTitle
 
-  return data.posts.edges[0].node
+  return { ...data.posts.edges[0].node, title: data.posts.edges[0].node.pageTitle?.title ?? data.posts.edges[0].node.title }
 }
 
 interface IProjectPaths {
@@ -453,11 +469,48 @@ interface IProject {
         name: string
       }[]
     }
+    title: string
+    pageTitle: {
+      title: string
+    }
   }
 }
 
 export type ProjectBySlug = {
-  content: IProject["post"]["projects"]
+  content: {
+    about: {
+      text: string
+      title: string
+    }
+    author: {
+      title: string
+      name: string
+      aboutAuthor: string
+      photo: {
+        altText: string
+        sourceUrl: string
+        srcSet: string
+      }
+    }
+    image: {
+      altText: string
+      sourceUrl: string
+      srcSet: string
+    }
+    requirements: {
+      title: string
+      text: string
+    }
+    support: {
+      title: string
+      text: string
+    }
+    tags: {
+      tag: string
+    }[]
+
+    title: string
+  }
   category: string
 }
 
@@ -502,11 +555,15 @@ export async function getProjectBySlug(id: string): Promise<ProjectBySlug> {
           name
         }
       }
+      title
+      pageTitle {
+        title
+      }
     }
   }
   `)) as IProject
   return {
-    content: data.post.projects,
+    content: { ...data.post.projects, title: data.post.pageTitle?.title ?? data.post.title },
     category: data.post.categories.nodes[0].name,
   }
 }
@@ -586,10 +643,31 @@ interface IBlogBySlug {
       date: string
     }
     title: string
+    pageTitle: {
+      title: string
+    }
   }
 }
 
-export type BlogBySlug = IBlogBySlug["post"]
+export type BlogBySlug = {
+  blog: {
+    author: {
+      name: string
+      photo: {
+        altText: string
+        sourceUrl: string
+        srcSet: string
+      }
+    }
+    sections: {
+      title: string
+      info: string
+    }[]
+    date: string
+  }
+  title: string
+  pageTitle: string
+}
 
 export async function getBlogBySlug(id: string): Promise<BlogBySlug> {
   const data = (await fetchAPI(`
@@ -611,9 +689,12 @@ export async function getBlogBySlug(id: string): Promise<BlogBySlug> {
         date
       }
       title
+      pageTitle {
+        title
+      }
     }
   }
   `)) as IBlogBySlug
 
-  return data.post
+  return { ...data.post, pageTitle: data.post.pageTitle?.title ?? data.post.title }
 }
