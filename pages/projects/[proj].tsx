@@ -22,7 +22,7 @@ interface Props {
 
 const Project: React.FC<Props> = ({
   page: {
-    content: { about, author, tags, support, requirements, image, title },
+    content/* : { about, author, tags, support, requirements, image, title } */,
     category,
   },
   link,
@@ -52,7 +52,7 @@ const Project: React.FC<Props> = ({
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{content?.title}</title>
       </Head>
       <section className={styles.project}>
         <div className={styles.nav}>
@@ -75,23 +75,23 @@ const Project: React.FC<Props> = ({
           </Swiper>
           <div className={styles.nav__btnRight} id={"navBtnRight"}></div>
         </div>
-        <Card title={"Car Price Prediction"} src={image?.sourceUrl ?? ""} imgAlt={image?.altText ?? ""} srcSet={image?.srcSet ?? ""} tags={tags.map((tag) => tag.tag)} link={link} />
+        <Card title={"Car Price Prediction"} src={content?.image?.sourceUrl ?? ""} imgAlt={content?.image?.altText ?? ""} srcSet={content?.image?.srcSet ?? ""} tags={content?.tags.map((tag) => tag.tag)} link={link} />
         <Container>
           <section>
-            <h4>{about.title}</h4>
-            {about.text}
+            <h4>{content?.about?.title}</h4>
+            {content?.about?.text}
           </section>
           <section>
-            <h4>{requirements.title}</h4>
-            {requirements.text}
+            <h4>{content?.requirements?.title}</h4>
+            {content?.requirements?.text}
           </section>
           <section>
-            <h4>{support.title}</h4>
-            {support.text}
+            <h4>{content?.support?.title}</h4>
+            {content?.support?.text}
           </section>
           <section>
-            <h4>{author.title}</h4>
-            <Author name={author.name} about={author.aboutAuthor} src={author.photo.sourceUrl} srcSet={author.photo.srcSet} imgAlt={author.photo.altText} />
+            <h4>{content?.author?.title}</h4>
+            <Author name={content?.author?.name} about={content?.author?.aboutAuthor} src={content?.author?.photo?.sourceUrl} srcSet={content?.author?.photo?.srcSet} imgAlt={content?.author?.photo?.altText} />
           </section>
         </Container>
       </section>
