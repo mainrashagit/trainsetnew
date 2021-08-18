@@ -5,12 +5,12 @@ import Link from "next/link"
 import Tags from "../Tags/Tags"
 
 interface Props {
-  title: string
-  link: string
-  src: string
+  title?: string
+  link?: string
+  src?: string
   srcSet?: string
   imgAlt?: string
-  tags: string[]
+  tags?: string[]
 }
 
 const Card: React.FC<Props> = ({ title, link, src, srcSet, imgAlt, tags }) => {

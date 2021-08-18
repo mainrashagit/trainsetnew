@@ -9,12 +9,14 @@ import { Fragment, useEffect, useState } from "react"
 import { ProjectsPreview } from "@/pages/api/projectsPreview"
 import useSWR from "swr"
 import Head from "next/head"
+import { useRouter } from "next/dist/client/router"
 
 interface Props {
   page: MainPage
 }
 
 export default function Home({ page: { screen1, screen2, screen3, screen4, screen5, screen6, screen7, title } }: Props) {
+  const router = useRouter()
 
   const getTwoRandomProjects = (projects: any[]) => {
     const set = new Set<number>()
@@ -40,7 +42,11 @@ export default function Home({ page: { screen1, screen2, screen3, screen4, scree
             </div>
             <h5 className={styles.firstScreen__suptitle}>{screen1?.subtitle}</h5>
             <Link href={screen1?.button.link}>
-              <a className={styles.firstScreen__topbutton}>{screen1?.button.text}</a>
+              <a className={styles.firstScreen__topbutton} onClick={e => {
+                e.preventDefault()
+                localStorage.setItem("clickedSlide", "0")
+                router.push(screen1?.button.link)
+              }}>{screen1?.button.text}</a>
             </Link>
           </div>
 
