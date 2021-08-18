@@ -4,6 +4,7 @@ import cookie from "cookie"
 const query = `
 query GetViewer {
   viewer {
+    jwtAuthToken
     id
     username
     roles {
@@ -18,6 +19,7 @@ query GetViewer {
 interface IUser {
   data: {
     viewer: {
+      jwtAuthToken: string
       id: string
       username: string
       roles: {
@@ -34,6 +36,7 @@ export type User =
       id: string
       username: string
       role: string
+      token: string
     }
   | {
       success: boolean
@@ -54,6 +57,7 @@ async function getUser(cookie: string): Promise<User> {
     id: json.data.viewer.id,
     username: json.data.viewer.username,
     role: json.data.viewer.roles.nodes[0].name,
+    token: json.data.viewer.jwtAuthToken
   }
 }
 
