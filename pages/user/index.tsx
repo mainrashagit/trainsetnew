@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/dist/client/router"
 import { User } from "../api/user"
 import { getJazz, setJazz } from "@modules/token"
+import { WP_Image } from "@/api/api"
 
 interface Props {}
 
@@ -13,6 +14,7 @@ const UserPage: React.FC<Props> = ({}) => {
   const [username, setUsername] = useState<string>()
   const [ava, setAva] = useState<string>()
   const [membership, setMembership] = useState<string>("")
+  const [img, setImg] = useState<WP_Image>()
   useEffect(() => {
     ;(async () => {
       const res = await fetch("/api/user", {
@@ -31,6 +33,9 @@ const UserPage: React.FC<Props> = ({}) => {
       setUsername(content?.username)
       setAva(content?.avatar?.url)
       setMembership(content?.role.replace("_", " "))
+      const picRes = await fetch("/api/profilePage")
+      const pic = await picRes.json()
+      setImg(pic)
     })()
     return () => {}
   }, [])
@@ -48,7 +53,7 @@ const UserPage: React.FC<Props> = ({}) => {
             <p className={styles.info__pos}>{membership}</p>
           </div>
           <div className={styles.info__img}>
-            <img src={ava} alt="avatar of profile" />
+            <img src={img?.sourceUrl ?? ""} srcSet={img?.srcSet ?? ""} alt={img?.altText ?? "profile image"} />
           </div>
         </div>
 
