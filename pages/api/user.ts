@@ -6,6 +6,7 @@ const query = `
 query GetViewer {
   viewer {
     username
+    id
     avatar {
       url
     }
@@ -25,6 +26,7 @@ interface IUser {
         url: string
       }
       username: string
+      id: string
       roles: {
         nodes: { name: string }[]
       }
@@ -39,6 +41,7 @@ export type User =
     }
     username: string
     role: string
+    id: string
   }
   | {
       success: boolean
@@ -56,7 +59,8 @@ async function getUser(cookie: string): Promise<User> {
   if (json.data.viewer !== null) return {
     avatar: json.data.viewer.avatar,
     username: json.data.viewer.username,
-    role: json.data.viewer.roles.nodes[0].name
+    role: json.data.viewer.roles.nodes[0].name,
+    id: json.data.viewer.id
   }
   return { success: false }
 }

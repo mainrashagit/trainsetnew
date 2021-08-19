@@ -9,7 +9,20 @@
 
 .pannel
     margin-bottom: 150px
-    max-width: 600px
+    width: 100%
+    display: -webkit-box
+    display: -ms-flexbox
+    display: flex
+    -webkit-box-orient: vertical
+    -webkit-box-direction: normal
+    -ms-flex-direction: column
+    flex-direction: column
+    -webkit-box-align: center
+    -ms-flex-align: center
+    align-items: center
+    min-height: 100vh
+    padding-top: 90px
+    padding-bottom: 90px
 
     &__buttons
         max-width: 100%
@@ -17,7 +30,7 @@
         display: flex
         justify-content: center
         align-items: center
-        margin-bottom: 80px
+        // margin-bottom: 80px
 
     &__button
         font-family: Oswald
@@ -42,6 +55,7 @@
 
 .info
     display: flex
+    margin-bottom: 80px
     &__column
         font-weight: 500
         display: flex
@@ -79,12 +93,62 @@
 
 .started
     margin-top: 80px
+    display: -webkit-box
+    display: -ms-flexbox
+    display: flex
+    -webkit-box-orient: vertical
+    -webkit-box-direction: normal
+    -ms-flex-direction: column
+    flex-direction: column
+
+    & > * + *
+        margin-top: 20px
 
 .link
     transition: 0.4s ease
     border-radius: 44px
-    display: block
 
     &:hover
         transform: scale(0.99)
         box-shadow: inset 0px 4px 10px rgb(0 0 0 / 30%)
+
+.proj
+    display: flex
+    justify-content: space-between
+
+.bucket
+    margin-left: 20px
+    cursor: pointer
+    &:hover
+        -webkit-animation: swing
+        animation: swing
+        -webkit-animation-duration: 2s
+        animation-duration: 2s
+        -webkit-animation-iteration-count: infinite
+        animation-iteration-count: infinite
+
+    &Wrap
+        display: flex
+        justify-content: center
+        align-items: center
+
+@keyframes swing
+    20%
+        -webkit-transform: rotate(15deg)
+        transform: rotate(15deg)
+
+    40%
+        -webkit-transform: rotate(-10deg)
+        transform: rotate(-10deg)
+
+    60%
+        -webkit-transform: rotate(5deg)
+        transform: rotate(5deg)
+
+    80%
+        -webkit-transform: rotate(-5deg)
+        transform: rotate(-5deg)
+
+    100%
+        -webkit-transform: rotate(0deg)
+        transform: rotate(0deg)
