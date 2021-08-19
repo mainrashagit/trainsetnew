@@ -20,13 +20,7 @@ interface Props {
   link: string
 }
 
-const Project: React.FC<Props> = ({
-  page: {
-    content/* : { about, author, tags, support, requirements, image, title } */,
-    category,
-  },
-  link,
-}) => {
+const Project: React.FC<Props> = ({ page: { content /* : { about, author, tags, support, requirements, image, title } */, category }, link }) => {
   const [levels, setLevels] = useState<ProjectLevels>()
   const slideTo = (e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return
@@ -79,15 +73,15 @@ const Project: React.FC<Props> = ({
         <Container>
           <section>
             <h4>{content?.about?.title}</h4>
-            {content?.about?.text}
+            <div dangerouslySetInnerHTML={{ __html: content?.about?.text }}></div>
           </section>
           <section>
             <h4>{content?.requirements?.title}</h4>
-            {content?.requirements?.text}
+            <div dangerouslySetInnerHTML={{ __html: content?.requirements?.text }}></div>
           </section>
           <section>
             <h4>{content?.support?.title}</h4>
-            {content?.support?.text}
+            <div dangerouslySetInnerHTML={{ __html: content?.support?.text }}></div>
           </section>
           <section>
             <h4>{content?.author?.title}</h4>
@@ -121,6 +115,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       page: content,
       link: proj,
     },
-    revalidate: 10,
+    revalidate: 1,
   }
 }

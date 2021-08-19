@@ -38,7 +38,7 @@ const Blog: React.FC<Props> = ({
         {sections.map(({ title: sectionTitle, info }) => (
           <section key={uuid()}>
             <h4>{sectionTitle}</h4>
-            <section>{info}</section>
+            <section dangerouslySetInnerHTML={{__html: info}}></section>
           </section>
         ))}
 

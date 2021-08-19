@@ -9,6 +9,7 @@ import { Fragment } from "react"
 import Math from "@modules/text/Math/Math"
 import { v4 as uuid } from "uuid"
 import Head from "next/head"
+import Center from "@modules/text/Center/Center"
 
 interface Props {
   current: string
@@ -104,6 +105,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       content: articleContent,
       category,
     },
-    revalidate: 10,
+    revalidate: 1,
   }
 }

@@ -51,6 +51,7 @@ const UserPage: React.FC<Props> = ({}) => {
           <div className={styles.info__column}>
             <p className={styles.info__name}>{username}</p>
             <p className={styles.info__pos}>{membership}</p>
+            {!membership.includes("Paid") && <Link href="/purchase"><a className={styles.info__upgrade}><b>Upgrade</b></a></Link>}
           </div>
           <div className={styles.info__img}>
             <img src={img?.sourceUrl ?? ""} srcSet={img?.srcSet ?? ""} alt={img?.altText ?? "profile image"} />
