@@ -12,6 +12,7 @@ import Card from "@modules/projects/Card/Card"
 import Author from "@modules/text/Author/Author"
 import { ProjectLevels } from "../api/levels"
 import Head from "next/head"
+import ArrowTop from "@modules/text/ArrowTop/ArrowTop"
 
 SwiperCore.use([Navigation])
 
@@ -69,7 +70,7 @@ const Project: React.FC<Props> = ({ page: { content /* : { about, author, tags, 
           </Swiper>
           <div className={styles.nav__btnRight} id={"navBtnRight"}></div>
         </div>
-        <Card title={"Car Price Prediction"} src={content?.image?.sourceUrl ?? ""} imgAlt={content?.image?.altText ?? ""} srcSet={content?.image?.srcSet ?? ""} tags={content?.tags?.map((tag) => tag.tag)} link={link} />
+        <Card title={"Car Price Prediction"} src={content?.image?.sourceUrl ?? ""} imgAlt={content?.image?.altText ?? ""} srcSet={content?.image?.srcSet ?? ""} tags={content?.tags?.map((tag) => tag.tag)} link={link} level={category} />
         <Container>
           <section>
             <h4>{content?.about?.title}</h4>
@@ -87,6 +88,7 @@ const Project: React.FC<Props> = ({ page: { content /* : { about, author, tags, 
             <h4>{content?.author?.title}</h4>
             <Author name={content?.author?.name} about={content?.author?.aboutAuthor} src={content?.author?.photo?.sourceUrl} srcSet={content?.author?.photo?.srcSet} imgAlt={content?.author?.photo?.altText} />
           </section>
+          <ArrowTop />
         </Container>
       </section>
     </>
