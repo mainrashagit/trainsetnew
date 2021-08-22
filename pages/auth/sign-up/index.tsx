@@ -30,6 +30,8 @@ const index: React.FC<Props> = ({}) => {
           onSubmit={async ({ username, email, password, confirmPassword }) => {
             setErrorMessage("")
             if (password !== confirmPassword) return setErrorMessage("Passwords do not match!")
+            const usernameRegex = /^[a-zA-Z0-9]+$/
+            if (!username.match(usernameRegex)) return setErrorMessage("The username contains invalid characters. Please, use only numbers and latin letters.")
             const res = await fetch("/api/register", {
               method: "POST",
               body: JSON.stringify({

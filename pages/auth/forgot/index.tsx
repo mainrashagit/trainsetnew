@@ -1,11 +1,8 @@
 import styles from "../auth.module.sass"
-import Link from "next/link"
 import Input from "@modules/form/Input/Input"
-import Checkbox from "@modules/form/Checkbox/Checkbox"
 import { Formik, Form } from "formik"
 import { useState } from "react"
 import { useRouter } from "next/dist/client/router"
-import { setJazz } from "@modules/token"
 import Title from "@modules/text/Title/Title"
 
 interface Props {}
@@ -17,21 +14,25 @@ const index: React.FC<Props> = ({}) => {
     <div className={styles.fullHeightWrapper}>
       <div className={styles.authorization}>
         <Formik
-          initialValues={{ usernameOrEmail: "" }}
+          initialValues={{ email: "" }}
           onSubmit={async (values) => {
-            setErrorMessage("")
-            const res = await fetch("/api/reset", {
+            setErrorMessage("Processing...")
+            const res = await fetch("/api/forgot", {
               method: "POST",
               credentials: "include",
               body: JSON.stringify(values),
             })
+            const data = await res.json()
+            if (data.success) return setErrorMessage("Message sent! Check your email.")
+            return setErrorMessage("Something went wrong! Check if the email is correct.")
           }}
         >
           {({ handleChange }) => (
             <Form className={styles.form_active}>
-                <Title>Enter username or email</Title>
+                <Title>Reset password</Title>
+                <p style={{fontSize: "1rem", lineHeight: "1.4"}}>The link with password reset is going to be sent to the email you provide</p>
             <span className={styles.form__errorMessage} dangerouslySetInnerHTML={{__html: errorMessage ?? ""}}></span>
-              <Input type="text" placeholder="Username Or Email" name="usernameOrEmail" onChange={handleChange} />
+              <Input type="email" placeholder="Email" name="email" onChange={handleChange} />
               <Input type="submit" value="Reset Password" />
             </Form>
           )}

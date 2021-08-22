@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next"
 import nodemailer from "nodemailer"
 import { fetchAPI } from "@/api/api"
 
-interface IEmailInfo {
+export interface IEmailInfo {
   page: {
     contactForm: {
       burner: {
