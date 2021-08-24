@@ -508,7 +508,7 @@ export type ProjectBySlug = {
     tags: {
       tag: string
     }[]
-
+    projectTitle: string
     title: string
   }
   category: string
@@ -563,7 +563,7 @@ export async function getProjectBySlug(id: string): Promise<ProjectBySlug> {
   }
   `)) as IProject
   return {
-    content: { ...data.post.projects, title: data.post.pageTitle?.title ?? data.post.title },
+    content: { ...data.post.projects, title: data.post.pageTitle?.title ?? data.post.title, projectTitle: data.post.title },
     category: data.post.categories.nodes[0].name,
   }
 }

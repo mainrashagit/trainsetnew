@@ -70,7 +70,7 @@ const Project: React.FC<Props> = ({ page: { content /* : { about, author, tags, 
           </Swiper>
           <div className={styles.nav__btnRight} id={"navBtnRight"}></div>
         </div>
-        <Card title={"Car Price Prediction"} src={content?.image?.sourceUrl ?? ""} imgAlt={content?.image?.altText ?? ""} srcSet={content?.image?.srcSet ?? ""} tags={content?.tags?.map((tag) => tag.tag)} link={link} level={category} />
+        <Card title={content?.title} src={content?.image?.sourceUrl ?? ""} imgAlt={content?.image?.altText ?? ""} srcSet={content?.image?.srcSet ?? ""} tags={content?.tags?.map((tag) => tag.tag)} link={link} level={category} />
         <Container>
           <section>
             <h4>{content?.about?.title}</h4>
